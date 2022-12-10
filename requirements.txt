@@ -1,0 +1,4 @@
+svgpathtools
+pymadcad
+numpy
+matplotlib
