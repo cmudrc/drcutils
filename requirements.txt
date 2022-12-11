@@ -6,3 +6,4 @@ huggingface_hub
 datasets
 gradio
 numpy-stl
+Pillow
