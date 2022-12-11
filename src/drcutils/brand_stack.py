@@ -1,14 +1,19 @@
+from stl import mesh
+import PIL
+
 class logo_only:
     import pkg_resources
-    SVG = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
-    STL = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
+    SVG_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
+    STL_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
+    STL_OBJECT = stl.mesh.Mesh.form_file(STL_PATH)
+    IMAGE_OBJECT = PIL.Image.open(SVG_PATH)
     
-# class horizontal_mark:
+# class horizontal_logo:
 #     import pkg_resources
 #     SVG = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
 #     STL = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
 
-# class stacked_mark:
+# class stacked_logo:
 #     import pkg_resources
 #     SVG = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
 #     STL = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
