@@ -36,4 +36,4 @@ cdict2 = {'red':   [[0.00, 0.10, 0.10],
                    [0.67, 0.20, 0.20],
                    [1.00, 0.15, 0.15]]}
 
-monotonic_hamster_colormap = matplotlib.colors.LinearSegmentedColormap('hamster', segmentdata=cdict2, N=256)
+hamster_colormap = matplotlib.colors.LinearSegmentedColormap('hamster', segmentdata=cdict2, N=256)
