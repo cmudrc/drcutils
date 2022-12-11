@@ -6,7 +6,7 @@ class logo_only:
     SVG_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
     STL_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
     MESH_OBJECT = stl.mesh.Mesh.from_file(STL_PATH)
-    IMAGE_OBJECT = PIL.Image.open(SVG_PATH)
+#     IMAGE_OBJECT = PIL.Image.open(SVG_PATH)
     
 # class horizontal_logo:
 #     import pkg_resources
