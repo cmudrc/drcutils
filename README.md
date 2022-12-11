@@ -41,7 +41,7 @@ This will load additional (and useful!) libraries, objects, functions, and const
 ### `hf_stack`, for making data, models, and demos with Huggingface
 - imports `huggingface_hub`, `datasets`, and `gradio`
 
-### `plotting_stack`, for making beautiful figures [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/plotting_stack.ipynb)
+### `plotting_stack`, for making beautiful figures [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/plotting_stack.ipynb)
 
 - imports `matplotlib.colors` and `matplotlib.pyplot`
 - Contains two colormaps that align with our lab brand (`hamster_colormap` and `diverging_hamster_colormap`)
