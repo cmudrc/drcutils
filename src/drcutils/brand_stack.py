@@ -2,6 +2,7 @@ import stl
 import PIL
 import svgpathtools
 import matplotlib.colors
+import matplotlib.pyplot
 
 class logo_only:
     import pkg_resources
