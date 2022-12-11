@@ -12,9 +12,9 @@ The package is organized according to several software stacks, each of which con
 ```python
 from drcutils.STACK_NAME import *
 ```
-This will load additional (and useful!) libraries, objects, functions, and constants.
+This will load additional (and useful!) libraries, objects, functions, and constants. Replace `STACK_NAME` with the name of a stack of your choice. 
 
-## Stack Listing
+## Available Stacks
 
 ### `data_stack`, for working with data 
 
