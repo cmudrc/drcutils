@@ -16,13 +16,19 @@ This will load additional (and useful!) libraries, objects, functions, and const
 
 ## Stack Listing
 
-### `data_stack`, for working with data
+### `data_stack`, for working with data 
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/data_stack.ipynb) 
 - imports `numpy` and `pandas`
 
-### `hack_stack`, for working on just about anything
+### `hack_stack`, for working on just about anything 
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/hack_stack.ipynb) 
 - imports `numpy`, `pandas`, `datasets`, `keras`, `matplotlib.pyplot`, `sklearn`, and `gradio`
 
-### `hf_stack`, for making data, models, and demos with Huggingface
+### `hf_stack`, for making data, models, and demos with Huggingface 
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/hf_stack.ipynb) 
 - imports `huggingface_hub`, `datasets`, and `gradio`
 
 ### `plotting_stack`, for making beautiful figures 
@@ -45,5 +51,7 @@ This will load additional (and useful!) libraries, objects, functions, and const
   - `PNG_PATH`, path to the stacked layout of the logo as a .png file.
   - `IMAGE_OBJECT`, object containing a raster-style image of the stacked layout of the logo (`PIL.Image` from the `Pillow` library)    
 
-### `stats_stack`, for doing rigorous statistics
+### `stats_stack`, for doing rigorous statistics 
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/stats_stack.ipynb) 
 - imports `pandas`, `scipy.stats`, and `statsmodels`
