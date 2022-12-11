@@ -1,7 +1,6 @@
-from stl import mesh
-import PIL
-
 class logo_only:
+    from stl import mesh
+    import PIL
     import pkg_resources
     SVG_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
     STL_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
