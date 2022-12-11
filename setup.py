@@ -8,5 +8,5 @@ setup(name='drcutils',
       author='Chris McComb',
       author_email='ccmcc2012@gmail.com',
       url='https://github.com/cmudrc/drcutils/',
-      packages=find_packages(),
+      packages=find_packages("src/*"),
       )
