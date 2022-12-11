@@ -2,3 +2,6 @@ svgpathtools
 pymadcad
 numpy
 matplotlib
+huggingface_hub
+datasets
+gradio
