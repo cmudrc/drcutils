@@ -30,4 +30,4 @@ from drcutils.STACK_NAME import *
   - imports `matplotlib.colors` and `matplotlib.pyplot`
   - Contains two colormaps that align with our lab brand (`hamster_colormap` and `diverging_hamster_colormap`)
 - `stats_stack`
-  - imports `pandas`, `scipy.stats`, and `statsmodels
+  - imports `pandas`, `scipy.stats`, and `statsmodels`
