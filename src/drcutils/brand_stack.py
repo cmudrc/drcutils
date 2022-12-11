@@ -1,9 +1,10 @@
 import stl
 import PIL
-import pkg_resources
 import svgpathtools
+import matplotlib.colors
 
 class logo_only:
+    import pkg_resources
     SVG_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
     PNG_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.png')
     STL_PATH = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
