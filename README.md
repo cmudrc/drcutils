@@ -18,13 +18,18 @@ from drcutils.STACK_NAME import *
   - imports `numpy-stl`, `matplotlib.colors`, `svpathtools` and `Pillow`
   - contains list `COLORS`, which contains the brand colors as hex codes. 
   - contains object `logo_only`, which has attributes:
-    - `SVG_PATH`, path to the logo_only .svg file.
-    - `SVG_PATH`, path to the logo_only .png file.
-    - `STL_PATH`, path to the logo_only .stl file
+    - `SVG_PATH`, path to the logo-only .svg file.
+    - `PNG_PATH`, path to the logo-only .png file.
+    - `STL_PATH`, path to the logo-only .stl file
     - `SVG_OBJECT`, object containing data on the svg-style curves that make up the logo (from the `svgpathtools` library)
     - `IMAGE_OBJECT`, object containing a raster-style image of the logo (`PIL.Image` from the `Pillow` library)
     - `MESH_OBJECT`, object containing an stl-style mesh of the logo (`Mesh` object type from `numpy-stl` library)
-    
+  - contains object `horizontal_logo`, which has attributes:
+    - `PNG_PATH`, path to the horizontal layout of the logo as a .png file.
+    - `IMAGE_OBJECT`, object containing a raster-style image of the horizontal layout of the logo (`PIL.Image` from the `Pillow` library)
+  - contains object `stacked_logo`, which has attributes:
+    - `PNG_PATH`, path to the stacked layout of the logo as a .png file.
+    - `IMAGE_OBJECT`, object containing a raster-style image of the stacked layout of the logo (`PIL.Image` from the `Pillow` library)    
 - `data_stack`, for working with data
   - imports `numpy` and `pandas`
 - `hack_stack`, for working on just about anything
