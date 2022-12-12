@@ -16,11 +16,6 @@ This will load additional (and useful!) libraries, objects, functions, and const
 
 ## Available Stacks
 
-### `data_stack`, for working with data 
-
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/data_stack.ipynb) 
-- imports `numpy` and `pandas`
-
 ### `hack_stack`, for working on just about anything 
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/hack_stack.ipynb) 
