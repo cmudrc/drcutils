@@ -24,7 +24,7 @@ This will load additional (and useful!) libraries, objects, functions, and const
 ### `hf_stack`, for making data, models, and demos with Huggingface 
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/hf_stack.ipynb) 
-- imports `huggingface_hub`, `datasets`, and `gradio`
+- imports `huggingface_hub`, `datasets`, and `gradio`, `numpy`, `PIL`, `pandas`, `plotly.express`, `plotly.graph_objects`
 
 ### `plotting_stack`, for making beautiful figures 
 
