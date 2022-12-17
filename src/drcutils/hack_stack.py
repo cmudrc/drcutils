@@ -7,7 +7,7 @@ import sklearn
 import gradio
 import drcutils
 
-def visualize_network(path: str, height: int = 500, port: int = 8000):
+def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
     """Visualize a neural network with a path to its saved architecture. 
        You can also set the height of visualization (default 500px) and 
        which port it is served on (default 8000). The heavy lifting is 
