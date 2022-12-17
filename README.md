@@ -20,6 +20,7 @@ This will load additional (and useful!) libraries, objects, functions, and const
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/hack_stack.ipynb) 
 - imports `numpy`, `pandas`, `datasets`, `keras`, `matplotlib.pyplot`, `sklearn`, and `gradio`
+- has `visualize_network`, a function for visualizing neural network architectures.
 
 ### `hf_stack`, for making data, models, and demos with Huggingface 
 
