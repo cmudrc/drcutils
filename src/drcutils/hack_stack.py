@@ -18,7 +18,7 @@ def visualize_network(path: str, height: int = 500, port: int = 8000):
     from netron import serve
     from IPython.display import Javascript
     if drcutils.is_notebook():
-        serve("mobilenet.h5", None, ("localhost", port), False, 0)
+        serve(path, None, ("localhost", port), False, 0)
         display(Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
@@ -30,5 +30,5 @@ def visualize_network(path: str, height: int = 500, port: int = 8000):
         })();
         """ % (port, height) ))
     else:
-        serve("mobilenet.h5", None, ("localhost", port), True, 0)
+        serve(path, None, ("localhost", port), True, 0)
     
