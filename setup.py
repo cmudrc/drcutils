@@ -13,7 +13,7 @@ setup(name='drcutils',
             "gradio", 
             "huggingface_hub", 
             "IPython", 
-            "keras"
+            "keras",
             "matplotlib",
             "netron",
             "numpy",
