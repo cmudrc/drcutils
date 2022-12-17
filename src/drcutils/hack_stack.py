@@ -8,7 +8,13 @@ import gradio
 import drcutils
 
 def visualize_network(path: str, height: int = 500, port: int = 8000):
-    """Visualize a network by providing a path to its saved architecture. You can also set the height of visualization (default 500px) and which port it is served on (default 8000)"""
+    """Visualize a neural network with a path to its saved architecture. 
+       You can also set the height of visualization (default 500px) and 
+       which port it is served on (default 8000). The heavy lifting is 
+       done by netron, which support Netron supports a huge array of file:
+       formats ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle, 
+       ncnn, MNN, Core ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda, 
+       Tengine, CNTK, TensorFlow.js, Caffe2 and UFF."""
     from netron import serve
     from IPython.display import Javascript
     if drcutils.is_notebook():
