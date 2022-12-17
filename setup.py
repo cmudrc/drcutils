@@ -8,8 +8,20 @@ setup(name='drcutils',
       author='The Design Research Collective',
       author_email='ask-drc@andrew.cmu.edu',
       url='https://github.com/cmudrc/drcutils/',      
-      install_requires=["numpy", "matplotlib", "huggingface_hub", "datasets", "gradio", "numpy-stl", "Pillow", "svgpathtools", "plotly"],
+      install_requires=[ 
+            "datasets", 
+            "gradio", 
+            "huggingface_hub", 
+            "IPython",
+            "netron",
+            "matplotlib", 
+            "numpy",
+            "numpy-stl", 
+            "Pillow", 
+            "plotly", 
+            "svgpathtools"
+      ],
       packages=['drcutils'],
       package_dir={'drcutils': 'src/drcutils'},
       package_data={'drcutils': ['data/*']},
-      )
+)
