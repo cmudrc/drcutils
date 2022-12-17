@@ -20,7 +20,8 @@ setup(name='drcutils',
             "numpy-stl", 
             "Pillow", 
             "plotly", 
-            "svgpathtools"
+            "svgpathtools",
+            "tensorflow"
       ],
       packages=['drcutils'],
       package_dir={'drcutils': 'src/drcutils'},
