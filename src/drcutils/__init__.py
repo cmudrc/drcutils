@@ -1,8 +1,10 @@
 def is_colab() -> bool:
+    """Returns true if the function is being run in a Google Colab notebook and false if not."""
     import sys
     return 'google.colab' in sys.modules
 
 def is_notebook() -> bool:
+    """Returns true if the function is being run in a notebook of any sort and false if not."""
     if is_colab():
         return True
     else:
