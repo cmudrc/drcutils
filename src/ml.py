@@ -8,7 +8,7 @@ def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
        Tengine, CNTK, TensorFlow.js, Caffe2 and UFF."""
     from netron import serve
     from IPython.display import Javascript
-    # from IPython.core.display.display_functions import di
+    from IPython.core.display import display
     from .env import is_notebook
 
     if is_notebook():
