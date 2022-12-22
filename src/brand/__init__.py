@@ -1,3 +1,7 @@
+import horizontal_logo
+import logo_only
+import stacked_logo
+
 COLORS = [
     "#000000",
     "#1A4C49",

@@ -1,4 +1,8 @@
 from __future__ import annotations
+import colormaps
+import env
+import ml
+import brand
 
 
 def import_plotting_stack(alias=True):
@@ -65,4 +69,8 @@ def _gimme(**kwargs):
             print('Done!')
         except ModuleNotFoundError:
             print(":(")
-            raise ModuleNotFoundError(f'Could not import {module_name.replace("__dot__", ".")}. It may not be installed.')
+            raise ModuleNotFoundError(
+                f'Could not import {module_name.replace("__dot__", ".")}. It may not be installed.')
+
+
+
