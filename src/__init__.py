@@ -1,8 +1,9 @@
 from __future__ import annotations
+
 # import src.colormaps
 # import src.env
 # import src.ml
-import brand
+from drcutils import brand
 
 
 def import_plotting_stack(alias=True):
