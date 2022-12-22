@@ -35,6 +35,7 @@ def gimme(numpy: bool | str = "np",
           gradio: bool | str = "gr",
           plotly_express: bool | str = "px",
           plotly_graph_objects: bool | str = "go",
+          be_nice = False,
           **kwargs):
     """Imports libraries programmatically"""
 
@@ -57,4 +58,7 @@ def gimme(numpy: bool | str = "np",
             try:
                 globals()[modules[module_name]] = importlib.import_module(module_name)
             except ModuleNotFoundError:
-                ModuleNotFoundError(f'Could not import {module_name}. It may not be installed.')
+                if be_nice:
+                    raise ImportWarning(f'Could not import {module_name}. It may not be installed.')
+                else:
+                    ModuleNotFoundError(f'Could not import {module_name}. It may not be installed.')
