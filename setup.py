@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='drcutils',
       version='0.1.0',
@@ -23,7 +23,7 @@ setup(name='drcutils',
             "svgpathtools",
             "tensorflow"
       ],
-      packages=['drcutils'],
-      package_dir={'drcutils': 'src/'},
+      packages=find_packages(),
+      # package_dir={'drcutils': 'src/'},
       package_data={'drcutils': ['data/*']},
 )
