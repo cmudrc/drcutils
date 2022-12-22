@@ -1,12 +1,3 @@
-import numpy
-import pandas
-import datasets
-import keras
-import matplotlib.pyplot
-import sklearn
-import gradio
-import drcutils
-
 def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
     """Visualize a neural network with a path to its saved architecture. 
        You can also set the height of visualization (default 500px) and 
@@ -17,7 +8,10 @@ def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
        Tengine, CNTK, TensorFlow.js, Caffe2 and UFF."""
     from netron import serve
     from IPython.display import Javascript
-    if drcutils.is_notebook():
+    from IPython.core.display.display_functions import display
+    from .env import is_notebook
+
+    if is_notebook():
         serve(path, None, ("localhost", port), False, 0)
         display(Javascript("""
         (async ()=>{
