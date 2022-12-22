@@ -1,7 +1,6 @@
-import matplotlib.pyplot
+import PIL
 import matplotlib.colors
 import stl
-import PIL
 import svgpathtools
 
 
@@ -13,20 +12,20 @@ class logo_only:
     SVG_OBJECT, _ = svgpathtools.svg2paths(SVG_PATH)
     MESH_OBJECT = stl.mesh.Mesh.from_file(STL_PATH)
     IMAGE_OBJECT = PIL.Image.open(PNG_PATH)
-    
-    
+
+
 class horizontal_logo:
     import pkg_resources
     PNG_PATH = pkg_resources.resource_filename('drcutils', 'data/horizontal.png')
     IMAGE_OBJECT = PIL.Image.open(PNG_PATH)
 
-    
+
 class stacked_logo:
     import pkg_resources
     PNG_PATH = pkg_resources.resource_filename('drcutils', 'data/stacked.png')
     IMAGE_OBJECT = PIL.Image.open(PNG_PATH)
 
-    
+
 COLORS = [
     "#000000",
     "#1A4C49",
@@ -35,8 +34,6 @@ COLORS = [
     "#EA8534",
     "#DF5227"
 ]
-
-
 
 diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "diverging_hamster",
@@ -68,7 +65,8 @@ diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
-
+diverging_hamster_colormap_r = diverging_hamster_colormap.reversed()
+diverging_hamster_colormap_r.name = "diverging_hamster_r"
 
 cool_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "cool_hamster",
@@ -97,8 +95,10 @@ cool_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+cool_hamster_colormap_r = cool_hamster_colormap.reversed()
+cool_hamster_colormap_r.name = "cool_hamster_r"
 
-
+"""The warm hamster colormap varies from white to black through yellow nd orange colors of the DRC brand"""
 warm_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "warm_hamster",
     segmentdata={
@@ -123,3 +123,5 @@ warm_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+warm_hamster_colormap_r = warm_hamster_colormap.reversed()
+warm_hamster_colormap_r.name = "warm_hamster_r"
