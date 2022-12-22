@@ -54,4 +54,7 @@ def gimme(numpy: bool | str = "np",
     modules.update(kwargs)
     for module_name in modules.keys():
         if modules[module_name]:
-            globals()[modules[module_name]] = importlib.import_module(module_name)
+            try:
+                globals()[modules[module_name]] = importlib.import_module(module_name)
+            except ModuleNotFoundError:
+                ModuleNotFoundError(f'Could not import {module_name}. It may not be installed.')
