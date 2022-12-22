@@ -1,41 +1,68 @@
 from __future__ import annotations
 
 
+def import_plotting_stack(alias=True):
+    """Import common libraries to support plotting, including:
+    - `matplotlib.pyplot`
+    - `matplotlib.colors`
+    - `pandas`
+    - `plotly.express`
+    - `plotly.graph_objects`
+    - `Pillow`"""
+    _gimme(
+        matplotlib__dot__pyplot=["matplotlib.pyplot", "plt"][alias],
+        matplotlib__dot__colors=["matplotlib.colors", "mpc"][alias],
+        pandas=["pandas", "pd"][alias],
+        plotly__dot__express=["plotly.express", "px"][alias],
+        plotly__dot__graph_objects=["plotly.graph_objects", "go"][alias],
+        Pillow=["Pillow", "PIL"][alias],
+    )
 
-def gimme(numpy: bool | str = "np",
-          pandas: bool | str = "pd",
-          matplotlib_pyplot: bool | str = "plt",
-          matplotlib_colors: bool | str = "mpc",
-          pillow: bool | str = "PIL",
-          datasets: bool | str = "data",
-          huggingface_hub: bool | str = "hub",
-          gradio: bool | str = "gr",
-          plotly_express: bool | str = "px",
-          plotly_graph_objects: bool | str = "go",
-          be_nice = False,
-          **kwargs):
+
+def import_stats_stack(alias=True):
+    """Import common libraries to support statistical testing, including:
+    - `numpy`
+    - `pandas`
+    - `scipy.stats`
+    - `statsmodels`"""
+    _gimme(
+        numpy=["numpy", "np"][alias],
+        pandas=["pandas", "pd"][alias],
+        scipy__dot__stats=["scipy.stats", "ss"][alias],
+        statsmodels=["statsmodels", "sm"][alias]
+    )
+
+
+def import_hf_stack(alias=True):
+    """Import common libraries to support statistical testing, including:
+    - `numpy`
+    - `pandas`
+    - `huggingface_hub`
+    - `datasets`
+    - `gradio`"""
+    _gimme(
+        numpy=["numpy", "np"][alias],
+        pandas=["pandas", "pd"][alias],
+        huggingface_hub=["huggingface_hub", "hub"][alias],
+        datasets=["datasets", "datasets"][alias],
+        gradio=["gradio", "gr"][alias],
+    )
+
+
+def _gimme(**kwargs):
     """Imports libraries programmatically"""
 
-    import importlib
-    modules = {
-        "numpy": numpy,
-        "pandas": pandas,
-        "Pillow": pillow,
-        "matplotlib.pyplot": matplotlib_pyplot,
-        "matplotlib.colors": matplotlib_colors,
-        "datasets": datasets,
-        "huggingface_hub": huggingface_hub,
-        "gradio": gradio,
-        "plotly_express": plotly_express,
-        "plotly_graph_objects": plotly_graph_objects,
-    }
-    modules.update(kwargs)
+    from importlib import import_module
+
+    modules = dict()
+    for keyword in kwargs.keys():
+        modules[keyword.replace("__dot__", ".")] = kwargs[keyword]
+
     for module_name in modules.keys():
-        if modules[module_name]:
-            try:
-                globals()[modules[module_name]] = importlib.import_module(module_name)
-            except ModuleNotFoundError:
-                if be_nice:
-                    raise ImportWarning(f'Could not import {module_name}. It may not be installed.')
-                else:
-                    ModuleNotFoundError(f'Could not import {module_name}. It may not be installed.')
+        print(f'Importing {module_name.replace("__dot__", ".")} as {modules[module_name]}... ', end="")
+        try:
+            globals()[modules[module_name]] = import_module(module_name)
+            print('Done!')
+        except ModuleNotFoundError:
+            print(":(")
+            raise ModuleNotFoundError(f'Could not import {module_name.replace("__dot__", ".")}. It may not be installed.')
