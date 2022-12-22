@@ -3,9 +3,9 @@ from __future__ import annotations
 # import src.colormaps
 # import src.env
 # import src.ml
-import brand.horizontal_logo
-import brand.stacked_logo
-import brand.logo_only
+# import brand.horizontal_logo
+# import brand.stacked_logo
+# import brand.logo_only
 # import env
 
 def import_plotting_stack(alias=True):
