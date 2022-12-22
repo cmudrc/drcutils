@@ -2,7 +2,8 @@
 
 from setuptools import setup, find_packages
 
-setup(name='drcutils',
+setup(
+      name='drcutils',
       version='0.1.0',
       description='Utilities for research in the Design Research Collective',
       author='The Design Research Collective',
