@@ -32,7 +32,7 @@ This will load additional (and useful!) libraries, objects, functions, and const
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/plotting_stack.ipynb) 
 - imports `matplotlib.colors`, `matplotlib.pyplot`, `numpy-stl`, `svpathtools` and `Pillow`
-- Contains two colormaps that align with our lab brand (`hamster_colormap` and `diverging_hamster_colormap`)
+- contains colormaps that align with our lab brand (`cool_hamster_colormap`, `warm_hamster_colormap`, and `diverging_hamster_colormap`)
 - contains `COLORS`, a list which contains the brand colors as hex codes. 
 - contains object `logo_only`, which has attributes:
   - `SVG_PATH`, path to the logo-only .svg file.
