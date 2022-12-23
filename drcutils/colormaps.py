@@ -1,6 +1,7 @@
 import matplotlib.colors
 
 
+# Diverging colormap, white center
 diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "diverging_hamster",
     segmentdata={
@@ -31,9 +32,12 @@ diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+
+# Make a reversed version
 diverging_hamster_colormap_r = diverging_hamster_colormap.reversed()
 diverging_hamster_colormap_r.name = "diverging_hamster_r"
 
+# Diverging colormap, black center
 dark_diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "dark_diverging_hamster",
     segmentdata={
@@ -64,10 +68,12 @@ dark_diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+
+# Make a reversed version
 dark_diverging_hamster_colormap_r = dark_diverging_hamster_colormap.reversed()
 dark_diverging_hamster_colormap_r.name = "dark_diverging_hamster_r"
 
-
+# A cool colormap that uses our brand colors
 cool_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "cool_hamster",
     segmentdata={
@@ -95,10 +101,12 @@ cool_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+
+# Make a reversed version
 cool_hamster_colormap_r = cool_hamster_colormap.reversed()
 cool_hamster_colormap_r.name = "cool_hamster_r"
 
-"""The warm hamster colormap varies from white to black through yellow nd orange colors of the DRC brand"""
+# A warm colormap that uses our brand colors
 warm_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "warm_hamster",
     segmentdata={
@@ -123,5 +131,7 @@ warm_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     },
     N=256,
 )
+
+# Make a reversed version
 warm_hamster_colormap_r = warm_hamster_colormap.reversed()
 warm_hamster_colormap_r.name = "warm_hamster_r"
