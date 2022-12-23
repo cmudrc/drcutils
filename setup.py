@@ -10,10 +10,7 @@ setup(
       author_email='ask-drc@andrew.cmu.edu',
       url='https://github.com/cmudrc/drcutils/',      
       install_requires=[ 
-            "datasets", 
-            "gradio", 
-            "huggingface_hub", 
-            "IPython", 
+            "IPython",
             "matplotlib",
             "netron",
             "numpy",
