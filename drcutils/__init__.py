@@ -15,7 +15,7 @@ def import_plotting_stack(alias=True):
         pandas=["pandas", "pd"][alias],
         plotly__dot__express=["plotly.express", "px"][alias],
         plotly__dot__graph_objects=["plotly.graph_objects", "go"][alias],
-        Pillow=["Pillow", "PIL"][alias],
+        PIL=["PIL", "PIL"][alias],
     )
 
 
