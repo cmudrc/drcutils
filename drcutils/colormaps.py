@@ -34,6 +34,40 @@ diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
 diverging_hamster_colormap_r = diverging_hamster_colormap.reversed()
 diverging_hamster_colormap_r.name = "diverging_hamster_r"
 
+dark_diverging_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
+    "dark_diverging_hamster",
+    segmentdata={
+        "red": [
+            [0.00, 0.35, 0.35],
+            [0.17, 0.30, 0.30],
+            [0.33, 0.10, 0.10],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.87, 0.87],
+            [1.00, 0.92, 0.92],
+        ],
+        "green": [
+            [0.00, 0.72, 0.72],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.30, 0.30],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.32, 0.32],
+            [1.00, 0.52, 0.52],
+        ],
+        "blue": [
+            [0.00, 0.73, 0.73],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.29, 0.29],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.15, 0.15],
+            [1.00, 0.20, 0.20],
+        ],
+    },
+    N=256,
+)
+dark_diverging_hamster_colormap_r = dark_diverging_hamster_colormap.reversed()
+dark_diverging_hamster_colormap_r.name = "dark_diverging_hamster_r"
+
+
 cool_hamster_colormap = matplotlib.colors.LinearSegmentedColormap(
     "cool_hamster",
     segmentdata={
