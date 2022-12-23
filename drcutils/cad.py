@@ -1,8 +1,9 @@
-def visualize_stl(stl, color):
+def visualize_stl(stl_filepath, color="#ffffff"):
+    """Visualize an STL by passing in the filepath and the desired color."""
     from plotly.graph_objects import Mesh3d, Layout, Figure
     from numpy import take, unique
     from stl.mesh import Mesh
-    stl_mesh = Mesh.from_file(stl)
+    stl_mesh = Mesh.from_file(stl_filepath)
     # stl_mesh is read by nympy-stl from a stl file; it is  an array of faces/triangles (i.e. three 3d points)
     # this function extracts the unique vertices and the lists I, J, K to define a Plotly mesh3d
     p, q, r = stl_mesh.vectors.shape  # (p, 3, 3)
