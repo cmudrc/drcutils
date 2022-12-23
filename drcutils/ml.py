@@ -1,3 +1,9 @@
+from netron import serve as _serve
+from IPython.display import Javascript as _Javascript
+from IPython.core.display import display as _display
+from .env import is_notebook
+
+
 def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
     """Visualize a neural network with a path to its saved architecture. 
        You can also set the height of visualization (default 500px) and 
@@ -6,14 +12,10 @@ def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
        formats ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle, 
        ncnn, MNN, Core ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda, 
        Tengine, CNTK, TensorFlow.js, Caffe2 and UFF."""
-    from netron import serve
-    from IPython.display import Javascript
-    from IPython.core.display import display
-    from .env import is_notebook
 
     if is_notebook():
-        serve(path, None, ("localhost", port), False, 0)
-        display(Javascript("""
+        _serve(path, None, ("localhost", port), False, 0)
+        _display(_Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
             fm.src = await google.colab.kernel.proxyPort(%s)
@@ -24,5 +26,5 @@ def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
         })();
         """ % (port, height) ))
     else:
-        serve(path, None, ("localhost", port), True, 0)
+        _serve(path, None, ("localhost", port), True, 0)
     
