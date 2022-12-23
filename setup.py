@@ -14,7 +14,6 @@ setup(
             "gradio", 
             "huggingface_hub", 
             "IPython", 
-            "keras",
             "matplotlib",
             "netron",
             "numpy",
@@ -22,9 +21,7 @@ setup(
             "Pillow", 
             "plotly", 
             "svgpathtools",
-            "tensorflow"
       ],
       packages=find_packages(),
-      # package_dir={'drcutils': 'src/'},
       package_data={'drcutils': ['data/*']},
 )
