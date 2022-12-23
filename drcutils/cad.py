@@ -1,4 +1,4 @@
-from plotly.graph_objects import Mesh3d as _Mesh3D, Layout as _Layout, Figure as _Figure
+from plotly.graph_objects import Mesh3d as _Mesh3d, Layout as _Layout, Figure as _Figure
 from numpy import take as _take, unique as _unique
 from stl.mesh import Mesh as _Mesh
 
