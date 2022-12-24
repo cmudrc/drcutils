@@ -9,18 +9,15 @@
 import os
 import sys
 
-# Add to path for autobuild
-sys.path.insert(0, os.path.abspath('..'))
+import sys
+from unittest.mock import MagicMock
 
-try:
-    import numpy
-    assert numpy
-except ImportError:
-    # From the readthedocs manual
-    # http://read-the-docs.readthedocs.org/en/latest/faq.html?highlight=numpy
-    import mock
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
 
-    MOCK_MODULES = [
+MOCK_MODULES = [
         'IPython'
         'IPython.display'
         'IPython.core.display'
@@ -37,8 +34,10 @@ except ImportError:
         'sys',
         'netron'
     ]
-    for mod_name in MOCK_MODULES:
-        sys.modules[mod_name] = mock.Mock()
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
+# Add to path for autobuild
+sys.path.insert(0, os.path.abspath('..'))
 
 project = 'drcutils'
 copyright = '2022, The Design Research Collective'
