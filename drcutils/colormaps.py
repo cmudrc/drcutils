@@ -1,5 +1,6 @@
 import matplotlib.colors as _mpc
 
+
 def diverging_hamster_colormap():
     """Diverging colormap with white center"""
     return _mpc.LinearSegmentedColormap(
@@ -36,7 +37,7 @@ def diverging_hamster_colormap():
 
 def diverging_hamster_colormap_r():
     """Reversed version of `diverging_hamster_colormap`"""
-    cm = diverging_hamster_colormap.reversed()
+    cm = diverging_hamster_colormap().reversed()
     cm.name = "diverging_hamster_r"
     return cm
 
@@ -78,7 +79,7 @@ def dark_diverging_hamster_colormap():
 
 def dark_diverging_hamster_colormap_r():
     """Reversed version of `dark_diverging_hamster_colormap`"""
-    cm = dark_diverging_hamster_colormap.reversed()
+    cm = dark_diverging_hamster_colormap().reversed()
     cm.name = "dark_diverging_hamster_r"
     return cm
 
@@ -116,7 +117,7 @@ def cool_hamster_colormap():
 
 def cool_hamster_colormap_r():
     """Reversed version of `cool_hamster_colormap`"""
-    cm = cool_hamster_colormap.reversed()
+    cm = cool_hamster_colormap().reversed()
     cm.name = "cool_hamster_r"
     return cm
 
@@ -151,6 +152,6 @@ def warm_hamster_colormap():
 
 def warm_hamster_colormap_r():
     """Reversed version of `warm_hamster_colormap`"""
-    cm = warm_hamster_colormap.reversed()
+    cm = warm_hamster_colormap().reversed()
     cm.name = "warm_hamster_r"
     return cm

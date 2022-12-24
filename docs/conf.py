@@ -13,6 +13,7 @@ autodoc_mock_imports = [
             "numpy",
             "svgpathtools",
             "stl",
+            "pandas",
     ]
 
 # Add to path for autobuild
