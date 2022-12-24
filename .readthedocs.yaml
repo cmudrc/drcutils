@@ -16,8 +16,7 @@ build:
 # Optionally set the version of Python and requirements required to build your docs
 python:
   install:
-    - method: setuptools
-      path: .
+    - requirements: docs/requirement.txt
 
 # Optionally build your docs in additional formats such as PDF and ePub
 formats: all

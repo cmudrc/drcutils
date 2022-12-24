@@ -1,0 +1,8 @@
+IPython
+matplotlib
+netron
+numpy
+numpy-stl
+Pillow
+plotly
+svgpathtools
