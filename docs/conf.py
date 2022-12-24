@@ -14,6 +14,7 @@ autodoc_mock_imports = [
             "svgpathtools",
             "stl",
             "pandas",
+            "matplotlib",
     ]
 
 # Add to path for autobuild
