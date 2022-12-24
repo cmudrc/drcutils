@@ -5,3 +5,4 @@ numpy
 numpy-stl
 Pillow
 plotly
+pandas

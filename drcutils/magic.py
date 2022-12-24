@@ -82,7 +82,7 @@ def _convertible(from_ext: str, to_ext: str) -> bool:
         return False
 
 
-def convert(thing_to_convert_from: str, thing_to_convert_to: str, from_kwargs: dict = dict(), to_kwargs: dict = {}):
+def convert(thing_to_convert_from: str, thing_to_convert_to: str, from_kwargs: dict = {}, to_kwargs: dict = {}):
     """Convert stuff to other stuff. Works for images and datafiles."""
     _to_data_extensions, _from_data_extensions = _get_data_extensions()
     from_ext = _splitext(thing_to_convert_from)[1]
