@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 
 from setuptools import setup, find_packages
+import mock
+import sys
+
+MOCK_MODULES = ['numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot', 'scipy.interpolate']
+for mod_name in MOCK_MODULES:
+      sys.modules[mod_name] = mock.Mock()
 
 setup(
       name='drcutils',

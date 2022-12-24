@@ -2,9 +2,9 @@ Installation
 --------------
 
 To install this package, run:
-``
+`
 pip install git+https://github.com/cmudrc/drcutils.git
-``
+`
 
 Examples
 ----------
