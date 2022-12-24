@@ -5,13 +5,32 @@ from .env import is_notebook
 
 
 def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
-    """Visualize a neural network with a path to its saved architecture. 
-       You can also set the height of visualization (default 500px) and 
-       which port it is served on (default 8000). The heavy lifting is 
-       done by netron, which support Netron supports a huge array of file:
-       formats ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle, 
-       ncnn, MNN, Core ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda, 
-       Tengine, CNTK, TensorFlow.js, Caffe2 and UFF."""
+
+    """Visualize a neural network.
+
+    Visualize a neural network from a path to its saved architecture.
+    You can also set the height of visualization (default 500px) and
+    which port it is served on (default 8000). The heavy lifting is
+    done by netron, which support Netron supports a huge array of file:
+    formats ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle,
+    ncnn, MNN, Core ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda,
+    Tengine, CNTK, TensorFlow.js, Caffe2 and UFF.
+
+    Parameters
+    ----------
+    path : str
+        A filepath to the saved neural network
+    height: int
+        The height of the iframe visualization in pixels [optional; default = 500]
+    port: int
+        The port on which the visualization is served [optional; default = 8000]
+
+    Returns
+    -------
+    None
+        Opens the visualization in an iframe (if in a notebook) or otherwise in a browser window.
+
+    """
 
     if is_notebook():
         _serve(path, None, ("localhost", port), False, 0)
