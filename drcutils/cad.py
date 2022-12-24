@@ -3,9 +3,25 @@ from numpy import take as _take, unique as _unique
 from stl.mesh import Mesh as _Mesh
 
 
-def visualize_stl(stl_filepath, color="#ffffff"):
-    """Visualize an STL by passing in the filepath and the desired color."""
-    stl_mesh = _Mesh.from_file(stl_filepath)
+def visualize_stl(filepath: str, color: str = "#ffffff") -> _Figure:
+    """Visualize an STL.
+
+    Displays the input STL in a Plotly Mesh3d format.
+
+    Parameters
+    ----------
+    filepath : str
+        A filepath to the location of the STL you want to visualize.
+    color: str
+        The color for the visualization, as a hex code.
+
+    Returns
+    -------
+    Plotly.graph_objects.Figure
+        A plotly figure that displays the STl file.
+
+    """
+    stl_mesh = _Mesh.from_file(filepath)
     # stl_mesh is read by nympy-stl from a stl file; it is  an array of faces/triangles (i.e. three 3d points)
     # this function extracts the unique vertices and the lists I, J, K to define a Plotly mesh3d
     p, q, r = stl_mesh.vectors.shape  # (p, 3, 3)

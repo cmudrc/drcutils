@@ -30,6 +30,7 @@ release = '0.1.0'
 
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
     'recommonmark'
 ]
 source_suffix = [".rst"]
@@ -57,7 +58,7 @@ with readme_target.open("w") as outf:
     outf.write(
         "\n".join(
             [
-                "Readme",
+                "Welcome!",
                 "=======================\n",
             ]
         )
