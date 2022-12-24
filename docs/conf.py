@@ -20,7 +20,23 @@ except ImportError:
     # http://read-the-docs.readthedocs.org/en/latest/faq.html?highlight=numpy
     import mock
 
-    MOCK_MODULES = ['numpy', 'stl', 'svgpathtools']
+    MOCK_MODULES = [
+        'IPython'
+        'IPython.display'
+        'IPython.core.display'
+        'matplotlib.colors',
+        'matplotlib.pyplot',
+        'numpy',
+        'PIL',
+        'PIL.Image',
+        'plotly.graph_objects',
+        'pkg_resources',
+        'stl',
+        'stl.mesh'
+        'svgpathtools',
+        'sys',
+        'netron'
+    ]
     for mod_name in MOCK_MODULES:
         sys.modules[mod_name] = mock.Mock()
 
