@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 import mock
 import sys
 
-MOCK_MODULES = ['numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot', 'scipy.interpolate', "numpy-stl"]
+MOCK_MODULES = ['numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot', 'scipy.interpolate', "numpy-stl", "svgpathtools"]
 for mod_name in MOCK_MODULES:
       sys.modules[mod_name] = mock.Mock()
 
