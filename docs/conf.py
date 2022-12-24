@@ -6,11 +6,17 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-import sys
-
 import os
 import sys
+
+# Add to path for autobuild
 sys.path.insert(0, os.path.abspath('..'))
+
+# Mock the problematic modules
+import mock
+MOCK_MODULES = ['numpy', 'scipy', 'matplotlib', 'matplotlib.pyplot', 'scipy.interpolate', "numpy-stl", "svgpathtools"]
+for mod_name in MOCK_MODULES:
+      sys.modules[mod_name] = mock.Mock()
 
 project = 'drcutils'
 copyright = '2022, The Design Research Collective'
