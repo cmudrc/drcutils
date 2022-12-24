@@ -5,4 +5,3 @@ numpy
 numpy-stl
 Pillow
 plotly
-svgpathtools
