@@ -10,16 +10,14 @@ import os
 import sys
 
 autodoc_mock_imports = [
-        'IPython'
-        'matplotlib',
-        'numpy',
-        'PIL',
-        'plotly',
-        'pkg_resources',
-        'stl',
-        'svgpathtools',
-        'sys',
-        'netron'
+            "IPython",
+            "matplotlib",
+            "netron",
+            "numpy",
+            "numpy-stl",
+            "Pillow",
+            "plotly",
+            "svgpathtools",
     ]
 
 # Add to path for autobuild
