@@ -1,87 +1,76 @@
 import matplotlib.colors as _mpc
 
+#: Diverging colormap with white center
+diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
+    "diverging_hamster",
+    segmentdata={
+        "red": [
+            [0.00, 0.10, 0.10],
+            [0.17, 0.30, 0.30],
+            [0.33, 0.35, 0.35],
+            [0.50, 1.00, 1.00],
+            [0.75, 0.92, 0.92],
+            [1.00, 0.87, 0.87],
+        ],
+        "green": [
+            [0.00, 0.30, 0.30],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.72, 0.72],
+            [0.50, 1.00, 1.00],
+            [0.75, 0.52, 0.52],
+            [1.00, 0.32, 0.32],
+        ],
+        "blue": [
+            [0.00, 0.29, 0.29],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.73, 0.73],
+            [0.50, 1.00, 1.00],
+            [0.75, 0.20, 0.20],
+            [1.00, 0.15, 0.15],
+        ],
+    },
+    N=256,
+)
 
-def diverging_hamster_colormap():
-    """Diverging colormap with white center"""
-    return _mpc.LinearSegmentedColormap(
-        "diverging_hamster",
-        segmentdata={
-            "red": [
-                [0.00, 0.10, 0.10],
-                [0.17, 0.30, 0.30],
-                [0.33, 0.35, 0.35],
-                [0.50, 1.00, 1.00],
-                [0.75, 0.92, 0.92],
-                [1.00, 0.87, 0.87],
-            ],
-            "green": [
-                [0.00, 0.30, 0.30],
-                [0.17, 0.53, 0.53],
-                [0.33, 0.72, 0.72],
-                [0.50, 1.00, 1.00],
-                [0.75, 0.52, 0.52],
-                [1.00, 0.32, 0.32],
-            ],
-            "blue": [
-                [0.00, 0.29, 0.29],
-                [0.17, 0.53, 0.53],
-                [0.33, 0.73, 0.73],
-                [0.50, 1.00, 1.00],
-                [0.75, 0.20, 0.20],
-                [1.00, 0.15, 0.15],
-            ],
-        },
-        N=256,
-    )
+#: Reversed version of `diverging_hamster_colormap`
+diverging_hamster_colormap_r = diverging_hamster_colormap().reversed()
+diverging_hamster_colormap_r.name = "diverging_hamster_r"
 
+#: Diverging colormap, black center
+dark_diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
+    "dark_diverging_hamster",
+    segmentdata={
+        "red": [
+            [0.00, 0.35, 0.35],
+            [0.17, 0.30, 0.30],
+            [0.33, 0.10, 0.10],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.87, 0.87],
+            [1.00, 0.92, 0.92],
+        ],
+        "green": [
+            [0.00, 0.72, 0.72],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.30, 0.30],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.32, 0.32],
+            [1.00, 0.52, 0.52],
+        ],
+        "blue": [
+            [0.00, 0.73, 0.73],
+            [0.17, 0.53, 0.53],
+            [0.33, 0.29, 0.29],
+            [0.50, 0.00, 0.00],
+            [0.75, 0.15, 0.15],
+            [1.00, 0.20, 0.20],
+        ],
+    },
+    N=256,
+)
 
-def diverging_hamster_colormap_r():
-    """Reversed version of `diverging_hamster_colormap`"""
-    cm = diverging_hamster_colormap().reversed()
-    cm.name = "diverging_hamster_r"
-    return cm
-
-
-# Diverging colormap, black center
-def dark_diverging_hamster_colormap():
-    """Diverging colormap with black center"""
-    return _mpc.LinearSegmentedColormap(
-        "dark_diverging_hamster",
-        segmentdata={
-            "red": [
-                [0.00, 0.35, 0.35],
-                [0.17, 0.30, 0.30],
-                [0.33, 0.10, 0.10],
-                [0.50, 0.00, 0.00],
-                [0.75, 0.87, 0.87],
-                [1.00, 0.92, 0.92],
-            ],
-            "green": [
-                [0.00, 0.72, 0.72],
-                [0.17, 0.53, 0.53],
-                [0.33, 0.30, 0.30],
-                [0.50, 0.00, 0.00],
-                [0.75, 0.32, 0.32],
-                [1.00, 0.52, 0.52],
-            ],
-            "blue": [
-                [0.00, 0.73, 0.73],
-                [0.17, 0.53, 0.53],
-                [0.33, 0.29, 0.29],
-                [0.50, 0.00, 0.00],
-                [0.75, 0.15, 0.15],
-                [1.00, 0.20, 0.20],
-            ],
-        },
-        N=256,
-    )
-
-
-def dark_diverging_hamster_colormap_r():
-    """Reversed version of `dark_diverging_hamster_colormap`"""
-    cm = dark_diverging_hamster_colormap().reversed()
-    cm.name = "dark_diverging_hamster_r"
-    return cm
+#: Reversed version of `dark_diverging_hamster_colormap`
+dark_diverging_hamster_colormap_r = dark_diverging_hamster_colormap().reversed()
+dark_diverging_hamster_colormap_r.name = "dark_diverging_hamster_r"
 
 
 def cool_hamster_colormap():
