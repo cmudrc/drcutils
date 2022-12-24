@@ -3,12 +3,26 @@ from sys import modules as _modules
 
 
 def is_google_colab() -> bool:
-    """Returns true if the function is being run in a Google Colab notebook and false if not."""
+    """Determine whether or not the environment is in Google Colab.
+
+    Returns
+    -------
+    bool
+        True indicates that it is a Google Colab environment.
+
+    """
     return 'google.colab' in _modules
 
 
 def is_notebook() -> bool:
-    """Returns true if the function is being run in a notebook of any sort and false if not."""
+    """Determine whether or not the environment is in a notebook.
+
+    Returns
+    -------
+    bool
+        True indicates that it is a notebook environment.
+
+    """
     if is_google_colab():
         return True
     else:
