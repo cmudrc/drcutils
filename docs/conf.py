@@ -10,12 +10,14 @@ import os
 import sys
 
 autodoc_mock_imports = [
+            "drcutils",
+            "env",
             "IPython",
             "matplotlib",
             "netron",
             "numpy",
-            "numpy-stl",
-            "Pillow",
+            "stl",
+            "PIL",
             "plotly",
             "svgpathtools",
     ]
