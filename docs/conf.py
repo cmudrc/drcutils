@@ -9,32 +9,18 @@
 import os
 import sys
 
-import sys
-from unittest.mock import MagicMock
-
-class Mock(MagicMock):
-    @classmethod
-    def __getattr__(cls, name):
-        return MagicMock()
-
-MOCK_MODULES = [
+autodoc_mock_imports = [
         'IPython'
-        'IPython.display'
-        'IPython.core.display'
-        'matplotlib.colors',
-        'matplotlib.pyplot',
+        'matplotlib',
         'numpy',
         'PIL',
-        'PIL.Image',
-        'plotly.graph_objects',
+        'plotly',
         'pkg_resources',
         'stl',
-        'stl.mesh'
         'svgpathtools',
         'sys',
         'netron'
     ]
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 # Add to path for autobuild
 sys.path.insert(0, os.path.abspath('..'))
