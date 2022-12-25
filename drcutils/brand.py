@@ -24,3 +24,12 @@ HORIZONTAL_LOGO_PNG = pkg_resources.resource_filename('drcutils', 'data/horizont
 
 #: Path to a PNG of the stacked logo
 STACKED_LOGO_PNG = pkg_resources.resource_filename('drcutils', 'data/stacked.png')
+
+#: Path to a white, patterned PNG of the logo
+WHITE_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/white_pattern.png')
+
+#: Path to a grey, patterned PNG of the logo
+GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_pattern.png')
+
+#: Path to a full-color, patterned PNG of the logo
+COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/full_pattern.png')
