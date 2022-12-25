@@ -32,4 +32,4 @@ WHITE_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/white_patt
 GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_pattern.png')
 
 #: Path to a full-color, patterned PNG of the logo
-COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/full_pattern.png')
+COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
