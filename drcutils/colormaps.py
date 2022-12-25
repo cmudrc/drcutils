@@ -2,38 +2,54 @@ import matplotlib.colors as _mpc
 from .brand import COLORS
 
 BLACK, GREEN, TEAL, TURQUOISE, ORANGE, RED = [_mpc.to_rgb(c) for c in COLORS]
+WHITE = [1.00, 1.00, 1.00]
+
+
+def _make_segment_data(colors, fractions):
+    return {
+        "red": [[fractions[idx], c[0], c[0]] for idx, c in enumerate(colors)],
+        "green": [[fractions[idx], c[1], c[1]] for idx, c in enumerate(colors)],
+        "blue": [[fractions[idx], c[2], c[2]] for idx, c in enumerate(colors)]
+    }
+
 
 #: Diverging colormap with white center
 diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
     "diverging_hamster",
-    segmentdata={
-        "red": [
-            [0.00, GREEN[0], GREEN[0]],
-            [0.17, 0.30, 0.30],
-            [0.33, 0.35, 0.35],
-            [0.50, 1.00, 1.00],
-            [0.75, 0.92, 0.92],
-            [1.00, 0.87, 0.87],
-        ],
-        "green": [
-            [0.00, GREEN[1], GREEN[1]],
-            [0.17, 0.53, 0.53],
-            [0.33, 0.72, 0.72],
-            [0.50, 1.00, 1.00],
-            [0.75, 0.52, 0.52],
-            [1.00, 0.32, 0.32],
-        ],
-        "blue": [
-            [0.00, GREEN[2], GREEN[2]],
-            [0.17, 0.53, 0.53],
-            [0.33, 0.73, 0.73],
-            [0.50, 1.00, 1.00],
-            [0.75, 0.20, 0.20],
-            [1.00, 0.15, 0.15],
-        ],
-    },
-    N=256,
+    segmentdata=_make_segment_data(
+        [GREEN, TEAL, TURQUOISE, WHITE, ORANGE, RED],
+        [0.00, 0.17, 0.33, 0.50, 0.75, 1.00]
+    ),
+    N = 256
 )
+#     {
+#         "red": [
+#             [0.00, GREEN[0], GREEN[0]],
+#             [0.00, TEAL[0], TEAL[0]],
+#             [0.00, TURQUOISE[0], TURQUOISE[0]],
+#             [0.50, 1.00, 1.00],
+#             [0.75, ORANGE[0], ],
+#             [1.00, 0.87, 0.87],
+#         ],
+#         "green": [
+#             [0.00, GREEN[1], GREEN[1]],
+#             [0.17, 0.53, 0.53],
+#             [0.33, 0.72, 0.72],
+#             [0.50, 1.00, 1.00],
+#             [0.75, 0.52, 0.52],
+#             [1.00, 0.32, 0.32],
+#         ],
+#         "blue": [
+#             [0.00, GREEN[2], GREEN[2]],
+#             [0.17, 0.53, 0.53],
+#             [0.33, 0.73, 0.73],
+#             [0.50, 1.00, 1.00],
+#             [0.75, 0.20, 0.20],
+#             [1.00, 0.15, 0.15],
+#         ],
+#     },
+#     N=256,
+# )
 
 #: Reversed version of `diverging_hamster_colormap`
 diverging_hamster_colormap_r = diverging_hamster_colormap.reversed()
