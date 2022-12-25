@@ -1,11 +1,14 @@
 import matplotlib.colors as _mpc
+from .brand import COLORS
+
+BLACK, GREEN, TEAL, TURQUOISE, ORANGE, RED = [_mpc.to_rgb(c) for c in COLORS]
 
 #: Diverging colormap with white center
 diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
     "diverging_hamster",
     segmentdata={
         "red": [
-            [0.00, 0.10, 0.10],
+            [0.00, GREEN[0], GREEN[0]],
             [0.17, 0.30, 0.30],
             [0.33, 0.35, 0.35],
             [0.50, 1.00, 1.00],
@@ -13,7 +16,7 @@ diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
             [1.00, 0.87, 0.87],
         ],
         "green": [
-            [0.00, 0.30, 0.30],
+            [0.00, GREEN[1], GREEN[1]],
             [0.17, 0.53, 0.53],
             [0.33, 0.72, 0.72],
             [0.50, 1.00, 1.00],
@@ -21,7 +24,7 @@ diverging_hamster_colormap = _mpc.LinearSegmentedColormap(
             [1.00, 0.32, 0.32],
         ],
         "blue": [
-            [0.00, 0.29, 0.29],
+            [0.00, GREEN[2], GREEN[2]],
             [0.17, 0.53, 0.53],
             [0.33, 0.73, 0.73],
             [0.50, 1.00, 1.00],
