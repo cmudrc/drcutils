@@ -35,8 +35,12 @@ def visualize_stl(filepath: str, color: str = "#ffffff") -> _Figure:
     colorscale = [[0, color], [1, color]]
 
     mesh3D = _Mesh3d(x=x, y=y, z=z, i=I, j=J, k=K, flatshading=True, colorscale=colorscale, intensity=z, showscale=False)
-    layout = _Layout(scene_xaxis_visible=False, scene_yaxis_visible=False, scene_zaxis_visible=False,
-        scene_aspectmode="data")
+    layout = _Layout(
+        scene_xaxis_visible=False,
+        scene_yaxis_visible=False,
+        scene_zaxis_visible=False,
+        scene_aspectmode="data"
+    )
     fig = _Figure(data=[mesh3D], layout=layout)
     fig.data[0].update(
         lighting=dict(ambient=0.18, diffuse=1, fresnel=.1, specular=1, roughness=.1, facenormalsepsilon=0))
