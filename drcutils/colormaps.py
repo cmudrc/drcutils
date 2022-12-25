@@ -51,29 +51,10 @@ dark_diverging_hamster_r.name = "dark_diverging_hamster_r"
 #: A cool colormap that uses our brand colors
 cool_hamster = _mpc.LinearSegmentedColormap(
     "cool_hamster",
-    segmentdata={
-        "red": [
-            [0.00, 1.00, 1.00],
-            [0.25, 0.35, 0.35],
-            [0.50, 0.30, 0.30],
-            [0.75, 0.10, 0.10],
-            [1.00, 0.00, 0.00],
-        ],
-        "green": [
-            [0.00, 1.00, 1.00],
-            [0.25, 0.72, 0.72],
-            [0.50, 0.53, 0.53],
-            [0.75, 0.30, 0.30],
-            [1.00, 0.00, 0.00],
-        ],
-        "blue": [
-            [0.00, 1.00, 1.00],
-            [0.25, 0.73, 0.73],
-            [0.50, 0.53, 0.53],
-            [0.75, 0.29, 0.29],
-            [1.00, 0.00, 0.00],
-        ],
-    },
+    segmentdata=_make_segment_data(
+        [WHITE, TURQUOISE, TEAL, GREEN, BLACK],
+        [0.00, 0.25, 0.50, 0.75, 1.00]
+    ),
     N=256,
 )
 
@@ -84,26 +65,10 @@ cool_hamster_r.name = "cool_hamster_r"
 #: A warm colormap that uses our brand colors
 warm_hamster = _mpc.LinearSegmentedColormap(
     "warm_hamster",
-    segmentdata={
-        "red": [
-            [0.00, 1.00, 1.00],
-            [0.33, 0.92, 0.92],
-            [0.67, 0.87, 0.87],
-            [1.00, 0.00, 0.00],
-        ],
-        "green": [
-            [0.00, 1.00, 1.00],
-            [0.33, 0.52, 0.52],
-            [0.67, 0.32, 0.32],
-            [1.00, 0.00, 0.00],
-        ],
-        "blue": [
-            [0.00, 1.00, 1.00],
-            [0.33, 0.20, 0.20],
-            [0.67, 0.15, 0.15],
-            [1.00, 0.00, 0.00],
-        ],
-    },
+    segmentdata=_make_segment_data(
+        [WHITE, ORANGE, RED, BLACK],
+        [0.00, 0.33, 0.67, 1.00]
+    ),
     N=256,
 )
 
