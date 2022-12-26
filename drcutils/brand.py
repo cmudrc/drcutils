@@ -3,6 +3,7 @@ import pkg_resources
 from os import PathLike
 from PIL import Image as _Image
 import matplotlib.colors as _mpc
+import numpy
 
 #: The colors of the DRC brand
 COLORS = [
@@ -46,7 +47,7 @@ def flag(output_filepath: str | bytes | PathLike = None, size: list[list, int] |
 
     colors = [RGB_COLORS[idx]*color_width for idx, color_width in enumerate(colors)] * width
 
-    flag_image = _Image.fromarray(colors, mode="RGB")
+    flag_image = _Image.fromarray(numpy.array(colors), mode="RGB")
 
     if output_filepath is None:
         return flag_image
