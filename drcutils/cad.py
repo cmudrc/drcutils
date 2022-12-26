@@ -1,16 +1,19 @@
+from __future__ import annotations
+
 from plotly.graph_objects import Mesh3d as _Mesh3d, Layout as _Layout, Figure as _Figure
 from numpy import take as _take, unique as _unique
 from stl.mesh import Mesh as _Mesh
+from os import PathLike
 
 
-def visualize_stl(filepath: str, color: str = "#ffffff") -> _Figure:
+def visualize_stl(filepath: str | bytes | PathLike, color: str = "#ffffff") -> _Figure:
     """Visualize an STL.
 
     Displays the input STL in a Plotly Mesh3d format.
 
     Parameters
     ----------
-    filepath : str
+    filepath : str | bytes | os.Pathlike
         A filepath to the location of the STL you want to visualize.
     color: str
         The color for the visualization, as a hex code.

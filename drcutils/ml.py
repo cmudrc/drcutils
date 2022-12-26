@@ -1,10 +1,13 @@
+from __future__ import annotations
+
 from netron import serve as _serve
 from IPython.display import Javascript as _Javascript
 from IPython.core.display import display as _display
 from .env import is_notebook
+from os import PathLike
 
 
-def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
+def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int = 8000) -> None:
 
     """Visualize a neural network.
 
@@ -18,7 +21,7 @@ def visualize_network(path: str, height: int = 500, port: int = 8000) -> None:
 
     Parameters
     ----------
-    path : str
+    path : str | bytes | os.PathLike
         A filepath to the saved neural network
     height: int
         The height of the iframe visualization in pixels [optional; default = 500]

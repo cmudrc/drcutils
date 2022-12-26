@@ -3,6 +3,7 @@ from __future__ import annotations
 from PIL.Image import open as _open, Image as _Image
 import pandas as _pandas
 from os.path import splitext as _splitext
+from os import PathLike
 # from torch import load as _load, save as _save
 # from onnx2torch import convert as _convert
 
@@ -84,7 +85,8 @@ def _convertible(from_ext: str, to_ext: str) -> bool:
         return False
 
 
-def convert(thing_to_convert_from: str, thing_to_convert_to: str, from_kwargs: dict = None, to_kwargs: dict = None):
+def convert(thing_to_convert_from: str | bytes | PathLike, thing_to_convert_to: str | bytes | PathLike,
+            from_kwargs: dict = None, to_kwargs: dict = None):
     """Convert stuff to other stuff. Works for images and datafiles."""
     if from_kwargs is None:
         from_kwargs = {}
