@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 import pkg_resources
+from os import PathLike
+from PIL import Image as _Image
 
 #: The colors of the DRC brand
 COLORS = [
@@ -33,3 +37,30 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 
 #: Path to a full-color, patterned PNG of the logo
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
+
+
+def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | PathLike = None,
+              watermark_filepath=STACKED_LOGO_PNG, specify_box_in_pixels: bool = False,
+              box: [float, float, float, float | None] = [0.0, 0.0, 0.10, None]):
+    """A function to watermark files with the DRC logo, or any other image file."""
+    source_image = _Image.open(filepath)
+    watermark_image = _Image.open(watermark_filepath)
+
+    if output_file_path is None:
+        target_image = source_image
+        output_file_path = filepath
+    else:
+        target_image = source_image.copy()
+
+    # Calculate target size in pixels
+    watermark_image.resize((100, 100))
+
+    # Calculate target position in pixels
+    x_position = 0
+    y_position = 0
+
+    # Position and add the image
+    target_image.paste(watermark_image, (x_position, y_position))
+
+    # Save the image
+    target_image.save(output_file_path)
