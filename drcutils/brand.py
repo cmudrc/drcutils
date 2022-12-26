@@ -44,7 +44,7 @@ def flag(filepath: str | bytes | PathLike, size: list[list, int] | list[int, lis
     width = size[0] if type(size[0]) == "int" else size[1]
     colors = size[1] if type(size[1]) == "list" else size[0]
 
-    colors = [RGB_COLORS[idx]*color_width for color_width, idx in enumerate(colors)] * width
+    colors = [RGB_COLORS[idx]*color_width for idx, color_width in enumerate(colors)] * width
 
     _Image.fromarray(colors, mode="RGB").save(filepath)
 
