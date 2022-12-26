@@ -40,7 +40,7 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
 
-def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 10], 100]):
+def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 10, 10], 100]):
     rgb_colors = [numpy.array(_mpc.to_rgb(c)) for c in COLORS]
     width = size[0] if type(size[0]) == "int" else size[1]
     colors = size[1] if type(size[1]) == "list" else size[0]
@@ -56,6 +56,7 @@ def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 
     else:
         flag_image.save(output_filepath)
 
+
 def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | PathLike = None,
               watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG,
               box: [float, float, float | None, float | None] = [0.0, 0.0, 0.10, None]):
@@ -66,7 +67,7 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
 
     if output_filepath is None:
         target_image = source_image
-        output_file_path = filepath
+        output_filepath = filepath
     else:
         target_image = source_image.copy()
 
