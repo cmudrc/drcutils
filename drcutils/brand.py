@@ -38,9 +38,11 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 #: Path to a full-color, patterned PNG of the logo
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
+# def flag(filepath: str | bytes | PathLike, size: [int, [int, int, int, int, int, int] | [[int, int, int, int, int, int], int]: [100, [50, 10, 10, 10, 10]]):
+
 
 def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | PathLike = None,
-              watermark_filepath=STACKED_LOGO_PNG, specify_box_in_pixels: bool = False,
+              watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG,
               box: [float, float, float | None, float | None] = [0.0, 0.0, 0.10, None]):
     """A function to watermark files with the DRC logo, or any other image file."""
 
@@ -58,9 +60,9 @@ def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | 
     source_height = source_image.size[1]
     watermark_width = watermark_image.size[0]
     watermark_height = watermark_image.size[1]
-    if box[2] is None and box[3]:
+    if box[2] is None and box[3] <= 1.0:
         resized_watermark_image = watermark_image.resize((int(watermark_width * (source_height * box[3]) / watermark_height), int(source_height*box[3])))
-    elif box[3] is None and box[2]:
+    elif box[3] is None and box[2] <= 1.0:
         resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(watermark_height * (source_width * box[2]) / watermark_width)))
     elif box[2] is None and box[3] is None:
         resized_watermark_image = watermark_image
