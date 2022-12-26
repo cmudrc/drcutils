@@ -41,8 +41,9 @@ COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_patt
 
 def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | PathLike = None,
               watermark_filepath=STACKED_LOGO_PNG, specify_box_in_pixels: bool = False,
-              box: [float, float, float, float | None] = [0.0, 0.0, 0.10, None]):
+              box: [float, float, float | None, float | None] = [0.0, 0.0, 0.10, None]):
     """A function to watermark files with the DRC logo, or any other image file."""
+
     source_image = _Image.open(filepath)
     watermark_image = _Image.open(watermark_filepath)
 

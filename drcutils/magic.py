@@ -86,12 +86,8 @@ def _convertible(from_ext: str, to_ext: str) -> bool:
 
 
 def convert(thing_to_convert_from: str | bytes | PathLike, thing_to_convert_to: str | bytes | PathLike,
-            from_kwargs: dict = None, to_kwargs: dict = None):
+            from_kwargs: dict = {}, to_kwargs: dict = {}):
     """Convert stuff to other stuff. Works for images and datafiles."""
-    if from_kwargs is None:
-        from_kwargs = {}
-    if to_kwargs is None:
-        from_kwargs = {}
     _to_data_extensions, _from_data_extensions = _get_data_extensions()
     from_ext = _splitext(thing_to_convert_from)[1]
     to_ext = _splitext(thing_to_convert_to)[1]
