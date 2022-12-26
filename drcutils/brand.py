@@ -54,14 +54,23 @@ def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | 
         target_image = source_image.copy()
 
     # Calculate target size in pixels
-    watermark_image.resize((100, 100))
+    source_width = source_image.size[0]
+    source_height = source_image.size[1]
+    if box[2] is None and box[3]:
+        resized_watermark_image = watermark_image.resize((int(source_width*box[3]), int(source_height*box[3])))
+    elif box[3] is None and box[2]:
+        resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(source_height*box[2])))
+    elif box[2] is None and box[3] is None:
+        resized_watermark_image = watermark_image
+    else:
+        resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(source_height*box[3])))
 
     # Calculate target position in pixels
-    x_position = 0
-    y_position = 0
+    x_position = source_width*box[1]
+    y_position = source_height*box[2]
 
     # Position and add the image
-    target_image.paste(watermark_image, (x_position, y_position))
+    target_image.paste(resized_watermark_image, (x_position, y_position))
 
     # Save the image
     target_image.save(output_file_path)
