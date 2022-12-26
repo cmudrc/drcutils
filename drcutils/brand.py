@@ -66,8 +66,8 @@ def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | 
         resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(source_height*box[3])))
 
     # Calculate target position in pixels
-    x_position = source_width*box[1]
-    y_position = source_height*box[2]
+    x_position = int(source_width*box[1])
+    y_position = int(source_height*box[2])
 
     # Position and add the image
     target_image.paste(resized_watermark_image, (x_position, y_position))
