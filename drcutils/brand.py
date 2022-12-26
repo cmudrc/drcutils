@@ -1,8 +1,8 @@
 from __future__ import annotations
-
 import pkg_resources
 from os import PathLike
 from PIL import Image as _Image
+import matplotlib.colors as _mpc
 
 #: The colors of the DRC brand
 COLORS = [
@@ -38,8 +38,15 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 #: Path to a full-color, patterned PNG of the logo
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
-# def flag(filepath: str | bytes | PathLike, size: [int, [int, int, int, int, int, int] | [[int, int, int, int, int, int], int]: [100, [50, 10, 10, 10, 10]]):
 
+def flag(filepath: str | bytes | PathLike, size: list[list, int] | list[int, list] = [[50, 10, 10, 10, 10], 100]):
+    RGB_COLORS = [_mpc.to_rgb(c) for c in COLORS]
+    width = size[0] if type(size[0]) == "int" else size[1]
+    colors = size[1] if type(size[1]) == "list" else size[0]
+
+    colors = [RGB_COLORS[idx]*color_width for color_width, idx in enumerate(colors)] * width
+
+    _Image.fromarray(colors, mode="RGB").save(filepath)
 
 def watermark(filepath: str | bytes | PathLike, output_file_path: str | bytes | PathLike = None,
               watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG,
