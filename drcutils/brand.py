@@ -58,7 +58,7 @@ def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 
 
 
 def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | PathLike = None,
-              watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG, alpha: float = 1.0,
+              watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG,
               box: [float, float, float | None, float | None] = [0.0, 0.0, 0.10, None]):
     """A function to watermark files with the DRC logo, or any other image file."""
 
@@ -88,9 +88,6 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
     # Calculate target position in pixels
     x_position = int(source_width*box[0])
     y_position = int(source_height*box[1])
-
-    # Alpha it
-    resized_watermark_image.putalpha(int(alpha*255))
 
     # Position and add the image
     target_image.paste(resized_watermark_image, (x_position, y_position))
