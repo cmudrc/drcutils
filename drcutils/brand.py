@@ -49,7 +49,7 @@ def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 
     for idx, color_width in enumerate(colors):
         color_list = color_list + list([rgb_colors[idx]]) * color_width
 
-    flag_image = _Image.fromarray(numpy.uint8(numpy.array([color_list] * width) * 255), mode="RGB")
+    flag_image = _Image.fromarray(numpy.uint8(numpy.array([color_list] * width) * 255), mode="RGBA")
 
     if output_filepath is None:
         return flag_image
@@ -76,12 +76,12 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
     source_height = source_image.size[1]
     watermark_width = watermark_image.size[0]
     watermark_height = watermark_image.size[1]
-    if box[2] is None and box[3] <= 2.0:
+    if box[2] is None and box[3] is None:
+        resized_watermark_image = watermark_image
+    elif box[2] is None and box[3] <= 2.0:
         resized_watermark_image = watermark_image.resize((int(watermark_width * (source_height * box[3]) / watermark_height), int(source_height*box[3])))
     elif box[3] is None and box[2] <= 2.0:
         resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(watermark_height * (source_width * box[2]) / watermark_width)))
-    elif box[2] is None and box[3] is None:
-        resized_watermark_image = watermark_image
     else:
         resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(source_height*box[3])))
 
