@@ -40,7 +40,9 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
 
-def flag(output_filepath: str | bytes | PathLike = None, size=[[50, 10, 10, 10, 10, 10], 100]):
+def flag(output_filepath: str | bytes | PathLike = None, size=None):
+    if size is None:
+        size = [[50, 10, 10, 10, 10, 10], 100]
     rgb_colors = [numpy.array(_mpc.to_rgb(c)) for c in COLORS]
     width = size[0] if type(size[0]) == "int" else size[1]
     colors = size[1] if type(size[1]) == "list" else size[0]
