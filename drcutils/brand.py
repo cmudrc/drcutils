@@ -4,9 +4,7 @@ from os import PathLike
 from PIL import Image as _Image
 import matplotlib.colors as _mpc
 from numpy import array as _array, uint8 as _uint8
-
-
-from PIL.Image import open as _open, Image as _Image
+# from PIL.Image import open as _open, Image as _Image
 from os.path import splitext as _splitext
 
 
@@ -136,19 +134,19 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
         from_kwargs = {}
 
     _from_image_extensions = {
-        ".png": _open,
-        ".jpg": _open,
-        ".jpeg": _open,
-        ".eps": _open,
-        ".bmp": _open,
+        ".png": _Image.open,
+        ".jpg": _Image.open,
+        ".jpeg": _Image.open,
+        ".eps": _Image.open,
+        ".bmp": _Image.open,
     }
 
     _to_image_extensions = {
-        ".png": _Image.save,
-        ".jpg": _Image.save,
-        ".jpeg": _Image.save,
-        ".eps": _Image.save,
-        ".bmp": _Image.save,
+        ".png": _Image.Image.save,
+        ".jpg": _Image.Image.save,
+        ".jpeg": _Image.Image.save,
+        ".eps": _Image.Image.save,
+        ".bmp": _Image.Image.save,
     }
 
     from_ext = _splitext(convert_from)[1]
