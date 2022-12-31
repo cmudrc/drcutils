@@ -3,7 +3,12 @@ import pkg_resources
 from os import PathLike
 from PIL import Image as _Image
 import matplotlib.colors as _mpc
-import numpy
+from numpy import array as _array, uint8 as _uint8
+
+
+from PIL.Image import open as _open, Image as _Image
+from os.path import splitext as _splitext
+
 
 #: The colors of the DRC brand
 COLORS = [
@@ -43,7 +48,7 @@ COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_patt
 def flag(output_filepath: str | bytes | PathLike = None, size=None):
     if size is None:
         size = [[50, 10, 10, 10, 10, 10], 100]
-    rgb_colors = [numpy.array(_mpc.to_rgb(c)) for c in COLORS]
+    rgb_colors = [_array(_mpc.to_rgb(c)) for c in COLORS]
     width = size[0] if type(size[0]) == "int" else size[1]
     colors = size[1] if type(size[1]) == "list" else size[0]
 
@@ -51,7 +56,7 @@ def flag(output_filepath: str | bytes | PathLike = None, size=None):
     for idx, color_width in enumerate(colors):
         color_list = color_list + list([rgb_colors[idx]]) * color_width
 
-    flag_image = _Image.fromarray(numpy.uint8(numpy.array([color_list] * width) * 255), mode="RGBA")
+    flag_image = _Image.fromarray(_uint8(_array([color_list] * width) * 255), mode="RGBA")
 
     if output_filepath is None:
         return flag_image
@@ -96,3 +101,71 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
 
     # Save the image
     target_image.save(output_filepath)
+
+
+def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes | PathLike,
+                  from_kwargs: dict = None, to_kwargs: dict = None):
+
+    """Convert between different image formats.
+
+    This function is essentially a thing wrapper around pandas, and uses that library as a backend for
+    all conversions. That being said, it is pretty robust, and can handle conversions from (.png, .jpg, .jpeg, .eps,
+    .bmp) and to (.png, .jpg, .jpeg, .eps, .bmp) a variety of filetypes.
+
+    Parameters
+    ----------
+    convert_from : str | bytes | os.PathLike
+        A path to the file to convert from.
+    convert_to : str | bytes | os.PathLike
+        A path to the file to convert to.
+    from_kwargs : dict
+        A dictionary of any keyword arguments for the function used to load the file.
+    to_kwargs : dict
+        A dictionary of any keyword arguments for the function used to write the file.
+
+    Returns
+    -------
+    None
+        Simple writes a new file.
+
+    """
+
+    if to_kwargs is None:
+        to_kwargs = {}
+    if from_kwargs is None:
+        from_kwargs = {}
+
+    _from_image_extensions = {
+        ".png": _open,
+        ".jpg": _open,
+        ".jpeg": _open,
+        ".eps": _open,
+        ".bmp": _open,
+    }
+
+    _to_image_extensions = {
+        ".png": _Image.save,
+        ".jpg": _Image.save,
+        ".jpeg": _Image.save,
+        ".eps": _Image.save,
+        ".bmp": _Image.save,
+    }
+
+    from_ext = _splitext(convert_from)[1]
+    to_ext = _splitext(convert_to)[1]
+
+    if from_ext in _from_image_extensions.keys():
+        if to_ext in _to_image_extensions.keys():
+            _to_image_extensions[to_ext](
+                _from_image_extensions[from_ext](
+                    convert_from,
+                    **from_kwargs
+                ),
+                convert_to,
+                **to_kwargs
+            )
+        else:
+            raise ValueError(f"Files with extension {to_ext} cannot be written.")
+    else:
+        raise ValueError(f"Files with extension {from_ext} cannot be opened.")
+

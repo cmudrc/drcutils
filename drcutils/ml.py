@@ -3,8 +3,97 @@ from __future__ import annotations
 from netron import serve as _serve
 from IPython.display import Javascript as _Javascript
 from IPython.core.display import display as _display
-from .env import is_notebook
+import pandas as _pandas
+from os.path import splitext as _splitext
 from os import PathLike
+
+from .env import is_notebook
+
+
+def convert_data(convert_from: str | bytes | PathLike, convert_to: str | bytes | PathLike,
+                 from_kwargs: dict = None, to_kwargs: dict = None):
+
+    """Convert between different data formats.
+
+    This function is essentially a thing wrapper around pandas, and uses that library as a backend for
+    all conversions. That being said, it is pretty robust, and can handle conversions from (.csv, .hdf5, .h5, .json,
+    .xml, .parquet, .xls, .xlsx, .dta, .feather, .xpt, .sas7bdat, .sav, .zsav, and .pkl) and to (.csv, .hdf5, .h5, .json,
+    .xml, .parquet, .xls, .xlsx, .feather, .dta, and .pkl, but NOT .xpt, .sas7bdat, .sav, or .zsav) a variety of filetypes.
+
+    Parameters
+    ----------
+    convert_from : str | bytes | os.PathLike
+        A path to the file to convert from.
+    convert_to : str | bytes | os.PathLike
+        A path to the file to convert to.
+    from_kwargs : dict
+        A dictionary of any keyword arguments for the function used to load the file.
+    to_kwargs : dict
+        A dictionary of any keyword arguments for the function used to write the file.
+
+    Returns
+    -------
+    None
+        Simple writes a new file.
+
+    """
+
+    # Replace with mutable values
+    if to_kwargs is None:
+        to_kwargs = {}
+    if from_kwargs is None:
+        from_kwargs = {}
+
+    _from_data_extensions = {
+        ".csv": _pandas.read_csv,
+        ".hdf5": _pandas.read_hdf,
+        ".h5": _pandas.read_hdf,
+        ".json": _pandas.read_json,
+        ".xml": _pandas.read_xml,
+        ".parquet": _pandas.read_parquet,
+        ".xls": _pandas.read_excel,
+        ".xlsx": _pandas.read_excel,
+        ".feather": _pandas.read_feather,
+        ".dta": _pandas.read_stata,
+        ".xpt": _pandas.read_sas,
+        ".sas7bdat": _pandas.read_sas,
+        ".sav": _pandas.read_spss,
+        ".zsav": _pandas.read_spss,
+        ".pkl": _pandas.read_pickle,
+    }
+
+    _to_data_extensions = {
+        ".csv": _pandas.DataFrame.to_csv,
+        ".hdf5": _pandas.DataFrame.to_hdf,
+        ".h5": _pandas.DataFrame.to_hdf,
+        ".json": _pandas.DataFrame.to_json,
+        ".xml": _pandas.DataFrame.to_xml,
+        ".parquet": _pandas.DataFrame.to_parquet,
+        ".xls": _pandas.DataFrame.to_excel,
+        ".xlsx": _pandas.DataFrame.to_excel,
+        ".feather": _pandas.DataFrame.to_feather,
+        ".dta": _pandas.DataFrame.to_stata,
+        ".pkl": _pandas.DataFrame.to_pickle,
+    }
+
+    # Figure out what functions to use
+    from_ext = _splitext(convert_from)[1]
+    to_ext = _splitext(convert_to)[1]
+
+    if from_ext in _from_data_extensions.keys():
+        if to_ext in _to_data_extensions.keys():
+            _to_data_extensions[to_ext](
+                _from_data_extensions[from_ext](
+                    convert_from,
+                    **from_kwargs
+                ),
+                convert_to,
+                **to_kwargs
+            )
+        else:
+            raise ValueError(f"Files with extension {to_ext} cannot be written.")
+    else:
+        raise ValueError(f"Files with extension {from_ext} cannot be opened.")
 
 
 def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int = 8000) -> None:
