@@ -655,7 +655,7 @@ savefig.transparent : False     ## setting that controls whether figures are sav
 savefig.orientation : portrait  ## Orientation of saved figure
 
 ## tk backend params
-tk.window_focus   : False  ## Maintain shell focus for TkAgg
+# tk.window_focus   : False  ## Maintain shell focus for TkAgg
 
 ## ps backend params
 ps.papersize      : letter  ## {auto, letter, legal, ledger, A0-A10, B0-B10}
