@@ -6,6 +6,7 @@ import matplotlib.colors as _mpc
 from numpy import array as _array, uint8 as _uint8
 # from PIL.Image import open as _open, Image as _Image
 from os.path import splitext as _splitext
+from typing import Literal
 
 
 #: The colors of the DRC brand
@@ -43,18 +44,44 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
 
-def flag(output_filepath: str | bytes | PathLike = None, size=None):
+def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] = None,
+              stripe_thickness: list[float] = None, mode: Literal["dark", "light"] = "dark"):
+
+    """Make a DRC flag.
+
+    THis function creates a layout of the DRC colors. This pattern is suitable for social media
+    headers, presentations backgrounds, document footers, etc.
+
+    Parameters
+    ----------
+    output_filepath : str | bytes | os.PathLike
+        The filepath to save the flag to, if given.
+    size: tuple[int]
+        The image size in pixels as a width-height tuple.
+    stripe_thickness: list[float]
+        The thickness of each of the color stripes.
+    mode: "dark" | "light"
+        If "dark", then black is the neutral color used in the flag. If "light, white is the neutral color.
+
+    Returns
+    -------
+    None | PIL.Image
+        If `output_filepath` is not given, then output a PIL.Image object. If `output_filepath` is given, no output.
+    """
+
     if size is None:
-        size = [[50, 10, 10, 10, 10, 10], 100]
+        size = (1500, 500)
+    if stripe_thickness is None:
+        stripe_thickness = [int(size[0]*t) for t in [0.5, 0.1, 0.1, 0.1, 0.1, 0.1]]
     rgb_colors = [_array(_mpc.to_rgb(c)) for c in COLORS]
-    width = size[0] if type(size[0]) == "int" else size[1]
-    colors = size[1] if type(size[1]) == "list" else size[0]
+    if mode == "light":
+        rgb_colors = [_array([1.0, 1.0, 1.0]), rgb_colors[3], rgb_colors[2], rgb_colors[1], rgb_colors[5], rgb_colors[4]]
 
     color_list = []
-    for idx, color_width in enumerate(colors):
+    for idx, color_width in enumerate(stripe_thickness):
         color_list = color_list + list([rgb_colors[idx]]) * color_width
 
-    flag_image = _Image.fromarray(_uint8(_array([color_list] * width) * 255), mode="RGBA")
+    flag_image = _Image.fromarray(_uint8(_array([color_list] * size[1]) * 255)).convert("RGBA")
 
     if output_filepath is None:
         return flag_image
@@ -125,7 +152,6 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
     -------
     None
         Simple writes a new file.
-
     """
 
     if to_kwargs is None:
