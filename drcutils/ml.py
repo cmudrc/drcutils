@@ -1,18 +1,19 @@
 from __future__ import annotations
 
-from netron import serve as _serve
-from IPython.display import Javascript as _Javascript
-from IPython.core.display import display as _display
+import os.path
+import typing
+
+import IPython.core.display as _ipycoredis
+import IPython.display as _ipydis
+import netron as _netron
 import pandas as _pandas
-from os.path import splitext as _splitext
-from os import PathLike
 
 from .env import is_notebook
 
 
-def convert_data(convert_from: str | bytes | PathLike, convert_to: str | bytes | PathLike,
-                 from_kwargs: dict = None, to_kwargs: dict = None):
-
+def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
+                 from_kwargs: typing.Optional[typing.Dict] = None,
+                 to_kwargs: typing.Optional[typing.Dict] = None) -> None:
     """Convert between different data formats.
 
     This function is essentially a thing wrapper around pandas, and uses that library as a backend for
@@ -77,8 +78,8 @@ def convert_data(convert_from: str | bytes | PathLike, convert_to: str | bytes |
     }
 
     # Figure out what functions to use
-    from_ext = _splitext(convert_from)[1]
-    to_ext = _splitext(convert_to)[1]
+    from_ext = os.path.splitext(convert_from)[1]
+    to_ext = os.path.splitext(convert_to)[1]
 
     if from_ext in _from_data_extensions.keys():
         if to_ext in _to_data_extensions.keys():
@@ -96,17 +97,13 @@ def convert_data(convert_from: str | bytes | PathLike, convert_to: str | bytes |
         raise ValueError(f"Files with extension {from_ext} cannot be opened.")
 
 
-def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int = 8000) -> None:
-
+def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: int = 8000) -> None:
     """Visualize a neural network.
 
-    Visualize a neural network from a path to its saved architecture.
-    You can also set the height of visualization (default 500px) and
-    which port it is served on (default 8000). The heavy lifting is
-    done by netron, which support Netron supports a huge array of file:
-    formats ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle,
-    ncnn, MNN, Core ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda,
-    Tengine, CNTK, TensorFlow.js, Caffe2 and UFF.
+    Visualize a neural network from a path to its saved architecture. You can also set the height of visualization
+    (default 500px) and which port it is served on (default 8000). The heavy lifting is done by netron, which support
+    supports a huge array of file formats: ONNX, TensorFlow Lite, Caffe, Keras, Darknet, PaddlePaddle, ncnn, MNN, Core
+    ML, RKNN, MXNet, MindSpore Lite, TNN, Barracuda, Tengine, CNTK, TensorFlow.js, Caffe2 and UFF.
 
     Parameters
     ----------
@@ -125,8 +122,8 @@ def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int
     """
 
     if is_notebook():
-        _serve(path, None, ("localhost", port), False, 0)
-        _display(_Javascript("""
+        _netron.serve(path, None, ("localhost", port), False, 0)
+        _ipycoredis.display(_ipydis.Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
             fm.src = await google.colab.kernel.proxyPort(%s)
@@ -135,7 +132,6 @@ def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int
             fm.frameBorder = 0
             document.body.append(fm)
         })();
-        """ % (port, height) ))
+        """ % (port, height)))
     else:
-        _serve(path, None, ("localhost", port), True, 0)
-    
+        _netron.serve(path, None, ("localhost", port), True, 0)
