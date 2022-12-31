@@ -79,29 +79,29 @@
 #     PS PDF SVG Template
 # You can also deploy your own backend outside of matplotlib by referring to
 # the module name (which must be in the PYTHONPATH) as 'module://my_backend'.
-backend : Agg
+# backend : Agg
 
 # The port to use for the web server in the WebAgg backend.
-webagg.port : 8988
+# webagg.port : 8988
 
 # The address on which the WebAgg web server should be reachable
-webagg.address : 127.0.0.1
+# webagg.address : 127.0.0.1
 
 # If webagg.port is unavailable, a number of other random ports will
 # be tried until one that is available is found.
-webagg.port_retries : 50
+# webagg.port_retries : 50
 
 # When True, open the webbrowser to the plot that is shown
-webagg.open_in_browser : True
+# webagg.open_in_browser : True
 
 # If you are running pyplot inside a GUI and your backend choice
 # conflicts, we will automatically try to find a compatible one for
 # you if backend_fallback is True
-backend_fallback : True
+# backend_fallback : True
 
-interactive : False
-toolbar     : toolbar2  ## {None, toolbar2}
-timezone    : UTC       ## a pytz timezone string, e.g., US/Central or Europe/Paris
+# interactive : False
+# toolbar     : toolbar2  ## {None, toolbar2}
+# timezone    : UTC       ## a pytz timezone string, e.g., US/Central or Europe/Paris
 
 
 # ***************************************************************************
@@ -526,7 +526,7 @@ figure.dpi         : 100       ## figure dots per inch
 figure.facecolor   : white     ## figure facecolor
 figure.edgecolor   : white     ## figure edgecolor
 figure.frameon     : True      ## enable figure frame
-figure.max_open_warning : 20   ## The maximum number of figures to open through
+# figure.max_open_warning : 20   ## The maximum number of figures to open through
                                 ## the pyplot interface before emitting a warning.
                                 ## If less than one this feature is disabled.
 
@@ -648,7 +648,7 @@ savefig.bbox      : standard    ## {tight, standard}
                                  ## use ffmpeg_file instead
 savefig.pad_inches   : 0.1      ## Padding to be used when bbox is set to 'tight'
 savefig.jpeg_quality : 95       ## when a jpeg is saved, the default quality parameter.
-savefig.directory    : ~        ## default directory in savefig dialog box,
+# savefig.directory    : ~        ## default directory in savefig dialog box,
                                  ## leave empty to always use current working directory
 savefig.transparent : False     ## setting that controls whether figures are saved with a
                                  ## transparent background by default
