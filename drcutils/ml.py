@@ -1,14 +1,14 @@
 from __future__ import annotations
 
-import os.path
+import os
 import typing
 
-import IPython.core.display as _ipycoredis
-import IPython.display as _ipydis
+import IPython.core.display as _ipython_core_display
+import IPython.display as _ipython_display
 import netron as _netron
 import pandas as _pandas
 
-from .env import is_notebook
+from .env import is_notebook as _is_notebook
 
 
 def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
@@ -121,9 +121,9 @@ def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: 
 
     """
 
-    if is_notebook():
+    if _is_notebook():
         _netron.serve(path, None, ("localhost", port), False, 0)
-        _ipycoredis.display(_ipydis.Javascript("""
+        _ipython_core_display.display(_ipython_display.Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
             fm.src = await google.colab.kernel.proxyPort(%s)
@@ -135,3 +135,5 @@ def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: 
         """ % (port, height)))
     else:
         _netron.serve(path, None, ("localhost", port), True, 0)
+
+del os

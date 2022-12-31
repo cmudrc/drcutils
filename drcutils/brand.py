@@ -1,13 +1,14 @@
 from __future__ import annotations
-import pkg_resources
-from os import PathLike
-from PIL import Image as _Image
-import matplotlib.colors as _mpc
-import matplotlib.pyplot as _mpl
-from numpy import array as _array, uint8 as _uint8
-from os.path import splitext as _splitext
-from typing import Literal
 
+import os
+import typing
+
+import PIL
+import PIL as _PIL
+import matplotlib.colors as _matplotlib_colors
+import matplotlib.pyplot as _matplotlib_pyplot
+import numpy as _numpy
+import pkg_resources
 
 #: The colors of the DRC brand
 COLORS = [
@@ -47,9 +48,10 @@ COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_patt
 DRC_MPLSTYLE = pkg_resources.resource_filename('drcutils', 'data/drc.mplstyle')
 
 
-def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] = None,
-              stripe_thickness: list[float] = None, mode: Literal["dark", "light"] = "dark"):
-
+def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None,
+              size: typing.Optional[typing.Tuple[int, int]] = None,
+              stripe_thickness: typing.Optional[typing.Sequence[float]] = None,
+              mode: typing.Literal["dark", "light"] = "dark") -> typing.Optional[PIL.Image]:
     """Make a DRC flag.
 
     THis function creates a layout of the DRC colors. This pattern is suitable for social media
@@ -57,34 +59,41 @@ def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] =
 
     Parameters
     ----------
-    output_filepath : str | bytes | os.PathLike
+    output_filepath : Optional[str | bytes | os.PathLike]
         The filepath to save the flag to, if given.
-    size: tuple[int]
+    size: Optional[Tuple[int, int]]
         The image size in pixels as a width-height tuple.
-    stripe_thickness: list[float]
+    stripe_thickness: Optional[Sequence[float]]
         The thickness of each of the color stripes.
-    mode: "dark" | "light"
+    mode: Literal["dark", "light"]
         If "dark", then black is the neutral color used in the flag. If "light, white is the neutral color.
 
     Returns
     -------
-    None | PIL.Image
-        If `output_filepath` is not given, then output a PIL.Image object. If `output_filepath` is given, no output.
+    None | _PIL.Image
+        If `output_filepath` is not given, then output a _PIL.Image object. If `output_filepath` is given, no output.
+
     """
 
+    # Handle default values
     if size is None:
         size = (1500, 500)
     if stripe_thickness is None:
-        stripe_thickness = [int(size[0]*t) for t in [0.5, 0.1, 0.1, 0.1, 0.1, 0.1]]
-    rgb_colors = [_array(_mpc.to_rgb(c)) for c in COLORS]
+        stripe_thickness = [0.5, 0.1, 0.1, 0.1, 0.1, 0.1]
+
+    # Set stripe thickness to actual pixels
+    stripe_thickness = [int(size[0] * t) for t in stripe_thickness]
+
+    rgb_colors = [_numpy.array(_matplotlib_colors.to_rgb(c)) for c in COLORS]
     if mode == "light":
-        rgb_colors = [_array([1.0, 1.0, 1.0]), rgb_colors[3], rgb_colors[2], rgb_colors[1], rgb_colors[5], rgb_colors[4]]
+        rgb_colors = [_numpy.array([1.0, 1.0, 1.0]), rgb_colors[3], rgb_colors[2], rgb_colors[1], rgb_colors[5],
+                      rgb_colors[4]]
 
     color_list = []
     for idx, color_width in enumerate(stripe_thickness):
         color_list = color_list + list([rgb_colors[idx]]) * color_width
 
-    flag_image = _Image.fromarray(_uint8(_array([color_list] * size[1]) * 255)).convert("RGBA")
+    flag_image = _PIL.Image.fromarray(_numpy.uint8(_numpy.array([color_list] * size[1]) * 255)).convert("RGBA")
 
     if output_filepath is None:
         return flag_image
@@ -92,8 +101,8 @@ def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] =
         flag_image.save(output_filepath)
 
 
-def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | PathLike = None,
-              watermark_filepath: str | bytes | PathLike = None,
+def watermark(filepath: str | bytes | os.PathLike, output_filepath: str | bytes | os.PathLike = None,
+              watermark_filepath: str | bytes | os.PathLike = None,
               box: [float, float, float | None, float | None] = None):
     """A function to watermark files with the DRC logo, or any other image file."""
 
@@ -101,8 +110,8 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
         watermark_filepath = STACKED_LOGO_PNG
     if box is None:
         box = [0.0, 0.0, 0.10, None]
-    source_image = _Image.open(filepath)
-    watermark_image = _Image.open(watermark_filepath)
+    source_image = _PIL.Image.open(filepath)
+    watermark_image = _PIL.Image.open(watermark_filepath)
 
     target_image = source_image.copy()
 
@@ -114,15 +123,17 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
     if box[2] is None and box[3] is None:
         resized_watermark_image = watermark_image
     elif box[2] is None and box[3] <= 2.0:
-        resized_watermark_image = watermark_image.resize((int(watermark_width * (source_height * box[3]) / watermark_height), int(source_height*box[3])))
+        resized_watermark_image = watermark_image.resize(
+            (int(watermark_width * (source_height * box[3]) / watermark_height), int(source_height * box[3])))
     elif box[3] is None and box[2] <= 2.0:
-        resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(watermark_height * (source_width * box[2]) / watermark_width)))
+        resized_watermark_image = watermark_image.resize(
+            (int(source_width * box[2]), int(watermark_height * (source_width * box[2]) / watermark_width)))
     else:
-        resized_watermark_image = watermark_image.resize((int(source_width*box[2]), int(source_height*box[3])))
+        resized_watermark_image = watermark_image.resize((int(source_width * box[2]), int(source_height * box[3])))
 
     # Calculate target position in pixels
-    x_position = int(source_width*box[0])
-    y_position = int(source_height*box[1])
+    x_position = int(source_width * box[0])
+    y_position = int(source_height * box[1])
 
     # Position and add the image
     target_image.paste(resized_watermark_image, (x_position, y_position))
@@ -134,9 +145,9 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
         target_image.save(output_filepath)
 
 
-def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes | PathLike,
-                  from_kwargs: dict = None, to_kwargs: dict = None):
-
+def convert_image(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
+                  from_kwargs: typing.Optional[typing.Dict] = None,
+                  to_kwargs: typing.Optional[typing.Dict] = None) -> None:
     """Convert between different image formats.
 
     This function is essentially a thing wrapper around pandas, and uses that library as a backend for
@@ -158,6 +169,7 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
     -------
     None
         Simple writes a new file.
+
     """
 
     if to_kwargs is None:
@@ -166,23 +178,23 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
         from_kwargs = {}
 
     _from_image_extensions = {
-        ".png": _Image.open,
-        ".jpg": _Image.open,
-        ".jpeg": _Image.open,
-        ".eps": _Image.open,
-        ".bmp": _Image.open,
+        ".png": _PIL.Image.open,
+        ".jpg": _PIL.Image.open,
+        ".jpeg": _PIL.Image.open,
+        ".eps": _PIL.Image.open,
+        ".bmp": _PIL.Image.open,
     }
 
     _to_image_extensions = {
-        ".png": _Image.Image.save,
-        ".jpg": _Image.Image.save,
-        ".jpeg": _Image.Image.save,
-        ".eps": _Image.Image.save,
-        ".bmp": _Image.Image.save,
+        ".png": _PIL.Image.Image.save,
+        ".jpg": _PIL.Image.Image.save,
+        ".jpeg": _PIL.Image.Image.save,
+        ".eps": _PIL.Image.Image.save,
+        ".bmp": _PIL.Image.Image.save,
     }
 
-    from_ext = _splitext(convert_from)[1]
-    to_ext = _splitext(convert_to)[1]
+    from_ext = os.path.splitext(convert_from)[1]
+    to_ext = os.path.splitext(convert_to)[1]
 
     if from_ext in _from_image_extensions.keys():
         if to_ext in _to_image_extensions.keys():
@@ -200,7 +212,11 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
         raise ValueError(f"Files with extension {from_ext} cannot be opened.")
 
 
-def drc_style():
+def drc_style() -> None:
     """The custom DRC matplotlib style.
+
     """
-    return _mpl.style.context(DRC_MPLSTYLE)
+    return _matplotlib_pyplot.style.context(DRC_MPLSTYLE)
+
+
+del PIL

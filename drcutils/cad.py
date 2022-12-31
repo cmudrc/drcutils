@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import typing
 
 import numpy as _numpy
 import plotly.graph_objects
@@ -8,7 +9,8 @@ import plotly.graph_objects as _plotly_graph_objects
 import stl as _numpy_stl
 
 
-def visualize_stl(filepath: str | bytes | os.PathLike, color: str = "#ffffff") -> plotly.graph_objects.Figure:
+def visualize_stl(filepath: str | bytes | os.PathLike,
+                  color: typing.Optional[str] = "#ffffff") -> plotly.graph_objects.Figure:
     """Visualize an STL.
 
     Displays the input STL in a Plotly Mesh3d format.
