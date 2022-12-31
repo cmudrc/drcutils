@@ -18,7 +18,6 @@ hamster = _mpc.ListedColormap(COLORS, name="hamster")
 
 #: Reversed version of `hamster`
 hamster_r = hamster.reversed()
-hamster_r.name = "hamster_r"
 
 #: Diverging colormap with white center
 diverging_hamster = _mpc.LinearSegmentedColormap(
@@ -32,7 +31,6 @@ diverging_hamster = _mpc.LinearSegmentedColormap(
 
 #: Reversed version of `diverging_hamster`
 diverging_hamster_r = diverging_hamster.reversed()
-diverging_hamster_r.name = "diverging_hamster_r"
 
 #: Diverging colormap, black center
 dark_diverging_hamster = _mpc.LinearSegmentedColormap(
@@ -46,7 +44,6 @@ dark_diverging_hamster = _mpc.LinearSegmentedColormap(
 
 #: Reversed version of `dark_diverging_hamster`
 dark_diverging_hamster_r = dark_diverging_hamster.reversed()
-dark_diverging_hamster_r.name = "dark_diverging_hamster_r"
 
 #: A cool colormap that uses our brand colors
 cool_hamster = _mpc.LinearSegmentedColormap(
@@ -60,7 +57,6 @@ cool_hamster = _mpc.LinearSegmentedColormap(
 
 #: Reversed version of `cool_hamster`
 cool_hamster_r = cool_hamster.reversed()
-cool_hamster_r.name = "cool_hamster_r"
 
 #: A warm colormap that uses our brand colors
 warm_hamster = _mpc.LinearSegmentedColormap(
@@ -74,4 +70,3 @@ warm_hamster = _mpc.LinearSegmentedColormap(
 
 #: Reversed version of `warm_hamster`
 warm_hamster_r = warm_hamster.reversed()
-warm_hamster_r.name = "warm_hamster_r"
