@@ -3,10 +3,10 @@ import pkg_resources
 from os import PathLike
 from PIL import Image as _Image
 import matplotlib.colors as _mpc
+import matplotlib.pyplot as _mpl
 from numpy import array as _array, uint8 as _uint8
 from os.path import splitext as _splitext
 from typing import Literal
-import typing
 
 
 #: The colors of the DRC brand
@@ -42,6 +42,9 @@ GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_patter
 
 #: Path to a full-color, patterned PNG of the logo
 COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
+
+#: Path to a DRC-brand matplotlib style file
+DRC_MPLSTYLE = pkg_resources.resource_filename('drcutils', 'data/drc.mplstyle')
 
 
 def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] = None,
@@ -196,3 +199,6 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
     else:
         raise ValueError(f"Files with extension {from_ext} cannot be opened.")
 
+
+def drc_style():
+    return _mpl.style.use(DRC_MPLSTYLE)
