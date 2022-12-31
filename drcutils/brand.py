@@ -4,9 +4,9 @@ from os import PathLike
 from PIL import Image as _Image
 import matplotlib.colors as _mpc
 from numpy import array as _array, uint8 as _uint8
-# from PIL.Image import open as _open, Image as _Image
 from os.path import splitext as _splitext
 from typing import Literal
+import typing
 
 
 #: The colors of the DRC brand
@@ -90,18 +90,18 @@ def make_flag(output_filepath: str | bytes | PathLike = None, size: tuple[int] =
 
 
 def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | PathLike = None,
-              watermark_filepath: str | bytes | PathLike = STACKED_LOGO_PNG,
-              box: [float, float, float | None, float | None] = [0.0, 0.0, 0.10, None]):
+              watermark_filepath: str | bytes | PathLike = None,
+              box: [float, float, float | None, float | None] = None):
     """A function to watermark files with the DRC logo, or any other image file."""
 
+    if watermark_filepath is None:
+        watermark_filepath = STACKED_LOGO_PNG
+    if box is None:
+        box = [0.0, 0.0, 0.10, None]
     source_image = _Image.open(filepath)
     watermark_image = _Image.open(watermark_filepath)
 
-    if output_filepath is None:
-        target_image = source_image
-        output_filepath = filepath
-    else:
-        target_image = source_image.copy()
+    target_image = source_image.copy()
 
     # Calculate target size in pixels
     source_width = source_image.size[0]
@@ -124,8 +124,11 @@ def watermark(filepath: str | bytes | PathLike, output_filepath: str | bytes | P
     # Position and add the image
     target_image.paste(resized_watermark_image, (x_position, y_position))
 
-    # Save the image
-    target_image.save(output_filepath)
+    # Save the image or return it
+    if output_filepath is None:
+        return target_image
+    else:
+        target_image.save(output_filepath)
 
 
 def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes | PathLike,
