@@ -22,7 +22,7 @@ def visualize_stl(filepath: str | bytes | os.PathLike, color: str = "#ffffff") -
 
     Returns
     -------
-    Plotly.graph_objects.Figure
+    plotly.graph_objects.Figure
         A plotly figure that displays the STl file.
 
     """
