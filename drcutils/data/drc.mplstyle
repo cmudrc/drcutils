@@ -628,7 +628,7 @@ path.sketch : None  ## May be None, or a 3-tuple of the form:
                      ##         line (in pixels).
                      ##     - *randomness* is the factor by which the length is
                      ##         randomly scaled.
-path.effects : []   ##
+# path.effects : []   ##
 
 
 # ***************************************************************************
