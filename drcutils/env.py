@@ -3,7 +3,7 @@ from sys import modules as _modules
 
 
 def is_google_colab() -> bool:
-    """Determine whether or not the environment is in Google Colab.
+    """Determine whether the environment is in Google Colab.
 
     Returns
     -------
@@ -15,7 +15,7 @@ def is_google_colab() -> bool:
 
 
 def is_notebook() -> bool:
-    """Determine whether or not the environment is in a notebook.
+    """Determine whether the environment is in a notebook.
 
     Returns
     -------
