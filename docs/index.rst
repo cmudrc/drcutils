@@ -16,7 +16,6 @@ Welcome to drcutils's documentation!
    cad
    colormaps
    env
-   magic
    ml
 
 Indices and tables

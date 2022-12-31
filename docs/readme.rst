@@ -3,9 +3,9 @@ Welcome!
 Installation
 --------------
 
-To install this package, run:
+To install this package, just use pip:
 `
-pip install git+https://github.com/cmudrc/drcutils.git
+pip install drcutils
 `
 
 Examples
