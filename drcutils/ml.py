@@ -97,7 +97,8 @@ def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | byte
         raise ValueError(f"Files with extension {from_ext} cannot be opened.")
 
 
-def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: int = 8000) -> None:
+def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[int] = 500,
+                      port: typing.Optional[int] = 8000) -> None:
     """Visualize a neural network.
 
     Visualize a neural network from a path to its saved architecture. You can also set the height of visualization
@@ -109,9 +110,9 @@ def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: 
     ----------
     path : str | bytes | os.PathLike
         A filepath to the saved neural network
-    height: int
+    height: Optional[int]
         The height of the iframe visualization in pixels [optional; default = 500]
-    port: int
+    port: Optional[int]
         The port on which the visualization is served [optional; default = 8000]
 
     Returns
@@ -135,5 +136,3 @@ def visualize_network(path: str | bytes | os.PathLike, height: int = 500, port: 
         """ % (port, height)))
     else:
         _netron.serve(path, None, ("localhost", port), True, 0)
-
-del os
