@@ -201,4 +201,6 @@ def convert_image(convert_from: str | bytes | PathLike, convert_to: str | bytes 
 
 
 def drc_style():
-    return _mpl.style.use(DRC_MPLSTYLE)
+    """The custom DRC matplotlib style.
+    """
+    return _mpl.style.context(DRC_MPLSTYLE)
