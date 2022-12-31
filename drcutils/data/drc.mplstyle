@@ -396,12 +396,12 @@ axes.spines.right  : True
 axes.unicode_minus : True  ## use Unicode for the minus symbol
                             ## rather than hyphen.  See
                             ## https://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes
-axes.prop_cycle: cycler('color', ['1a4c49', 'df5227', '4c8687", 'ea8534', '58b7bb', '1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd', '8c564b', 'e377c2', '7f7f7f', 'bcbd22', '17becf'])
+axes.prop_cycle: cycler('color', ['1a4c49', 'df5227', '4c8687', 'ea8534', '58b7bb', '1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd', '8c564b', 'e377c2', '7f7f7f', 'bcbd22', '17becf'])
                    ## color cycle for plot lines as list of string colorspecs:
                    ##     single letter, long name, or web-style hex
 				   ## As opposed to all other paramters in this file, the color
 				   ## values must be enclosed in quotes for this parameter,
-				   #  e.g. '1f77b4', instead of 1f77b4.
+				   ##  e.g. '1f77b4', instead of 1f77b4.
                    ## See also https://matplotlib.org/tutorials/intermediate/color_cycle.html
                    ## for more details on prop_cycle usage.
 axes.autolimit_mode : data  ## How to scale axes limits to the data.  By using:
