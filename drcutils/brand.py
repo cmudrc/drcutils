@@ -11,7 +11,7 @@ import numpy as _numpy
 import pkg_resources
 
 #: The colors of the DRC brand
-COLORS = [
+COLORS: typing.Final[typing.List[str]] = [
     "#000000",
     "#1A4C49",
     "#4C8687",
@@ -21,31 +21,31 @@ COLORS = [
 ]
 
 #: Path to an SVG of logo
-LOGO_ONLY_SVG = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
+LOGO_ONLY_SVG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/logo.svg')
 
 #: Path to a PNG of logo
-LOGO_ONLY_PNG = pkg_resources.resource_filename('drcutils', 'data/logo.png')
+LOGO_ONLY_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/logo.png')
 
 #: Path to an STL of logo
-LOGO_ONLY_STL = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
+LOGO_ONLY_STL: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/logo.stl')
 
 #: Path to a PNG of the horizontal logo
-HORIZONTAL_LOGO_PNG = pkg_resources.resource_filename('drcutils', 'data/horizontal.png')
+HORIZONTAL_LOGO_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/horizontal.png')
 
 #: Path to a PNG of the stacked logo
-STACKED_LOGO_PNG = pkg_resources.resource_filename('drcutils', 'data/stacked.png')
+STACKED_LOGO_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/stacked.png')
 
 #: Path to a white, patterned PNG of the logo
-WHITE_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/white_pattern.png')
+WHITE_PATTERN_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/white_pattern.png')
 
 #: Path to a grey, patterned PNG of the logo
-GREY_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/grey_pattern.png')
+GREY_PATTERN_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/grey_pattern.png')
 
 #: Path to a full-color, patterned PNG of the logo
-COLOR_PATTERN_PNG = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
+COLOR_PATTERN_PNG: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/color_pattern.png')
 
 #: Path to a DRC-brand matplotlib style file
-DRC_MPLSTYLE = pkg_resources.resource_filename('drcutils', 'data/drc.mplstyle')
+DRC_MPLSTYLE: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'data/drc.mplstyle')
 
 
 def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None,
