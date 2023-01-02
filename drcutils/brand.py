@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 import typing
 
-import PIL
+from PIL import Image
 import PIL as _PIL
 import matplotlib.colors as _matplotlib_colors
 import matplotlib.pyplot as _matplotlib_pyplot
@@ -51,7 +51,7 @@ DRC_MPLSTYLE: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'd
 def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None,
               size: typing.Optional[typing.Tuple[int, int]] = None,
               stripe_thickness: typing.Optional[typing.Sequence[float]] = None,
-              mode: typing.Literal["dark", "light"] = "dark") -> typing.Optional[PIL.Image]:
+              mode: typing.Literal["dark", "light"] = "dark") -> typing.Optional[Image]:
     """
     Make a DRC flag.
 
@@ -218,6 +218,3 @@ def drc_style() -> None:
 
     """
     return _matplotlib_pyplot.style.context(DRC_MPLSTYLE)
-
-
-del PIL

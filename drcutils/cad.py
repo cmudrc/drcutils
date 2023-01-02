@@ -4,13 +4,13 @@ import os
 import typing
 
 import numpy as _numpy
-import plotly.graph_objects
+from plotly.graph_objects import Figure
 import plotly.graph_objects as _plotly_graph_objects
 import stl as _numpy_stl
 
 
 def visualize_stl(filepath: str | bytes | os.PathLike,
-                  color: typing.Optional[str] = "#ffffff") -> plotly.graph_objects.Figure:
+                  color: typing.Optional[str] = "#ffffff") -> Figure:
     """Visualize an STL.
 
     Displays the input STL in a Plotly Mesh3d format.
@@ -53,6 +53,3 @@ def visualize_stl(filepath: str | bytes | os.PathLike,
     fig.data[0].update(
         lighting=dict(ambient=0.18, diffuse=1, fresnel=.1, specular=1, roughness=.1, facenormalsepsilon=0))
     return fig
-
-
-del plotly.graph_objects
