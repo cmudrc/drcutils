@@ -19,6 +19,7 @@ setup(
             "plotly", 
             "svgpathtools",
       ],
+      LICENSE="LICENSE",
       packages=find_packages(),
       package_data={'drcutils': ['data/*']},
 )

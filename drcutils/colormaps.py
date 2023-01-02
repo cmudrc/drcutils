@@ -16,7 +16,8 @@ ColorLike = typing.TypeVar('ColorLike', str, typing.Sequence[float], typing.Tupl
 
 def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typing.Sequence[float],
                   N: int = 256) -> LinearSegmentedColormap:
-    """Make a colormap based on a sequence of colors and intervals.
+    """
+    Make a colormap based on a sequence of colors and intervals.
 
     Specifically, this function makes a LinearSegmentedColormap for use with matplotlib.
 
@@ -37,10 +38,6 @@ def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typi
         Returns a matplotlib.colors.LinearSegmentedColormap object.
 
     """
-    # Verify colors
-    for color in colors:
-        if not _matplotlib_colors.is_color_like(color):
-            raise ValueError(f"The color {color} is not recognized as a valid matplotlib color.")
 
     # Convert colors to rgb
     colors = [_matplotlib_colors.to_rgb(c) for c in colors]

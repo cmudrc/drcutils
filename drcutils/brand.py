@@ -52,7 +52,8 @@ def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None
               size: typing.Optional[typing.Tuple[int, int]] = None,
               stripe_thickness: typing.Optional[typing.Sequence[float]] = None,
               mode: typing.Literal["dark", "light"] = "dark") -> typing.Optional[PIL.Image]:
-    """Make a DRC flag.
+    """
+    Make a DRC flag.
 
     THis function creates a layout of the DRC colors. This pattern is suitable for social media
     headers, presentations backgrounds, document footers, etc.
