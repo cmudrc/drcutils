@@ -19,8 +19,9 @@ def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | byte
 
     This function is essentially a thing wrapper around pandas, and uses that library as a backend for
     all conversions. That being said, it is pretty robust, and can handle conversions from (.csv, .hdf5, .h5, .json,
-    .xml, .parquet, .xls, .xlsx, .dta, .feather, .xpt, .sas7bdat, .sav, .zsav, and .pkl) and to (.csv, .hdf5, .h5, .json,
-    .xml, .parquet, .xls, .xlsx, .feather, .dta, and .pkl, but NOT .xpt, .sas7bdat, .sav, or .zsav) a variety of filetypes.
+    .xml, .parquet, .xls, .xlsx, .dta, .feather, .xpt, .sas7bdat, .sav, .zsav, and .pkl) and to (.csv, .hdf5, .h5,
+    .json, .xml, .parquet, .xls, .xlsx, .feather, .dta, and .pkl, but NOT .xpt, .sas7bdat, .sav, or .zsav) a variety of
+    filetypes.
 
     Parameters
     ----------

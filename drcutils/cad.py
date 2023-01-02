@@ -4,9 +4,9 @@ import os
 import typing
 
 import numpy as _numpy
-from plotly.graph_objects import Figure
 import plotly.graph_objects as _plotly_graph_objects
 import stl as _numpy_stl
+from plotly.graph_objects import Figure
 
 
 def visualize_stl(filepath: str | bytes | os.PathLike,
@@ -35,26 +35,30 @@ def visualize_stl(filepath: str | bytes | os.PathLike,
     # the array stl_mesh.vectors.reshape(p*q, r) can contain multiple copies of the same vertex;
     # extract unique vertices from all mesh triangles
     vertices, ixr = _numpy.unique(stl_mesh.vectors.reshape(p * q, r), return_inverse=True, axis=0)
-    I = _numpy.take(ixr, [3 * k for k in range(p)])
-    J = _numpy.take(ixr, [3 * k + 1 for k in range(p)])
-    K = _numpy.take(ixr, [3 * k + 2 for k in range(p)])
+    x_indices = _numpy.take(ixr, [3 * k for k in range(p)])
+    y_indices = _numpy.take(ixr, [3 * k + 1 for k in range(p)])
+    z_indices = _numpy.take(ixr, [3 * k + 2 for k in range(p)])
     x, y, z = vertices.T
     colorscale = [[0, color], [1, color]]
 
-    mesh3D = _plotly_graph_objects.Mesh3d(x=x, y=y, z=z, i=I, j=J, k=K, flatshading=True, colorscale=colorscale,
-                                          intensity=z, showscale=False)
+    mesh = _plotly_graph_objects.Mesh3d(x=x, y=y, z=z, i=x_indices, j=y_indices, k=z_indices, flatshading=True,
+                                        colorscale=colorscale, intensity=z, showscale=False)
+
+    # Set layout to hide things we don't care about
     layout = _plotly_graph_objects.Layout(
-        scene={"xaxis": {"visible": False},
-               "yaxis": {"visible": False},
-               "zaxis": {"visible": False},
-               "aspectmode": "data"
-               }
-        # scene_xaxis_visible=False,
-        # scene_yaxis_visible=False,
-        # scene_zaxis_visible=False,
-        # scene_aspectmode="data"
+        scene={
+            "xaxis": {"visible": False},
+            "yaxis": {"visible": False},
+            "zaxis": {"visible": False},
+            "aspectmode": "data"
+        }
     )
-    fig = _plotly_graph_objects.Figure(data=[mesh3D], layout=layout)
+
+    # Plot the thing
+    fig = _plotly_graph_objects.Figure(data=[mesh], layout=layout)
+
+    # Set lighting
     fig.data[0].update(
         lighting=dict(ambient=0.18, diffuse=1, fresnel=.1, specular=1, roughness=.1, facenormalsepsilon=0))
+
     return fig
