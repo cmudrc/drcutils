@@ -44,10 +44,15 @@ def visualize_stl(filepath: str | bytes | os.PathLike,
     mesh3D = _plotly_graph_objects.Mesh3d(x=x, y=y, z=z, i=I, j=J, k=K, flatshading=True, colorscale=colorscale,
                                           intensity=z, showscale=False)
     layout = _plotly_graph_objects.Layout(
-        scene_xaxis_visible=False,
-        scene_yaxis_visible=False,
-        scene_zaxis_visible=False,
-        scene_aspectmode="data"
+        scene={"xaxis": {"visible": False},
+               "yaxis": {"visible": False},
+               "zaxis": {"visible": False},
+               "aspectmode": "data"
+               }
+        # scene_xaxis_visible=False,
+        # scene_yaxis_visible=False,
+        # scene_zaxis_visible=False,
+        # scene_aspectmode="data"
     )
     fig = _plotly_graph_objects.Figure(data=[mesh3D], layout=layout)
     fig.data[0].update(
