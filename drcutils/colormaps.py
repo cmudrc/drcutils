@@ -9,13 +9,14 @@ from .brand import COLORS as _COLORS
 _BLACK, _GREEN, _TEAL, _TURQUOISE, _ORANGE, _RED = [_matplotlib_colors.to_rgb(c) for c in _COLORS]
 _WHITE = [1.00, 1.00, 1.00]
 
-# Define the ColorLike type
-ColorLike = typing.TypeVar('ColorLike', str, typing.Sequence[float], typing.Tuple[float, float, float],
+#: The ColorLike type, a type variable which accepts strings, lists of floats, and 3- and 4-element tuples. Pretty much
+#: anything that has a good chance of being converted to RGB by matplotlib.colors.to_rgb.
+ColorLike = typing.TypeVar('ColorLike', str, typing.List[float], typing.Tuple[float, float, float],
                            typing.Tuple[float, float, float, float])
 
 
 def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typing.Sequence[float],
-                  N: int = 256) -> LinearSegmentedColormap:
+                  n: int = 256) -> LinearSegmentedColormap:
     """
     Make a colormap based on a sequence of colors and intervals.
 
@@ -27,9 +28,9 @@ def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typi
         The name of the colormap
     colors: Sequence[ColorLike]
         The series of colors to use.
-    fractions: Sequence[float
+    fractions: Sequence[ColorLike]
         The fractional interval at which each color should be placed.
-    N: int
+    n: int
         Number of fractions to make the colormap with
 
     Returns
@@ -53,7 +54,7 @@ def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typi
     return _matplotlib_colors.LinearSegmentedColormap(
         name,
         segmentdata=segment_data,
-        N=N,
+        N=n,
     )
 
 
@@ -68,7 +69,7 @@ diverging_hamster = make_colormap(
     "diverging_hamster",
     [_GREEN, _TEAL, _TURQUOISE, _WHITE, _ORANGE, _RED],
     [0.00, 0.17, 0.33, 0.50, 0.75, 1.00],
-    N=256
+    n=256
 )
 
 #: Reversed version of `diverging_hamster`
@@ -79,7 +80,7 @@ dark_diverging_hamster = make_colormap(
     "dark_diverging_hamster",
     [_TURQUOISE, _TEAL, _GREEN, _BLACK, _RED, _ORANGE],
     [0.00, 0.17, 0.33, 0.50, 0.75, 1.00],
-    N=256,
+    n=256,
 )
 
 #: Reversed version of `dark_diverging_hamster`
@@ -90,7 +91,7 @@ cool_hamster = make_colormap(
     "cool_hamster",
     [_WHITE, _TURQUOISE, _TEAL, _GREEN, _BLACK],
     [0.00, 0.25, 0.50, 0.75, 1.00],
-    N=256,
+    n=256,
 )
 
 #: Reversed version of `cool_hamster`
@@ -101,7 +102,7 @@ warm_hamster = make_colormap(
     "warm_hamster",
     [_WHITE, _ORANGE, _RED, _BLACK],
     [0.00, 0.33, 0.67, 1.00],
-    N=256,
+    n=256,
 )
 
 #: Reversed version of `warm_hamster`
