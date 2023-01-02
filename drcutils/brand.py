@@ -105,7 +105,10 @@ def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None
 def watermark(filepath: str | bytes | os.PathLike, output_filepath: str | bytes | os.PathLike = None,
               watermark_filepath: str | bytes | os.PathLike = None,
               box: [float, float, float | None, float | None] = None):
-    """A function to watermark files with the DRC logo, or any other image file."""
+    """
+    A function to watermark files with the DRC logo, or any other image file.
+
+    """
 
     if watermark_filepath is None:
         watermark_filepath = STACKED_LOGO_PNG
@@ -149,7 +152,8 @@ def watermark(filepath: str | bytes | os.PathLike, output_filepath: str | bytes 
 def convert_image(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
                   from_kwargs: typing.Optional[typing.Dict] = None,
                   to_kwargs: typing.Optional[typing.Dict] = None) -> None:
-    """Convert between different image formats.
+    """
+    Convert between different image formats.
 
     This function is essentially a thing wrapper around pandas, and uses that library as a backend for
     all conversions. That being said, it is pretty robust, and can handle conversions from (.png, .jpg, .jpeg, .eps,
@@ -214,7 +218,8 @@ def convert_image(convert_from: str | bytes | os.PathLike, convert_to: str | byt
 
 
 def drc_style() -> None:
-    """The custom DRC matplotlib style.
+    """
+    The custom DRC matplotlib style.
 
     """
     return _matplotlib_pyplot.style.context(DRC_MPLSTYLE)
