@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 import typing
 
-import IPython.core.display as _ipython_core_display
+# import IPython.core.display as _ipython_core_display
 import IPython.display as _ipython_display
 import netron as _netron
 import pandas as _pandas
@@ -12,8 +12,8 @@ from .env import is_notebook as _is_notebook
 
 
 def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
-                 from_kwargs: typing.Optional[typing.Dict] = None,
-                 to_kwargs: typing.Optional[typing.Dict] = None) -> None:
+                 from_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None,
+                 to_kwargs: typing.Optional[typing.Dict[str, typing.Any]] = None) -> None:
     """
     Convert between different data formats.
 
@@ -130,7 +130,7 @@ def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[i
     # If in a notebook environment, display using IPython. Otherwise, serve it and open up a new window.
     if _is_notebook():
         _netron.serve(path, bytes(), ("localhost", port), False, 0)
-        _ipython_core_display.display(_ipython_display.Javascript("""
+        _ipython_display.display(_ipython_display.Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
             fm.src = await google.colab.kernel.proxyPort(%s)
