@@ -70,7 +70,7 @@ def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None
 
     Returns
     -------
-    None | _PIL.Image
+    None | PIL.Image
         If `output_filepath` is not given, then output a _PIL.Image object. If `output_filepath` is given, no output.
 
     """
