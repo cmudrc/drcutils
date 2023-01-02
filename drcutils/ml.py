@@ -128,7 +128,7 @@ def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[i
 
     # If in a notebook environment, display using IPython. Otherwise, serve it and open up a new window.
     if _is_notebook():
-        _netron.serve(path, None, ("localhost", port), False, 0)
+        _netron.serve(path, bytes(), ("localhost", port), False, 0)
         _ipython_core_display.display(_ipython_display.Javascript("""
         (async ()=>{
             fm = document.createElement('iframe')
@@ -140,4 +140,4 @@ def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[i
         })();
         """ % (port, height)))
     else:
-        _netron.serve(path, None, ("localhost", port), True, 0)
+        _netron.serve(path, bytes(), ("localhost", port), True, 0)
