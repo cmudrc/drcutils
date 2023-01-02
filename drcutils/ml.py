@@ -14,7 +14,8 @@ from .env import is_notebook as _is_notebook
 def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
                  from_kwargs: typing.Optional[typing.Dict] = None,
                  to_kwargs: typing.Optional[typing.Dict] = None) -> None:
-    """Convert between different data formats.
+    """
+    Convert between different data formats.
 
     This function is essentially a thing wrapper around pandas, and uses that library as a backend for
     all conversions. That being said, it is pretty robust, and can handle conversions from (.csv, .hdf5, .h5, .json,
@@ -45,6 +46,7 @@ def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | byte
     if from_kwargs is None:
         from_kwargs = {}
 
+    # Dict of functions used to read into pandas
     _from_data_extensions = {
         ".csv": _pandas.read_csv,
         ".hdf5": _pandas.read_hdf,
@@ -63,6 +65,7 @@ def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | byte
         ".pkl": _pandas.read_pickle,
     }
 
+    # Dict of functions used to write out of pandas
     _to_data_extensions = {
         ".csv": _pandas.DataFrame.to_csv,
         ".hdf5": _pandas.DataFrame.to_hdf,
@@ -99,7 +102,8 @@ def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | byte
 
 def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[int] = 500,
                       port: typing.Optional[int] = 8000) -> None:
-    """Visualize a neural network.
+    """
+    Visualize a neural network.
 
     Visualize a neural network from a path to its saved architecture. You can also set the height of visualization
     (default 500px) and which port it is served on (default 8000). The heavy lifting is done by netron, which support
@@ -122,6 +126,7 @@ def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[i
 
     """
 
+    # If in a notebook environment, display using IPython. Otherwise, serve it and open up a new window.
     if _is_notebook():
         _netron.serve(path, None, ("localhost", port), False, 0)
         _ipython_core_display.display(_ipython_display.Javascript("""
