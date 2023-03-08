@@ -51,7 +51,7 @@ DRC_MPLSTYLE: typing.Final[str] = pkg_resources.resource_filename('drcutils', 'd
 def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None,
               size: typing.Optional[typing.Tuple[int, int]] = None,
               stripe_thickness: typing.Optional[typing.Sequence[float]] = None,
-              mode: typing.Literal["dark", "light"] = "dark") -> typing.Optional[Image]:
+              mode: typing.Optional[typing.Literal["dark", "light"]] = "dark") -> typing.Optional[Image]:
     """
     Make a DRC flag.
 
@@ -102,9 +102,9 @@ def make_flag(output_filepath: typing.Optional[str | bytes | os.PathLike] = None
         flag_image.save(output_filepath)
 
 
-def watermark(filepath: str | bytes | os.PathLike, output_filepath: str | bytes | os.PathLike = None,
-              watermark_filepath: str | bytes | os.PathLike = None,
-              box: [float, float, float | None, float | None] = None):
+def watermark(filepath: str | bytes | os.PathLike, output_filepath: typing.Optional[str | bytes | os.PathLike] = None,
+              watermark_filepath: typing.Optional[str | bytes | os.PathLike] = None,
+              box: typing.Optional[tuple[float, float, float | None, float | None]] = None):
     """
     A function to watermark files with the DRC logo, or any other image file.
 
@@ -219,7 +219,7 @@ def convert_image(convert_from: str | bytes | os.PathLike, convert_to: str | byt
 
 def drc_style() -> None:
     """
-    The custom DRC matplotlib style.
+    Active the custom DRC matplotlib style.
 
     """
     return _matplotlib_pyplot.style.context(DRC_MPLSTYLE)

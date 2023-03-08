@@ -64,7 +64,7 @@ class Embedding:
         }
     }
 
-    def __init__(self, n_components: int = 2, algorithm: typing.Literal["pca", "sparsepca", "kernelpca", "truncatedsvd", "tsne", "isomap", "lle", "mds"] = "pca", **kwargs):
+    def __init__(self, n_components: typing.Optional[int] = 2, algorithm: typing.Optional[typing.Literal["pca", "sparsepca", "kernelpca", "truncatedsvd", "tsne", "isomap", "lle", "mds"]] = "pca", **kwargs):
         self.algorithm_name = algorithm
         self.model = Embedding.algorithm_info[self.algorithm_name]["model"](n_components=n_components, **kwargs)
 

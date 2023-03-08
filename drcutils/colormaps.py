@@ -16,7 +16,7 @@ ColorLike = typing.TypeVar('ColorLike', str, typing.List[float], typing.Tuple[fl
 
 
 def make_colormap(name: str, colors: typing.Sequence[ColorLike], fractions: typing.Sequence[float],
-                  n: int = 256) -> LinearSegmentedColormap:
+                  n: typing.Optional[int] = 256) -> LinearSegmentedColormap:
     """
     Make a colormap based on a sequence of colors and intervals.
 
