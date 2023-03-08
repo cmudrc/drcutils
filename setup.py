@@ -17,6 +17,7 @@ setup(
             "Pillow",
             "pandas",
             "plotly",
+            "scikit-learn",
       ],
       LICENSE="LICENSE",
       packages=find_packages(),

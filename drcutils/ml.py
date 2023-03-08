@@ -3,12 +3,105 @@ from __future__ import annotations
 import os
 import typing
 
-# import IPython.core.display as _ipython_core_display
 import IPython.display as _ipython_display
 import netron as _netron
 import pandas as _pandas
+import sklearn.decomposition as _sklearn_decomposition
+import sklearn.manifold as _sklearn_manifold
 
 from .env import is_notebook as _is_notebook
+
+
+class Embedding:
+    algorithm_info = {
+        "pca": {
+            "proper_name": "PCA",
+            "model": _sklearn_decomposition.PCA,
+            "reusable": True,
+            "reversible": True,
+        },
+        "kernelpca": {
+            "proper_name": "Kernel PCA",
+            "model": _sklearn_decomposition.KernelPCA,
+            "reusable": True,
+            "reversible": True,
+        },
+        "sparsepca": {
+            "proper_name": "Sparse PCA",
+            "model": _sklearn_decomposition.SparsePCA,
+            "reusable": True,
+            "reversible": True,
+        },
+        "truncatedsvd": {
+            "proper_name": "Truncated SVD",
+            "model": _sklearn_decomposition.TruncatedSVD,
+            "reusable": True,
+            "reversible": True,
+        },
+        "tsne": {
+            "proper_name": "t-SNE",
+            "model": _sklearn_manifold.TSNE,
+            "reusable": False,
+            "reversible": False,
+        },
+        "isomap": {
+            "proper_name": "Isometric Mapping",
+            "model": _sklearn_manifold.Isomap,
+            "reusable": True,
+            "reversible": False,
+        },
+        "lle": {
+            "proper_name": "Locally Linear Embedding",
+            "model": _sklearn_manifold.LocallyLinearEmbedding,
+            "reusable": True,
+            "reversible": False,
+        },
+        "mds": {
+            "proper_name": "Multidimensional Scaling",
+            "model": _sklearn_manifold.MDS,
+            "reusable": False,
+            "reversible": False,
+        }
+    }
+
+    def __init__(self, n_components: int = 2, algorithm: typing.Literal["pca", "sparsepca", "kernelpca", "truncatedsvd", "tsne", "isomap", "lle", "mds"] = "pca", **kwargs):
+        self.algorithm_name = algorithm
+        self.model = Embedding.algorithm_info[self.algorithm_name]["model"](n_components=n_components, **kwargs)
+
+    def fit(self, X):
+        if self.reusable:
+            self.model.fit(X)
+        else:
+            raise ValueError(f"The {self.proper_name} algorithm does not train a reusable model, so please use the `fit_transform` "
+                             "function instead.")
+
+    def transform(self, X):
+        if self.reusable:
+            return self.model.transform(X)
+        else:
+            raise ValueError(f"The {self.proper_name} algorithm does not train a reusable model, so please use the `fit_transform` "
+                             "function instead.")
+
+    def fit_transform(self, X):
+        return self.model.fit_transform(X)
+
+    def inverse_transform(self, X):
+        if self.reversible:
+            return self.model.inverse_transform(X)
+        else:
+            raise ValueError(f"The {self.proper_name} algorithm is not reversible, so please consider using a different algorithm.")
+
+    @property
+    def proper_name(self):
+        return Embedding.algorithm_info[self.algorithm_name]['proper_name']
+
+    @property
+    def reusable(self):
+        return Embedding.algorithm_info[self.algorithm_name]['reusable']
+
+    @property
+    def reversible(self):
+        return Embedding.algorithm_info[self.algorithm_name]['reversible']
 
 
 def convert_data(convert_from: str | bytes | os.PathLike, convert_to: str | bytes | os.PathLike,
@@ -142,3 +235,4 @@ def visualize_network(path: str | bytes | os.PathLike, height: typing.Optional[i
         """ % (port, height)))
     else:
         _netron.serve(path, bytes(), ("localhost", port), True, 0)
+
