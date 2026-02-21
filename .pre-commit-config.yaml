@@ -1,0 +1,10 @@
+default_stages: [pre-commit]
+
+repos:
+  - repo: local
+    hooks:
+      - id: make-qa
+        name: make qa
+        entry: make qa
+        language: system
+        pass_filenames: false

@@ -1,2 +1,110 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drcutils"
+version = "0.1.0"
+description = "Utilities for research in the Design Research Collective"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [
+  { name = "The Design Research Collective", email = "ask-drc@andrew.cmu.edu" },
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "IPython",
+  "matplotlib",
+  "netron",
+  "numpy",
+  "numpy-stl",
+  "pandas",
+  "Pillow",
+  "plotly",
+]
+
+[project.urls]
+Homepage = "https://github.com/cmudrc/drcutils/"
+Repository = "https://github.com/cmudrc/drcutils/"
+Issues = "https://github.com/cmudrc/drcutils/issues"
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.10",
+  "pre-commit>=3.7",
+  "pytest>=8.2",
+  "ruff>=0.6.0",
+  "sphinx>=7.4",
+  "sphinx-rtd-theme>=2.0",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools.package-data]
+drcutils = ["data/*"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["drcutils", "tests"]
+extend-exclude = ["examples/*.ipynb", "docs/_build"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "E741", "I001", "UP031"]
+
+[tool.mypy]
+packages = ["drcutils"]
+python_version = "3.12"
+warn_unused_configs = true
+check_untyped_defs = true
+disallow_untyped_defs = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = false
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+  "IPython",
+  "IPython.*",
+  "matplotlib",
+  "matplotlib.*",
+  "netron",
+  "numpy",
+  "numpy.*",
+  "pandas",
+  "pandas.*",
+  "plotly",
+  "plotly.*",
+  "stl",
+  "stl.*",
+  "PIL",
+  "PIL.*",
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["drcutils.brand"]
+ignore_errors = true

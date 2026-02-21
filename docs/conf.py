@@ -1,73 +1,47 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# For the full list of built-in configuration values, see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
-
-# -- Project information -----------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
-
 import os
 import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 autodoc_mock_imports = [
-            "numpy",
-            "svgpathtools",
-            "stl",
-            "pandas",
-            "matplotlib",
-    ]
+    "numpy",
+    "stl",
+    "pandas",
+    "matplotlib",
+    "plotly",
+    "netron",
+    "PIL",
+    "IPython",
+]
 
-# Add to path for autobuild
-sys.path.insert(0, os.path.abspath('..'))
-
-project = 'drcutils'
-copyright = '2022, The Design Research Collective'
-author = 'The Design Research Collective'
-release = '0.1.0'
-
-# -- General configuration ---------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+project = "drcutils"
+copyright = "2026, The Design Research Collective"
+author = "The Design Research Collective"
+release = "0.1.0"
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',
-    'recommonmark'
+    "sphinx.ext.autodoc",
+    "sphinx.ext.autosummary",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
 ]
-source_suffix = [".rst"]
-templates_path = ['_templates']
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+autosummary_generate = True
+autodoc_typehints = "none"
+suppress_warnings = ["ref.class"]
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+if os.environ.get("READTHEDOCS") == "True":
+    html_theme = "sphinx_rtd_theme"
+else:
+    try:
+        import sphinx_rtd_theme  # noqa: F401
 
-# -- Options for HTML output -------------------------------------------------
-# https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
+        html_theme = "sphinx_rtd_theme"
+    except ImportError:
+        html_theme = "alabaster"
 
-html_theme = 'alabaster'
-html_static_path = ['_static']
-
-
-import pathlib
-
-# The readme that already exists
-readme_path = pathlib.Path(__file__).parent.resolve().parent / "README.md"
-# We copy a modified version here
-readme_target = pathlib.Path(__file__).parent / "readme.rst"
-
-with readme_target.open("w") as outf:
-    # Change the title to "Readme"
-    outf.write(
-        "\n".join(
-            [
-                "Welcome!",
-                "=======================\n",
-            ]
-        )
-    )
-    lines = []
-    for line in readme_path.read_text().split("\n"):
-        if line.startswith("# "):
-            # Skip title, because we now use "Readme"
-            # Could also simply exclude first line for the same effect
-            continue
-        lines.append(line)
-    outf.write("\n".join(lines))
+html_static_path = ["_static"]

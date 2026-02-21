@@ -3,6 +3,8 @@ matplotlib
 netron
 numpy
 numpy-stl
+pandas
 Pillow
 plotly
-pandas
+sphinx
+sphinx-rtd-theme

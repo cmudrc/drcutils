@@ -9,7 +9,7 @@ def _make_segment_data(colors, fractions):
     return {
         "red": [[fractions[idx], c[0], c[0]] for idx, c in enumerate(colors)],
         "green": [[fractions[idx], c[1], c[1]] for idx, c in enumerate(colors)],
-        "blue": [[fractions[idx], c[2], c[2]] for idx, c in enumerate(colors)]
+        "blue": [[fractions[idx], c[2], c[2]] for idx, c in enumerate(colors)],
     }
 
 
@@ -24,10 +24,9 @@ hamster_r.name = "hamster_r"
 diverging_hamster = _mpc.LinearSegmentedColormap(
     "diverging_hamster",
     segmentdata=_make_segment_data(
-        [GREEN, TEAL, TURQUOISE, WHITE, ORANGE, RED],
-        [0.00, 0.17, 0.33, 0.50, 0.75, 1.00]
+        [GREEN, TEAL, TURQUOISE, WHITE, ORANGE, RED], [0.00, 0.17, 0.33, 0.50, 0.75, 1.00]
     ),
-    N=256
+    N=256,
 )
 
 #: Reversed version of `diverging_hamster`
@@ -38,8 +37,7 @@ diverging_hamster_r.name = "diverging_hamster_r"
 dark_diverging_hamster = _mpc.LinearSegmentedColormap(
     "dark_diverging_hamster",
     segmentdata=_make_segment_data(
-        [TURQUOISE, TEAL, GREEN, BLACK, RED, ORANGE],
-        [0.00, 0.17, 0.33, 0.50, 0.75, 1.00]
+        [TURQUOISE, TEAL, GREEN, BLACK, RED, ORANGE], [0.00, 0.17, 0.33, 0.50, 0.75, 1.00]
     ),
     N=256,
 )
@@ -52,8 +50,7 @@ dark_diverging_hamster_r.name = "dark_diverging_hamster_r"
 cool_hamster = _mpc.LinearSegmentedColormap(
     "cool_hamster",
     segmentdata=_make_segment_data(
-        [WHITE, TURQUOISE, TEAL, GREEN, BLACK],
-        [0.00, 0.25, 0.50, 0.75, 1.00]
+        [WHITE, TURQUOISE, TEAL, GREEN, BLACK], [0.00, 0.25, 0.50, 0.75, 1.00]
     ),
     N=256,
 )
@@ -65,10 +62,7 @@ cool_hamster_r.name = "cool_hamster_r"
 #: A warm colormap that uses our brand colors
 warm_hamster = _mpc.LinearSegmentedColormap(
     "warm_hamster",
-    segmentdata=_make_segment_data(
-        [WHITE, ORANGE, RED, BLACK],
-        [0.00, 0.33, 0.67, 1.00]
-    ),
+    segmentdata=_make_segment_data([WHITE, ORANGE, RED, BLACK], [0.00, 0.33, 0.67, 1.00]),
     N=256,
 )
 

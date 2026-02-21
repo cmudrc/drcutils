@@ -11,7 +11,7 @@ def is_google_colab() -> bool:
         True indicates that it is a Google Colab environment.
 
     """
-    return 'google.colab' in _modules
+    return "google.colab" in _modules
 
 
 def is_notebook() -> bool:
@@ -28,11 +28,11 @@ def is_notebook() -> bool:
     else:
         try:
             shell = _get_ipython().__class__.__name__
-            if shell == 'ZMQInteractiveShell':
-                return True   # Jupyter notebook or qtconsole
-            elif shell == 'TerminalInteractiveShell':
+            if shell == "ZMQInteractiveShell":
+                return True  # Jupyter notebook or qtconsole
+            elif shell == "TerminalInteractiveShell":
                 return False  # Terminal running IPython
             else:
                 return False  # Other type (?)
         except NameError:
-            return False      # Probably standard Python interpreter
+            return False  # Probably standard Python interpreter
