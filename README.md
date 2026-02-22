@@ -1,8 +1,14 @@
 # drcutils
+[![CI](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Coverage](.github/badges/coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Examples Passing](.github/badges/examples-passing.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Public API In Examples](.github/badges/examples-api-coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Unit Tests](https://github.com/cmudrc/drcutils/actions/workflows/tests.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/tests.yml)
+[![Docs](https://github.com/cmudrc/drcutils/actions/workflows/docs.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/docs.yml)
 
 Utility functions for design research workflows, including branding assets,
-file conversion helpers, colormaps, CAD visualization, and neural-network
-visualization wrappers.
+file conversion helpers, colormaps, CAD visualization, neural-network
+visualization wrappers, and new research-oriented DOE/stats/viz helpers.
 
 ## Installation
 
@@ -19,28 +25,18 @@ pip install -e ".[dev]"
 ## Quick Usage
 
 ```python
-from drcutils.brand import flag
-from drcutils.magic import convert
+from drcutils.viz import export_figure
+from drcutils.doe import generate_doe
+from drcutils.stats import bootstrap_ci
 
-# Generate a brand flag image.
-image = flag()
-image.save("flag.png")
+# Export publication-ready figures.
+result = export_figure(fig, "artifacts/figures/plot", targets=["one_col", "slide_16x9"])
 
-# Convert tabular files.
-convert("data.csv", "data.json")
-```
+# Generate a DOE table.
+doe = generate_doe(kind="lhs", factors={"x": (0.0, 1.0), "y": (10.0, 20.0)}, n_samples=12)
 
-```python
-from drcutils.cad import visualize_stl
-
-fig = visualize_stl("model.stl", color="#58B7BB")
-fig.show()
-```
-
-```python
-from drcutils.ml import visualize_network
-
-visualize_network("model.onnx")
+# Compute bootstrap interval.
+ci = bootstrap_ci([1, 2, 3, 4, 5], stat="mean", seed=0)
 ```
 
 ## Examples
@@ -54,12 +50,12 @@ visualize_network("model.onnx")
 
 ```bash
 make install-dev
-make qa
+make ci
 make docs-build
 ```
 
-## Notes
+## Optional Extras
 
-The package currently ships brand image assets directly in `drcutils/data/`.
-If package size becomes an issue, a follow-up can move large patterned images
-to compressed/optional artifacts.
+- DOE extras: `pip install drcutils[doe]`
+- Stats extras: `pip install drcutils[stats]`
+- Plotly extras: `pip install drcutils[plotly]`

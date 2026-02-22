@@ -1,4 +1,7 @@
+"""Matplotlib colormaps derived from DRC brand colors."""
+
 import matplotlib.colors as _mpc
+
 from .brand import COLORS
 
 BLACK, GREEN, TEAL, TURQUOISE, ORANGE, RED = [_mpc.to_rgb(c) for c in COLORS]

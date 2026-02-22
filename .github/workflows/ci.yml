@@ -5,13 +5,17 @@ on:
     branches: [ main ]
   pull_request:
 
-jobs:
-  qa:
-    runs-on: ubuntu-latest
+permissions:
+  contents: write
 
+jobs:
+  ci:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,5 +26,46 @@ jobs:
       - name: Install dependencies
         run: make install-dev
 
-      - name: Run QA
-        run: make qa
+      - name: Run CI gate
+        run: make ci
+
+  badge-update:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: ci
+    runs-on: ubuntu-latest
+    concurrency:
+      group: badge-update-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: make install-dev
+
+      - name: Generate badges
+        run: make coverage examples-static examples-metrics
+
+      - name: Commit and push badge changes
+        env:
+          BRANCH_NAME: ${{ github.ref_name }}
+        run: |
+          if ! git status --porcelain -- .github/badges/coverage.svg .github/badges/examples-passing.svg .github/badges/examples-api-coverage.svg | grep -q .; then
+            echo "Badges unchanged."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/badges/coverage.svg .github/badges/examples-passing.svg .github/badges/examples-api-coverage.svg
+          git commit -m "chore: update badges [skip ci]"
+          git push origin "HEAD:${BRANCH_NAME}"

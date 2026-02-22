@@ -1,15 +1,15 @@
-from IPython import get_ipython as _get_ipython
+"""Environment detection helpers for notebook and Colab runtimes."""
+
 from sys import modules as _modules
+
+from IPython import get_ipython as _get_ipython
 
 
 def is_google_colab() -> bool:
     """Determine whether or not the environment is in Google Colab.
 
-    Returns
-    -------
-    bool
-        True indicates that it is a Google Colab environment.
-
+    Returns:
+        ``True`` when running in Google Colab.
     """
     return "google.colab" in _modules
 
@@ -17,11 +17,8 @@ def is_google_colab() -> bool:
 def is_notebook() -> bool:
     """Determine whether or not the environment is in a notebook.
 
-    Returns
-    -------
-    bool
-        True indicates that it is a notebook environment.
-
+    Returns:
+        ``True`` when running in a notebook runtime.
     """
     if is_google_colab():
         return True

@@ -1,3 +1,5 @@
+"""Brand assets and image utilities for DRC visuals."""
+
 from __future__ import annotations
 
 from collections.abc import Sequence
@@ -84,20 +86,14 @@ def flag(
 ):
     """Create a DRC color flag image.
 
-    Parameters
-    ----------
-    output_filepath : str | bytes | os.PathLike | None
-        Optional filepath to save output image.
-    size : sequence | None
-        Two-item sequence in either order:
-        ``[color_widths, height]`` or ``[height, color_widths]``.
+    Args:
+        output_filepath: Optional filepath to save the output image.
+        size: Two-item sequence in either order:
+            ``[color_widths, height]`` or ``[height, color_widths]``.
 
-    Returns
-    -------
-    PIL.Image.Image | None
-        Returns the image when output_filepath is None; otherwise saves to disk.
+    Returns:
+        The image when ``output_filepath`` is ``None``; otherwise ``None``.
     """
-
     color_widths, height = _parse_flag_size(size)
     rgb_colors = [_np.array(_mpc.to_rgb(c)) for c in COLORS]
 

@@ -3,6 +3,11 @@ default_stages: [pre-commit]
 repos:
   - repo: local
     hooks:
+      - id: docstrings-check
+        name: docstrings check
+        entry: make docstrings-check
+        language: system
+        pass_filenames: false
       - id: make-qa
         name: make qa
         entry: make qa

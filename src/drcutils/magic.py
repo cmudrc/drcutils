@@ -1,14 +1,18 @@
+"""File conversion helpers for image and tabular data formats."""
+
 from __future__ import annotations
 
 from os import PathLike
 from os.path import splitext as _splitext
+from typing import Any
 
 import pandas as _pandas
-from PIL.Image import Image as _Image, open as _open
+from PIL.Image import Image as _Image
+from PIL.Image import open as _open
 
 
-def _get_data_extensions():
-    _from_data_extensions = {
+def _get_data_extensions() -> tuple[dict[str, Any], dict[str, Any]]:
+    from_extensions = {
         ".png": _open,
         ".jpg": _open,
         ".jpeg": _open,
@@ -31,7 +35,7 @@ def _get_data_extensions():
         ".pkl": _pandas.read_pickle,
     }
 
-    _to_data_extensions = {
+    to_extensions = {
         ".png": _Image.save,
         ".jpg": _Image.save,
         ".jpeg": _Image.save,
@@ -50,19 +54,17 @@ def _get_data_extensions():
         ".pkl": _pandas.DataFrame.to_pickle,
     }
 
-    return _to_data_extensions, _from_data_extensions
+    return to_extensions, from_extensions
 
 
 def _convertible(from_ext: str, to_ext: str) -> bool:
-    """Check if a file conversion is possible."""
-    _to_data_extensions, _from_data_extensions = _get_data_extensions()
-    to_fun = str(_to_data_extensions[to_ext])
-    from_fun = str(_from_data_extensions[from_ext])
+    """Check if a conversion is supported by this module."""
+    to_extensions, from_extensions = _get_data_extensions()
+    to_fun = str(to_extensions[to_ext])
+    from_fun = str(from_extensions[from_ext])
     if "to_" in to_fun and "read_" in from_fun:
         return True
     if "Image.save" in to_fun and "open" in from_fun:
-        return True
-    if ".pt" in from_ext and "onnx" in to_ext:
         return True
     return False
 
@@ -70,25 +72,35 @@ def _convertible(from_ext: str, to_ext: str) -> bool:
 def convert(
     thing_to_convert_from: str | bytes | PathLike,
     thing_to_convert_to: str | bytes | PathLike,
-    from_kwargs: dict | None = None,
-    to_kwargs: dict | None = None,
-):
-    """Convert stuff to other stuff. Works for images and data files."""
+    from_kwargs: dict[str, Any] | None = None,
+    to_kwargs: dict[str, Any] | None = None,
+) -> None:
+    """Convert supported files to another supported format.
+
+    Args:
+        thing_to_convert_from: Source file path.
+        thing_to_convert_to: Target file path.
+        from_kwargs: Optional keyword args for the input reader.
+        to_kwargs: Optional keyword args for the output writer.
+
+    Raises:
+        ValueError: If conversion is unsupported.
+    """
     from_kwargs = {} if from_kwargs is None else from_kwargs
     to_kwargs = {} if to_kwargs is None else to_kwargs
 
-    _to_data_extensions, _from_data_extensions = _get_data_extensions()
+    to_extensions, from_extensions = _get_data_extensions()
     from_ext = _splitext(str(thing_to_convert_from))[1].lower()
     to_ext = _splitext(str(thing_to_convert_to))[1].lower()
 
-    if from_ext not in _from_data_extensions:
-        supported_from = ", ".join(sorted(_from_data_extensions.keys()))
+    if from_ext not in from_extensions:
+        supported_from = ", ".join(sorted(from_extensions.keys()))
         raise ValueError(
             f"Files with extension {from_ext} cannot be opened. Supported: {supported_from}"
         )
 
-    if to_ext not in _to_data_extensions:
-        supported_to = ", ".join(sorted(_to_data_extensions.keys()))
+    if to_ext not in to_extensions:
+        supported_to = ", ".join(sorted(to_extensions.keys()))
         raise ValueError(
             f"Files with extension {to_ext} cannot be written. Supported: {supported_to}"
         )
@@ -98,11 +110,8 @@ def convert(
             f"Files with extension {from_ext} cannot be converted to extension {to_ext}."
         )
 
-    _to_data_extensions[to_ext](
-        _from_data_extensions[from_ext](
-            thing_to_convert_from,
-            **from_kwargs,
-        ),
+    to_extensions[to_ext](
+        from_extensions[from_ext](thing_to_convert_from, **from_kwargs),
         thing_to_convert_to,
         **to_kwargs,
     )

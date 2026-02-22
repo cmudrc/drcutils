@@ -1,4 +1,7 @@
-colormaps
------------
+Colormaps
+=========
+
+DRC-branded Matplotlib colormaps.
+
 .. automodule:: drcutils.colormaps
-    :members:
+   :members:
