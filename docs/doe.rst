@@ -1,11 +1,14 @@
 DOE Utilities
 =============
 
-``drcutils.doe.generate_doe`` is a one-stop entrypoint for full factorial,
-Latin hypercube, and fractional 2-level workflows.
+Overview
+--------
 
-Quickstart
-----------
+Use ``drcutils.doe.generate_doe`` to create and summarize full factorial,
+Latin hypercube, and fractional 2-level designs.
+
+Quick Start
+-----------
 
 .. code-block:: python
 
@@ -23,14 +26,17 @@ Quickstart
    print(result["summary"])
    print(result["interpretation"])
 
-Optional dependency
--------------------
+Optional Extras
+---------------
 
-For larger fractional factorial designs, install optional support:
+For larger fractional factorial workflows, install optional DOE support:
 
 .. code-block:: bash
 
    pip install drcutils[doe]
+
+API Reference
+-------------
 
 .. automodule:: drcutils.doe.one_stop
    :members:

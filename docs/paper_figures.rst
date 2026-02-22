@@ -1,11 +1,14 @@
 Paper Figure Exporter
 =====================
 
-``drcutils.viz.export_figure`` provides a Matplotlib-first export workflow with
-preset sizes for one-column papers, two-column papers, and 16:9 slides.
+Overview
+--------
 
-Quickstart
-----------
+Use ``drcutils.viz.export_figure`` to export Matplotlib figures with
+publication-friendly presets and consistent output naming.
+
+Quick Start
+-----------
 
 .. code-block:: python
 
@@ -28,6 +31,9 @@ Quickstart
 
    print(result["files"])
    print(result["warnings"])
+
+API Reference
+-------------
 
 .. automodule:: drcutils.viz.paper_figures
    :members:

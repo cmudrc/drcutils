@@ -1,11 +1,14 @@
 Bootstrap and Nonparametric Utilities
 =====================================
 
-``drcutils.stats`` provides bootstrap confidence intervals, permutation tests,
-and automatic rank-test selection with templated interpretation text.
+Overview
+--------
 
-Quickstart
-----------
+Use ``drcutils.stats`` for bootstrap confidence intervals, permutation tests,
+and rank-test selection with templated reporting text.
+
+Quick Start
+-----------
 
 .. code-block:: python
 
@@ -23,14 +26,17 @@ Quickstart
    print(perm_result["interpretation"])
    print(rank_result["interpretation"])
 
-Optional dependency
--------------------
+Optional Extras
+---------------
 
-Install stats extras for scipy/statsmodels-backed methods:
+Install stats dependencies (SciPy/statsmodels-backed paths):
 
 .. code-block:: bash
 
    pip install drcutils[stats]
+
+API Reference
+-------------
 
 .. automodule:: drcutils.stats.bootstrap_np
    :members:

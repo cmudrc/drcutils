@@ -1,7 +1,13 @@
 ML Visualization
 ================
 
-Neural network visualization helpers powered by Netron.
+Overview
+--------
+
+Neural-network visualization helpers powered by Netron.
+
+API Reference
+-------------
 
 .. automodule:: drcutils.ml
    :members:
