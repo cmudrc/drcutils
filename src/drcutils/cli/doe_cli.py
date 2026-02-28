@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from drcutils.doe.one_stop import generate_doe
+from drcutils.doe import generate_doe
 
 
 def main() -> int:

@@ -4,7 +4,7 @@ Power Utilities
 Overview
 --------
 
-Use ``drcutils.power`` for quick power and sample-size planning around t-test
+Use ``drcutils.stats`` for quick power and sample-size planning around t-test
 study designs.
 
 Quick Start
@@ -12,7 +12,7 @@ Quick Start
 
 .. code-block:: python
 
-   from drcutils.power import estimate_sample_size, minimum_detectable_effect, power_curve
+   from drcutils.stats import estimate_sample_size, minimum_detectable_effect, power_curve
 
    print(estimate_sample_size(0.5, test="two_sample_t"))
    print(minimum_detectable_effect(48, test="paired_t"))
@@ -35,5 +35,5 @@ Limitations
 API Reference
 -------------
 
-.. automodule:: drcutils.power
+.. automodule:: drcutils.stats.power
    :members:

@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-GLOBAL_THRESHOLD = 59.0
+GLOBAL_THRESHOLD = 70.0
 
 
 def main() -> int:

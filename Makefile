@@ -47,6 +47,7 @@ examples-static:
 
 examples-metrics:
 	PYTHONPATH=src $(PYTHON) scripts/generate_examples_metrics.py
+	$(PYTHON) scripts/check_examples_thresholds.py --metrics-json artifacts/examples/examples_metrics.json
 	$(PYTHON) scripts/generate_examples_badges.py
 
 qa: lint fmt-check docstrings-check type test

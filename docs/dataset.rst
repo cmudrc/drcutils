@@ -4,7 +4,7 @@ Dataset Utilities
 Overview
 --------
 
-Use ``drcutils.dataset`` to profile tabular data, validate CSVs against simple
+Use ``drcutils.data`` to profile tabular data, validate CSVs against simple
 schemas, and generate lightweight codebooks for lab handoff.
 
 Quick Start
@@ -13,7 +13,7 @@ Quick Start
 .. code-block:: python
 
    import pandas as pd
-   from drcutils.dataset import generate_codebook, profile_dataframe, validate_dataframe
+   from drcutils.data import generate_codebook, profile_dataframe, validate_dataframe
 
    df = pd.read_csv("data/study.csv")
    print(profile_dataframe(df)["warnings"])
@@ -38,5 +38,5 @@ Limitations
 API Reference
 -------------
 
-.. automodule:: drcutils.dataset
+.. automodule:: drcutils.data.dataset
    :members:

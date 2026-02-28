@@ -5,7 +5,7 @@ import json
 
 import pytest
 
-from drcutils.repro import attach_provenance, capture_run_context, write_run_manifest
+from drcutils.runtime import attach_provenance, capture_run_context, write_run_manifest
 
 
 def test_capture_run_context_hashes_known_file(tmp_path) -> None:

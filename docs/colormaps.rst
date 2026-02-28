@@ -9,5 +9,5 @@ DRC-branded Matplotlib colormaps.
 API Reference
 -------------
 
-.. automodule:: drcutils.colormaps
+.. automodule:: drcutils.brand.colormaps
    :members:

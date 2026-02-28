@@ -38,19 +38,17 @@ def _extract_exports(path: Path) -> list[str]:
     return []
 
 
-def _notebook_code_cells(path: Path) -> str:
+def _notebook_usage(path: Path, exports: set[str]) -> set[str]:
     payload = json.loads(path.read_text(encoding="utf-8"))
     cells = payload.get("cells", [])
-    code_lines: list[str] = []
+    hits: set[str] = set()
     for cell in cells:
-        if cell.get("cell_type") == "code":
-            source = cell.get("source", [])
-            if isinstance(source, list):
-                code_lines.extend(source)
-            elif isinstance(source, str):
-                code_lines.append(source)
-            code_lines.append("\n")
-    return "".join(code_lines)
+        if cell.get("cell_type") != "code":
+            continue
+        source = cell.get("source", [])
+        cell_source = "".join(source) if isinstance(source, list) else str(source)
+        hits.update(_usage_from_source(cell_source, exports))
+    return hits
 
 
 def _usage_from_source(source: str, exports: set[str]) -> set[str]:
@@ -79,7 +77,7 @@ def main() -> None:
         source = py_file.read_text(encoding="utf-8")
         covered.update(_usage_from_source(source, export_set))
     for nb in notebooks:
-        covered.update(_usage_from_source(_notebook_code_cells(nb), export_set))
+        covered.update(_notebook_usage(nb, export_set))
 
     total_examples = len(notebooks) + len(python_examples)
     passed_examples = total_examples

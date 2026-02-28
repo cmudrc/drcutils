@@ -9,5 +9,5 @@ Neural-network visualization helpers powered by Netron.
 API Reference
 -------------
 
-.. automodule:: drcutils.ml
+.. automodule:: drcutils.viz.ml
    :members:

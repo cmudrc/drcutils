@@ -1,0 +1,50 @@
+{
+  "examples": {
+    "failed": 0,
+    "pass_percent": 100.0,
+    "passed": 2,
+    "total": 2
+  },
+  "public_api": {
+    "coverage_percent": 15.2,
+    "covered_exports": 5,
+    "covered_symbols": [
+      "COLORS",
+      "brand",
+      "convert",
+      "visualize_network",
+      "visualize_stl"
+    ],
+    "missing_symbols": [
+      "__version__",
+      "analyze_doe_response",
+      "attach_provenance",
+      "bootstrap_ci",
+      "capture_run_context",
+      "compute_main_effects",
+      "data",
+      "doe",
+      "estimate_sample_size",
+      "export_figure",
+      "fit_screening_model",
+      "flag",
+      "generate_codebook",
+      "generate_doe",
+      "get_figure_preset",
+      "is_google_colab",
+      "is_notebook",
+      "minimum_detectable_effect",
+      "permutation_test",
+      "power_curve",
+      "profile_dataframe",
+      "rank_tests_one_stop",
+      "runtime",
+      "stats",
+      "validate_dataframe",
+      "viz",
+      "watermark",
+      "write_run_manifest"
+    ],
+    "total_exports": 33
+  }
+}

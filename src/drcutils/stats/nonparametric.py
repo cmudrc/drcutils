@@ -6,7 +6,7 @@ from typing import Any
 
 import numpy as np
 
-from .templates import render_ci_text, render_np_test_text, render_permutation_text
+from .reporting import render_ci_text, render_np_test_text, render_permutation_text
 
 
 def _as_array(values: Any, name: str) -> np.ndarray:

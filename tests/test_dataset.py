@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from drcutils.dataset import generate_codebook, profile_dataframe, validate_dataframe
+from drcutils.data import generate_codebook, profile_dataframe, validate_dataframe
 
 
 def test_profile_dataframe_reports_numeric_summary() -> None:

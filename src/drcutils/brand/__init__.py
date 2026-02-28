@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from importlib import import_module as _import_module
 from importlib.resources import files as _resource_files
 from os import PathLike
 
@@ -159,3 +160,25 @@ def watermark(
 
     target_image.paste(resized_watermark_image, (x_position, y_position))
     target_image.save(output_filepath)
+
+
+def __getattr__(name: str) -> object:
+    if name == "colormaps":
+        return _import_module(".colormaps", __name__)
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
+
+
+__all__ = [
+    "COLORS",
+    "COLOR_PATTERN_PNG",
+    "GREY_PATTERN_PNG",
+    "HORIZONTAL_LOGO_PNG",
+    "LOGO_ONLY_PNG",
+    "LOGO_ONLY_STL",
+    "LOGO_ONLY_SVG",
+    "STACKED_LOGO_PNG",
+    "WHITE_PATTERN_PNG",
+    "colormaps",
+    "flag",
+    "watermark",
+]

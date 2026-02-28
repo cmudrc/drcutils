@@ -6,7 +6,7 @@ import argparse
 import json
 import sys
 
-from drcutils.repro import capture_run_context, write_run_manifest
+from drcutils.runtime import capture_run_context, write_run_manifest
 
 
 def _build_parser() -> argparse.ArgumentParser:

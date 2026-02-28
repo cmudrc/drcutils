@@ -4,7 +4,7 @@ Reproducibility Utilities
 Overview
 --------
 
-Use ``drcutils.repro`` to capture portable run-context manifests for figures,
+Use ``drcutils.runtime`` to capture portable run-context manifests for figures,
 analyses, and ad hoc scripts.
 
 Quick Start
@@ -12,7 +12,7 @@ Quick Start
 
 .. code-block:: python
 
-   from drcutils.repro import capture_run_context, write_run_manifest
+   from drcutils.runtime import capture_run_context, write_run_manifest
 
    context = capture_run_context(seed=7, input_paths=["data/study.csv"])
    path = write_run_manifest(context, "artifacts/run_context.json")
@@ -34,5 +34,5 @@ Limitations
 API Reference
 -------------
 
-.. automodule:: drcutils.repro
+.. automodule:: drcutils.runtime.repro
    :members:

@@ -6,7 +6,7 @@ import argparse
 import json
 from pathlib import Path
 
-from drcutils.power import estimate_sample_size, minimum_detectable_effect, power_curve
+from drcutils.stats import estimate_sample_size, minimum_detectable_effect, power_curve
 
 
 def _build_parser() -> argparse.ArgumentParser:

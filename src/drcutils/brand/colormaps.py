@@ -2,7 +2,7 @@
 
 import matplotlib.colors as _mpc
 
-from .brand import COLORS
+from . import COLORS
 
 BLACK, GREEN, TEAL, TURQUOISE, ORANGE, RED = [_mpc.to_rgb(c) for c in COLORS]
 WHITE = [1.00, 1.00, 1.00]

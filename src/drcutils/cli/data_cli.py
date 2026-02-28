@@ -10,7 +10,7 @@ from typing import Any
 
 import pandas as pd
 
-from drcutils.dataset import generate_codebook, profile_dataframe, validate_dataframe
+from drcutils.data import generate_codebook, profile_dataframe, validate_dataframe
 
 
 def _write_json(payload: dict[str, Any], out_path: Path) -> None:

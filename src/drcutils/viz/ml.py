@@ -8,7 +8,7 @@ from IPython.display import Javascript as _Javascript
 from IPython.display import display as _display
 from netron import serve as _serve
 
-from .env import is_google_colab, is_notebook
+from ..runtime import is_google_colab, is_notebook
 
 
 def visualize_network(path: str | bytes | PathLike, height: int = 500, port: int = 8000) -> None:

@@ -1,4 +1,4 @@
-"""High-level one-stop DOE generation workflows."""
+"""High-level DOE generation workflows."""
 
 from __future__ import annotations
 

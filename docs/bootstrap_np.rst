@@ -38,5 +38,5 @@ Install stats dependencies (SciPy/statsmodels-backed paths):
 API Reference
 -------------
 
-.. automodule:: drcutils.stats.bootstrap_np
+.. automodule:: drcutils.stats.nonparametric
    :members:

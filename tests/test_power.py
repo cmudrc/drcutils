@@ -4,8 +4,8 @@ import importlib.util
 
 import pytest
 
-import drcutils.power as power_module
-from drcutils.power import estimate_sample_size, minimum_detectable_effect, power_curve
+import drcutils.stats.power as power_module
+from drcutils.stats import estimate_sample_size, minimum_detectable_effect, power_curve
 
 
 def _stats_available() -> bool:

@@ -9,5 +9,5 @@ Utilities for runtime environment detection.
 API Reference
 -------------
 
-.. automodule:: drcutils.env
+.. automodule:: drcutils.runtime.env
    :members:

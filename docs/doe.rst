@@ -38,5 +38,5 @@ For larger fractional factorial workflows, install optional DOE support:
 API Reference
 -------------
 
-.. automodule:: drcutils.doe.one_stop
+.. automodule:: drcutils.doe.generate
    :members:

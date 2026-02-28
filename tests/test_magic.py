@@ -3,7 +3,7 @@ from __future__ import annotations
 import pandas as pd
 import pytest
 
-from drcutils.magic import convert
+from drcutils.data import convert
 
 
 def test_convert_csv_to_json_roundtrip(tmp_path) -> None:
