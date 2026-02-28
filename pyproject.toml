@@ -35,6 +35,10 @@ Issues = "https://github.com/cmudrc/drcutils/issues"
 
 [project.scripts]
 drc-doe = "drcutils.cli.doe_cli:main"
+drc-doe-analyze = "drcutils.cli.doe_analysis_cli:main"
+drc-data = "drcutils.cli.data_cli:main"
+drc-power = "drcutils.cli.power_cli:main"
+drc-repro = "drcutils.cli.repro_cli:main"
 drc-stats = "drcutils.cli.stats_cli:main"
 
 [project.optional-dependencies]

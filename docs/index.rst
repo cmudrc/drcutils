@@ -20,6 +20,10 @@ Welcome to drcutils's documentation!
    paper_figures
    doe
    bootstrap_np
+   repro
+   dataset
+   power
+   doe_analysis
 
 Indices and tables
 ==================

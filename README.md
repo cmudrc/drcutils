@@ -39,6 +39,28 @@ doe = generate_doe(kind="lhs", factors={"x": (0.0, 1.0), "y": (10.0, 20.0)}, n_s
 ci = bootstrap_ci([1, 2, 3, 4, 5], stat="mean", seed=0)
 ```
 
+## Research Lab Additions
+
+```python
+from drcutils import (
+    analyze_doe_response,
+    capture_run_context,
+    estimate_sample_size,
+    validate_dataframe,
+)
+
+context = capture_run_context(seed=7, input_paths=["data/study.csv"])
+validation = validate_dataframe(df, {"participant_id": {"unique": True, "nullable": False}})
+power = estimate_sample_size(0.5, test="two_sample_t")
+analysis = analyze_doe_response(doe_df, response="yield")
+```
+
+Power analysis and DOE screening models require the optional stats extras:
+
+```bash
+pip install drcutils[stats]
+```
+
 ## Examples
 
 - Basic functionality:
