@@ -43,6 +43,10 @@ autodoc_mock_imports = [
     "netron",
     "PIL",
     "IPython",
+    "hmmlearn",
+    "networkx",
+    "sentence_transformers",
+    "torch",
 ]
 
 suppress_warnings = ["ref.class"]

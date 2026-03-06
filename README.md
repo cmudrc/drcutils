@@ -28,6 +28,7 @@ pip install -e ".[dev]"
 from drcutils.viz import export_figure
 from drcutils.doe import generate_doe
 from drcutils.stats import bootstrap_ci
+from drcutils.sequence import fit_markov_chain
 
 # Export publication-ready figures.
 result = export_figure(fig, "artifacts/figures/plot", targets=["one_col", "slide_16x9"])
@@ -37,6 +38,9 @@ doe = generate_doe(kind="lhs", factors={"x": (0.0, 1.0), "y": (10.0, 20.0)}, n_s
 
 # Compute bootstrap interval.
 ci = bootstrap_ci([1, 2, 3, 4, 5], stat="mean", seed=0)
+
+# Fit a smoothed token Markov chain.
+chain = fit_markov_chain([["S", "NP", "VP", "END"], ["S", "ADV", "VP", "END"]])
 ```
 
 ## Research Lab Additions
@@ -67,6 +71,7 @@ pip install drcutils[stats]
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/basic_functionality.ipynb)
 - Advanced example:
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/logo_adventures.ipynb)
+- Sequence modeling script: `examples/sequence_models.py`
 
 ## Development Commands
 
@@ -81,3 +86,5 @@ make docs-build
 - DOE extras: `pip install drcutils[doe]`
 - Stats extras: `pip install drcutils[stats]`
 - Plotly extras: `pip install drcutils[plotly]`
+- Sequence-model extras: `pip install drcutils[seq]`
+- Text-embedding extras: `pip install drcutils[embeddings]`

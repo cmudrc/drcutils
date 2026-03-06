@@ -17,6 +17,7 @@ Browse by Domain
 - :doc:`branding`: DRC identity assets, logos, and colormaps.
 - :doc:`visualization`: Figure export, CAD previews, and model inspection.
 - :doc:`analysis`: Dataset profiling, bootstrap inference, and power planning.
+- :doc:`sequence`: Markov chains, HMM fitting, and embedding-driven sequence modeling.
 - :doc:`experiments`: DOE generation and response analysis workflows.
 - :doc:`runtime`: File conversion, environment detection, and reproducibility tooling.
 
