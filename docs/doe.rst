@@ -35,6 +35,13 @@ For larger fractional factorial workflows, install optional DOE support:
 
    pip install drcutils[doe]
 
+CLI
+---
+
+.. code-block:: bash
+
+   drc-doe --kind lhs --factors-json '{"temperature": [20, 80], "pressure": [1, 3]}' --n-samples 12 --out artifacts/doe.csv
+
 API Reference
 -------------
 

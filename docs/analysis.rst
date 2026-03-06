@@ -10,3 +10,4 @@ permutation inference, and power analysis for study planning.
    dataset
    bootstrap_np
    power
+   sequence

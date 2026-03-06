@@ -18,6 +18,7 @@ make fmt
 make lint
 make type
 make test
+make qa
 make docs-build
 ```
 
@@ -34,6 +35,7 @@ pre-commit run --all-files
 - Add or update tests for behavior changes.
 - Update docs when public behavior changes.
 - Include a short validation summary (commands run and results).
+- Keep CLI changes aligned with `docs/cli_standards.rst`.
 
 ## Code Style
 

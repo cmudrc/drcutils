@@ -35,6 +35,14 @@ Install stats dependencies (SciPy/statsmodels-backed paths):
 
    pip install drcutils[stats]
 
+CLI
+---
+
+.. code-block:: bash
+
+   drc-stats bootstrap-ci --input data/study.csv --column score --stat mean --ci 0.95
+   drc-stats perm-test --input data/study.csv --xcol control --ycol treatment
+
 API Reference
 -------------
 

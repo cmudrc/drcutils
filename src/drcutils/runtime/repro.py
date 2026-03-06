@@ -148,10 +148,19 @@ def write_run_manifest(context: dict[str, Any], outpath: str | Path) -> Path:
     if output_path.suffix.lower() != ".json":
         raise ValueError("Run manifests must be written to a .json file.")
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    with output_path.open("w", encoding="utf-8") as handle:
-        json.dump(context, handle, indent=2, sort_keys=True)
-        handle.write("\n")
+    try:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise ValueError(
+            f"Failed to create output directory '{output_path.parent}': {exc}"
+        ) from exc
+
+    try:
+        with output_path.open("w", encoding="utf-8") as handle:
+            json.dump(context, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+    except OSError as exc:
+        raise ValueError(f"Failed to write run manifest '{output_path}': {exc}") from exc
     return output_path.resolve()
 
 
