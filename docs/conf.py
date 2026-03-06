@@ -1,8 +1,13 @@
 """Sphinx configuration for drcutils docs."""
 
+from __future__ import annotations
+
 import os
+import re
 import sys
 from pathlib import Path
+
+from sphinx.application import Sphinx
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -64,7 +69,9 @@ else:
         html_theme = "alabaster"
 
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 html_logo = "drc.png"
+html_title = project
 html_theme_options = {
-    "logo_only": True,
+    "logo_only": False,
 }
