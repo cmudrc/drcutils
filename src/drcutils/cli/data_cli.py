@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import argparse
-import sys
 from pathlib import Path
 
 from drcutils.cli._common import (
@@ -13,6 +12,7 @@ from drcutils.cli._common import (
     print_json,
     read_csv,
     read_json_file,
+    write_csv_file,
     write_json_file,
 )
 from drcutils.data import generate_codebook, profile_dataframe, validate_dataframe
@@ -113,10 +113,13 @@ def main() -> int:
             df,
             max_categorical_levels=args.max_categorical_levels,
         )
-        if args.out:
-            write_json_file(Path(args.out), result)
-        else:
-            print_json(result)
+        try:
+            if args.out:
+                write_json_file(Path(args.out), result)
+            else:
+                print_json(result)
+        except ValueError as exc:
+            return print_error(str(exc))
         return 0
 
     if args.command == "validate":
@@ -135,13 +138,9 @@ def main() -> int:
         descriptions = _load_descriptions(args.descriptions_json)
         codebook = generate_codebook(df, descriptions=descriptions)
         out_path = Path(args.out)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        codebook.to_csv(out_path, index=False)
+        write_csv_file(out_path, codebook)
     except ValueError as exc:
         return print_error(str(exc))
-    except OSError as exc:
-        print(str(exc), file=sys.stderr)
-        return 2
     print(f"Wrote codebook to {out_path}")
     return 0
 

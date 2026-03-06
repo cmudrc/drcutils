@@ -10,6 +10,7 @@ from drcutils.cli._common import (
     parse_json_list,
     print_error,
     print_json,
+    write_csv_file,
 )
 from drcutils.stats import estimate_sample_size, minimum_detectable_effect, power_curve
 
@@ -111,10 +112,9 @@ def main() -> int:
             return print_error(str(exc))
 
         out_path = Path(args.out)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
         try:
-            curve.to_csv(out_path, index=False)
-        except OSError as exc:
+            write_csv_file(out_path, curve)
+        except ValueError as exc:
             return print_error(str(exc))
         print(f"Wrote power curve to {out_path}")
         return 0

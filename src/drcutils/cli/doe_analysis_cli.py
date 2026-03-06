@@ -7,9 +7,12 @@ from pathlib import Path
 
 from drcutils.cli._common import (
     build_parser,
+    ensure_directory,
     parse_comma_list,
     print_error,
+    print_warnings,
     read_csv,
+    write_csv_file,
     write_json_file,
 )
 from drcutils.doe import analyze_doe_response
@@ -69,12 +72,12 @@ def main() -> int:
         return print_error(str(exc))
 
     out_dir = Path(args.out_dir)
-    out_dir.mkdir(parents=True, exist_ok=True)
     try:
-        result["main_effects"].to_csv(out_dir / "main_effects.csv", index=False)
+        ensure_directory(out_dir, label="output directory")
+        write_csv_file(out_dir / "main_effects.csv", result["main_effects"])
         model_summary = None
         if result["model"] is not None:
-            result["model"]["coefficients"].to_csv(out_dir / "coefficients.csv", index=False)
+            write_csv_file(out_dir / "coefficients.csv", result["model"]["coefficients"])
             model_summary = result["model"]["model_summary"]
 
         summary_payload = {
@@ -84,12 +87,11 @@ def main() -> int:
             "model_summary": model_summary,
         }
         write_json_file(out_dir / "summary.json", summary_payload)
-    except OSError as exc:
+    except ValueError as exc:
         return print_error(str(exc))
 
     print(result["interpretation"])
-    for warning in result["warnings"]:
-        print(f"WARNING: {warning}")
+    print_warnings(result["warnings"])
     print(f"Wrote analysis to {out_dir}")
     return 0
 

@@ -4,7 +4,12 @@ from __future__ import annotations
 
 import argparse
 
-from drcutils.cli._common import build_parser, parse_json_argument, print_error
+from drcutils.cli._common import (
+    build_parser,
+    parse_json_argument,
+    print_error,
+    print_warnings,
+)
 from drcutils.runtime import capture_run_context, write_run_manifest
 
 
@@ -55,12 +60,11 @@ def main() -> int:
     try:
         context = capture_run_context(seed=args.seed, input_paths=args.inputs, extra=extra)
         out_path = write_run_manifest(context, args.out)
-    except (FileNotFoundError, ValueError) as exc:
+    except (FileNotFoundError, OSError, ValueError) as exc:
         return print_error(str(exc))
 
     print(out_path)
-    for warning in context["warnings"]:
-        print(f"WARNING: {warning}")
+    print_warnings(context["warnings"])
     return 0
 
 

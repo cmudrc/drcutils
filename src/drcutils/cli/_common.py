@@ -54,14 +54,44 @@ def read_json_file(path: Path, *, label: str) -> Any:
         raise ValueError(f"{label} not found: {path}") from exc
     except json.JSONDecodeError as exc:
         raise ValueError(f"Invalid {label} '{path}': {exc}") from exc
+    except OSError as exc:
+        raise ValueError(f"Failed to read {label} '{path}': {exc}") from exc
+
+
+def ensure_parent_dir(path: Path) -> None:
+    """Create the parent directory for an output path."""
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise ValueError(f"Failed to create output directory '{path.parent}': {exc}") from exc
+
+
+def ensure_directory(path: Path, *, label: str = "output directory") -> None:
+    """Create a directory path."""
+    try:
+        path.mkdir(parents=True, exist_ok=True)
+    except OSError as exc:
+        raise ValueError(f"Failed to create {label} '{path}': {exc}") from exc
 
 
 def write_json_file(path: Path, payload: dict[str, Any]) -> None:
     """Write JSON to disk with stable formatting."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, indent=2, sort_keys=True)
-        handle.write("\n")
+    ensure_parent_dir(path)
+    try:
+        with path.open("w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, sort_keys=True)
+            handle.write("\n")
+    except OSError as exc:
+        raise ValueError(f"Failed to write JSON '{path}': {exc}") from exc
+
+
+def write_csv_file(path: Path, frame: pd.DataFrame) -> None:
+    """Write a DataFrame to CSV with parent directory handling."""
+    ensure_parent_dir(path)
+    try:
+        frame.to_csv(path, index=False)
+    except OSError as exc:
+        raise ValueError(f"Failed to write CSV '{path}': {exc}") from exc
 
 
 def read_csv(path: Path) -> pd.DataFrame:
@@ -72,6 +102,8 @@ def read_csv(path: Path) -> pd.DataFrame:
         raise ValueError(f"Input CSV not found: {path}") from exc
     except _CSV_PARSE_ERRORS as exc:
         raise ValueError(f"Failed to parse CSV '{path}': {exc}") from exc
+    except OSError as exc:
+        raise ValueError(f"Failed to read CSV '{path}': {exc}") from exc
 
 
 def parse_comma_list(raw_value: str | None) -> list[str] | None:
@@ -91,3 +123,9 @@ def print_error(message: str) -> int:
     """Print a user-facing CLI error and return an error exit code."""
     print(message, file=sys.stderr)
     return 2
+
+
+def print_warnings(warnings: list[str]) -> None:
+    """Print warning messages in a standard format."""
+    for warning in warnings:
+        print(f"WARNING: {warning}")

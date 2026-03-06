@@ -5,7 +5,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from drcutils.cli._common import build_parser, parse_json_object, print_error
+from drcutils.cli._common import (
+    build_parser,
+    parse_json_object,
+    print_error,
+    print_warnings,
+    write_csv_file,
+)
 from drcutils.doe import generate_doe
 
 
@@ -82,15 +88,13 @@ def main() -> int:
         return print_error(str(exc))
 
     out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        result["design"].to_csv(out_path, index=False)
-    except OSError as exc:
+        write_csv_file(out_path, result["design"])
+    except ValueError as exc:
         return print_error(str(exc))
 
     print(result["interpretation"])
-    for warning in result["warnings"]:
-        print(f"WARNING: {warning}")
+    print_warnings(result["warnings"])
     print(f"Wrote design to {out_path}")
     return 0
 

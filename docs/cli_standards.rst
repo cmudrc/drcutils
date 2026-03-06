@@ -20,7 +20,8 @@ Parser Contract
 Output Contract
 ---------------
 
-- Structured dictionary results should be printed as JSON.
+- Commands whose primary output is stdout should print structured dictionary
+  results as JSON.
 - File-writing commands must create parent directories when needed.
 - Successful commands return ``0``.
 - Input/validation/runtime failures return ``2``.
