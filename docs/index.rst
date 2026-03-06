@@ -2,8 +2,7 @@ drcutils Documentation
 ======================
 
 ``drcutils`` packages the Design Research Collective's shared utilities for
-branding, visualization, data workflows, statistical analysis, experimental
-design, and reproducible execution.
+branding, visualization, file conversion, and experimental design.
 
 Get Started
 -----------
@@ -16,10 +15,8 @@ Browse by Domain
 
 - :doc:`branding`: DRC identity assets, logos, and colormaps.
 - :doc:`visualization`: Figure export, CAD previews, and model inspection.
-- :doc:`analysis`: Dataset profiling, bootstrap inference, and power planning.
-- :doc:`sequence`: Markov chains, HMM fitting, and embedding-driven sequence modeling.
 - :doc:`experiments`: DOE generation and response analysis workflows.
-- :doc:`runtime`: File conversion, environment detection, and reproducibility tooling.
+- :doc:`runtime`: File conversion and environment tooling.
 - :doc:`cli_standards`: CLI behavior and documentation contracts.
 
 .. toctree::
@@ -29,7 +26,6 @@ Browse by Domain
    readme
    branding
    visualization
-   analysis
    experiments
    runtime
    cli_standards

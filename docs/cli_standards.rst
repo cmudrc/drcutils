@@ -25,17 +25,12 @@ Output Contract
 - File-writing commands must create parent directories when needed.
 - Successful commands return ``0``.
 - Input/validation/runtime failures return ``2``.
-- ``drc-data validate --fail-on-warning`` returns ``3`` when warnings are present.
 
 Command Catalog
 ---------------
 
-- ``drc-data``: profile, validate, and codebook generation for CSV datasets.
 - ``drc-doe``: DOE table generation for full, LHS, and fractional two-level designs.
 - ``drc-doe-analyze``: main-effect summaries and optional screening model outputs.
-- ``drc-power``: sample size, power curve, and minimum detectable effect utilities.
-- ``drc-repro``: run-context and provenance snapshot manifests.
-- ``drc-stats``: bootstrap confidence intervals and permutation testing from CSV data.
 
 Contributor Workflow
 --------------------

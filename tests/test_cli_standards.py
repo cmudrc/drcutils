@@ -11,12 +11,8 @@ from pathlib import Path
 import pytest
 
 CLI_MODULES = {
-    "drcutils.cli.data_cli": "drc-data",
     "drcutils.cli.doe_cli": "drc-doe",
     "drcutils.cli.doe_analysis_cli": "drc-doe-analyze",
-    "drcutils.cli.power_cli": "drc-power",
-    "drcutils.cli.repro_cli": "drc-repro",
-    "drcutils.cli.stats_cli": "drc-stats",
 }
 
 

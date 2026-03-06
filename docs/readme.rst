@@ -24,13 +24,12 @@ Use the flat API for quick scripts:
 
 .. code-block:: python
 
-   from drcutils import bootstrap_ci, export_figure, generate_doe
+   from drcutils import export_figure, generate_doe
 
 Or import by domain when you want a clearer namespace:
 
 .. code-block:: python
 
-   from drcutils.stats import bootstrap_ci
    from drcutils.viz import export_figure
    from drcutils.doe import generate_doe
 
@@ -44,11 +43,8 @@ Quick Examples
 
    import pandas as pd
 
-   from drcutils import bootstrap_ci
    from drcutils.doe import generate_doe
    from drcutils.viz import export_figure
-
-   ci = bootstrap_ci([1, 2, 3, 4, 5], stat="mean", seed=0)
 
    design = generate_doe(
        kind="lhs",
@@ -61,5 +57,4 @@ Quick Examples
    fig = df.plot(x="x", y="y").get_figure()
    export_figure(fig, "artifacts/figures/main_result")
 
-   print(ci["interpretation"])
    print(design["summary"]["n_runs"])
