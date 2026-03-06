@@ -20,23 +20,29 @@ def test_make_segment_data_shape() -> None:
 
 
 def test_named_colormaps_and_reversed_names() -> None:
-    assert colormaps.hamster.name == "hamster"
-    assert colormaps.hamster_r.name == "hamster_r"
+    assert colormaps.drc_palette.name == "drc_palette"
+    assert colormaps.drc_palette_r.name == "drc_palette_r"
 
-    assert colormaps.diverging_hamster.name == "diverging_hamster"
-    assert colormaps.diverging_hamster_r.name == "diverging_hamster_r"
+    assert colormaps.drc_diverging.name == "drc_diverging"
+    assert colormaps.drc_diverging_r.name == "drc_diverging_r"
 
-    assert colormaps.dark_diverging_hamster.name == "dark_diverging_hamster"
-    assert colormaps.dark_diverging_hamster_r.name == "dark_diverging_hamster_r"
+    assert colormaps.drc_dark_diverging.name == "drc_dark_diverging"
+    assert colormaps.drc_dark_diverging_r.name == "drc_dark_diverging_r"
 
-    assert colormaps.cool_hamster.name == "cool_hamster"
-    assert colormaps.cool_hamster_r.name == "cool_hamster_r"
+    assert colormaps.drc_cool.name == "drc_cool"
+    assert colormaps.drc_cool_r.name == "drc_cool_r"
 
-    assert colormaps.warm_hamster.name == "warm_hamster"
-    assert colormaps.warm_hamster_r.name == "warm_hamster_r"
+    assert colormaps.drc_warm.name == "drc_warm"
+    assert colormaps.drc_warm_r.name == "drc_warm_r"
 
 
 def test_colormap_sampling_returns_rgba() -> None:
-    rgba = colormaps.diverging_hamster(0.5)
+    rgba = colormaps.drc_diverging(0.5)
     assert len(rgba) == 4
     assert all(0.0 <= value <= 1.0 for value in rgba)
+
+
+def test_legacy_hamster_names_are_removed() -> None:
+    assert not hasattr(colormaps, "hamster")
+    assert not hasattr(colormaps, "cool_hamster")
+    assert not hasattr(colormaps, "warm_hamster")

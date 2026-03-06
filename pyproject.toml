@@ -61,7 +61,18 @@ include-package-data = true
 where = ["src"]
 
 [tool.setuptools.package-data]
-drcutils = ["data/*"]
+drcutils = [
+  "data/*",
+  "data/brand_assets/logos/horizontal/*.png",
+  "data/brand_assets/logos/stacked/*.png",
+  "data/brand_assets/logos/symbol/*.png",
+  "data/brand_assets/logos/on_black/*.png",
+  "data/brand_assets/patterns/*.png",
+  "data/brand_assets/gradients/*.png",
+  "data/brand_assets/circles/*.png",
+  "data/brand_assets/scribbles/thin/*.png",
+  "data/brand_assets/scribbles/thick/*.png",
+]
 
 [tool.pytest.ini_options]
 addopts = "-q"
