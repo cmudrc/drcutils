@@ -20,6 +20,7 @@ Browse by Domain
 - :doc:`sequence`: Markov chains, HMM fitting, and embedding-driven sequence modeling.
 - :doc:`experiments`: DOE generation and response analysis workflows.
 - :doc:`runtime`: File conversion, environment detection, and reproducibility tooling.
+- :doc:`cli_standards`: CLI behavior and documentation contracts.
 
 .. toctree::
    :hidden:
@@ -31,6 +32,7 @@ Browse by Domain
    analysis
    experiments
    runtime
+   cli_standards
 
 Indices and tables
 ==================

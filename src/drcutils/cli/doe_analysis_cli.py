@@ -3,22 +3,50 @@
 from __future__ import annotations
 
 import argparse
-import json
 from pathlib import Path
 
-import pandas as pd
-
+from drcutils.cli._common import (
+    build_parser,
+    parse_comma_list,
+    print_error,
+    read_csv,
+    write_json_file,
+)
 from drcutils.doe import analyze_doe_response
 
 
 def _build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Analyze a DOE response table.")
-    parser.add_argument("--input", required=True)
-    parser.add_argument("--response-col", required=True)
-    parser.add_argument("--out-dir", required=True)
-    parser.add_argument("--factor-cols", default=None)
-    parser.add_argument("--include-interactions", action="store_true")
-    parser.add_argument("--alpha", type=float, default=0.05)
+    parser = build_parser(
+        prog="drc-doe-analyze",
+        description="Analyze DOE response data and write tabular diagnostics.",
+    )
+    parser.add_argument("--input", required=True, help="Input CSV file with DOE responses.")
+    parser.add_argument(
+        "--response-col",
+        required=True,
+        help="Name of the response column to analyze.",
+    )
+    parser.add_argument(
+        "--out-dir",
+        required=True,
+        help="Output directory for generated analysis artifacts.",
+    )
+    parser.add_argument(
+        "--factor-cols",
+        default=None,
+        help="Optional comma-separated factor columns. Defaults to all non-response columns.",
+    )
+    parser.add_argument(
+        "--include-interactions",
+        action="store_true",
+        help="Include pairwise interactions in the screening model when possible.",
+    )
+    parser.add_argument(
+        "--alpha",
+        type=float,
+        default=0.05,
+        help="Significance threshold for fitted model confidence intervals.",
+    )
     return parser
 
 
@@ -27,40 +55,41 @@ def main() -> int:
     parser = _build_parser()
     args = parser.parse_args()
 
-    df = pd.read_csv(Path(args.input))
-    factor_columns = None
-    if args.factor_cols:
-        factor_columns = [
-            column.strip() for column in args.factor_cols.split(",") if column.strip()
-        ]
-
-    result = analyze_doe_response(
-        df,
-        response=args.response_col,
-        factor_columns=factor_columns,
-        include_interactions=args.include_interactions,
-        alpha=args.alpha,
-    )
+    try:
+        df = read_csv(Path(args.input))
+        factor_columns = parse_comma_list(args.factor_cols)
+        result = analyze_doe_response(
+            df,
+            response=args.response_col,
+            factor_columns=factor_columns,
+            include_interactions=args.include_interactions,
+            alpha=args.alpha,
+        )
+    except (ValueError, ImportError) as exc:
+        return print_error(str(exc))
 
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    result["main_effects"].to_csv(out_dir / "main_effects.csv", index=False)
-    model_summary = None
-    if result["model"] is not None:
-        result["model"]["coefficients"].to_csv(out_dir / "coefficients.csv", index=False)
-        model_summary = result["model"]["model_summary"]
+    try:
+        result["main_effects"].to_csv(out_dir / "main_effects.csv", index=False)
+        model_summary = None
+        if result["model"] is not None:
+            result["model"]["coefficients"].to_csv(out_dir / "coefficients.csv", index=False)
+            model_summary = result["model"]["model_summary"]
 
-    summary_payload = {
-        "summary": result["summary"],
-        "warnings": result["warnings"],
-        "interpretation": result["interpretation"],
-        "model_summary": model_summary,
-    }
-    with (out_dir / "summary.json").open("w", encoding="utf-8") as handle:
-        json.dump(summary_payload, handle, indent=2, sort_keys=True)
-        handle.write("\n")
+        summary_payload = {
+            "summary": result["summary"],
+            "warnings": result["warnings"],
+            "interpretation": result["interpretation"],
+            "model_summary": model_summary,
+        }
+        write_json_file(out_dir / "summary.json", summary_payload)
+    except OSError as exc:
+        return print_error(str(exc))
 
     print(result["interpretation"])
+    for warning in result["warnings"]:
+        print(f"WARNING: {warning}")
     print(f"Wrote analysis to {out_dir}")
     return 0
 

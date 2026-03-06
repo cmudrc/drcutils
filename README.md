@@ -22,6 +22,15 @@ For contributor tooling:
 pip install -e ".[dev]"
 ```
 
+## CLI Commands
+
+- `drc-data`: dataset profiling, validation, and codebook generation
+- `drc-doe`: DOE design generation
+- `drc-doe-analyze`: DOE response analysis
+- `drc-power`: power and sample-size planning
+- `drc-repro`: reproducibility snapshot manifests
+- `drc-stats`: bootstrap and permutation testing utilities
+
 ## Quick Usage
 
 ```python
