@@ -1,32 +1,77 @@
-drcutils Documentation
-======================
+drcutils
+========
 
-``drcutils`` packages the Design Research Collective's shared utilities for
-branding, visualization, file conversion, and experimental design.
+Internal utility toolkit for Design Research Collective lab members.
 
-Get Started
------------
+What This Library Does
+----------------------
 
-Start with :doc:`readme` for installation, import patterns, and a few quick
-examples before diving into the API reference.
+``drcutils`` provides shared support utilities used across lab projects:
+branding assets, figure-export helpers, lightweight file conversion, and runtime
+environment detection.
 
-Browse by Domain
-----------------
+Highlights
+----------
 
-- :doc:`branding`: DRC identity assets, logos, and colormaps.
-- :doc:`visualization`: Figure export, CAD previews, and model inspection.
-- :doc:`experiments`: DOE generation and response analysis workflows.
-- :doc:`runtime`: File conversion and environment tooling.
-- :doc:`cli_standards`: CLI behavior and documentation contracts.
+- DRC logo, palette, and watermark helpers
+- Presentation-ready figure export presets
+- CAD and model-visualization wrappers
+- Lightweight data-format conversion and runtime checks
+
+Intended Use
+------------
+
+This package is intended primarily for internal lab workflows, not as a
+general-purpose public framework. It centralizes recurring utility functions so
+individual repositories do not duplicate branding and presentation logic.
+
+Integration With The Ecosystem
+------------------------------
+
+The Design Research Collective maintains a modular ecosystem of libraries for
+research workflows:
+
+- **design-research-agents** for agent execution and trace collection.
+- **design-research-problems** for benchmark design tasks and evaluators.
+- **design-research-analysis** for analysis pipelines and study outputs.
+- **design-research-experiments** for study design and orchestration.
+- **drcutils** for shared utility support (branding, visuals, and runtime helpers).
+
+Start Here
+----------
+
+- :doc:`quickstart`
+- :doc:`installation`
+- :doc:`concepts`
+- :doc:`typical_workflow`
+- :doc:`api`
+- `CONTRIBUTING.md <https://github.com/cmudrc/drcutils/blob/main/CONTRIBUTING.md>`_
 
 .. toctree::
-   :hidden:
    :maxdepth: 2
+   :caption: Documentation
+   :hidden:
 
-   readme
+   quickstart
+   installation
+   concepts
+   typical_workflow
+   api
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Development
+   :hidden:
+
+   dependencies_and_extras
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Additional Guides
+   :hidden:
+
    branding
    visualization
-   experiments
    runtime
    cli_standards
 

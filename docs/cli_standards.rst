@@ -29,8 +29,10 @@ Output Contract
 Command Catalog
 ---------------
 
-- ``drc-doe``: DOE table generation for full, LHS, and fractional two-level designs.
-- ``drc-doe-analyze``: main-effect summaries and optional screening model outputs.
+No stable CLI entrypoints are currently shipped in ``drcutils``.
+
+If CLI commands are introduced in future releases, they must follow this
+contract and be documented in both ``README.md`` and this page.
 
 Contributor Workflow
 --------------------
@@ -41,6 +43,3 @@ Run the quality gates before opening a PR:
 
    make qa
    make docs-build
-
-``tests/test_cli_standards.py`` enforces parser/help/documentation requirements to
-prevent command drift.

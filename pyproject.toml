@@ -36,10 +36,6 @@ Homepage = "https://github.com/cmudrc/drcutils/"
 Repository = "https://github.com/cmudrc/drcutils/"
 Issues = "https://github.com/cmudrc/drcutils/issues"
 
-[project.scripts]
-drc-doe = "drcutils.cli.doe_cli:main"
-drc-doe-analyze = "drcutils.cli.doe_analysis_cli:main"
-
 [project.optional-dependencies]
 dev = [
   "build>=1.2,<2",
@@ -55,7 +51,6 @@ dev = [
   "twine>=5.1,<7",
   "uv>=0.6,<1",
 ]
-doe = ["pyDOE2>=1.3.0"]
 stats = ["scipy>=1.11.0", "statsmodels>=0.14.0"]
 plotly = ["plotly>=5.0"]
 
@@ -131,8 +126,6 @@ module = [
   "pandas.*",
   "plotly",
   "plotly.*",
-  "pyDOE2",
-  "pyDOE2.*",
   "stl",
   "stl.*",
   "PIL",

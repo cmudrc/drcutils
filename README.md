@@ -5,55 +5,55 @@
 [![Public API In Examples](https://raw.githubusercontent.com/cmudrc/drcutils/main/.github/badges/examples-api-coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
 [![Docs](https://github.com/cmudrc/drcutils/actions/workflows/docs-pages.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/docs-pages.yml)
 
-Utility functions for design research workflows, including branding assets,
-file conversion helpers, colormaps, CAD visualization, neural-network
-visualization wrappers, and DOE utilities.
+`drcutils` is a shared utility package for Design Research Collective lab members.
 
-## Installation
+It is intended primarily for internal lab workflows where consistent branding,
+figure export, and lightweight runtime/data helpers are needed across projects.
+
+## Overview
+
+This package currently focuses on:
+
+- DRC brand assets, palettes, and watermarking helpers
+- publication-ready figure export presets
+- CAD and model-visualization wrappers
+- file conversion and runtime environment detection utilities
+
+## Quickstart
+
+Requires Python 3.12+.
+Reproducible release installs are pinned to Python `3.12.12` (`.python-version`).
 
 ```bash
-pip install drcutils
+python -m venv .venv
+source .venv/bin/activate
+make dev
+make test
 ```
-
-For contributor tooling:
-
-```bash
-pip install -e ".[dev]"
-```
-
-## CLI Commands
-
-- `drc-doe`: DOE design generation
-- `drc-doe-analyze`: DOE response analysis
 
 ## Quick Usage
 
 ```python
+import matplotlib.pyplot as plt
+
+from drcutils.data import convert
+from drcutils.runtime import is_notebook
 from drcutils.viz import export_figure
-from drcutils.doe import generate_doe
 
-# Export publication-ready figures.
-result = export_figure(fig, "artifacts/figures/plot", targets=["one_col", "slide_16x9"])
+convert("inputs/data.csv", "artifacts/data.json")
 
-# Generate a DOE table.
-doe = generate_doe(kind="lhs", factors={"x": (0.0, 1.0), "y": (10.0, 20.0)}, n_samples=12)
+fig, ax = plt.subplots()
+ax.plot([0, 1, 2], [0, 1, 4])
 
-```
-
-## Research Lab Additions
-
-```python
-from drcutils import (
-    analyze_doe_response,
+result = export_figure(
+    fig,
+    "artifacts/figures/main_result",
+    targets=["one_col", "slide_16x9"],
+    formats=["pdf", "png"],
 )
 
-analysis = analyze_doe_response(doe_df, response="yield")
-```
-
-DOE screening models require the optional stats extras:
-
-```bash
-pip install drcutils[stats]
+print(is_notebook())
+print(result["files"])
 ```
 
 ## Examples
@@ -63,15 +63,17 @@ pip install drcutils[stats]
 - Advanced example:
   [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cmudrc/drcutils/blob/main/examples/logo_adventures.ipynb)
 
-## Development Commands
+## Docs
+
+See the [published documentation](https://cmudrc.github.io/drcutils/) for usage guides and API reference.
+
+Build docs locally with:
 
 ```bash
-make dev
-make ci
 make docs-build
 ```
 
-## Optional Extras
+## Contributing
 
-- DOE extras: `pip install drcutils[doe]`
-- Plotly extras: `pip install drcutils[plotly]`
+Contribution workflow and quality gates are documented in
+[CONTRIBUTING.md](https://github.com/cmudrc/drcutils/blob/main/CONTRIBUTING.md).
