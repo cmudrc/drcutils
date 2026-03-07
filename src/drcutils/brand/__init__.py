@@ -351,9 +351,9 @@ def watermark(
             variant_key = "full"
 
         if on_black == "auto":
-            probe_logo = _Image.open(get_logo_path(logo_layout, variant_key, on_black=False)).convert(
-                "RGBA"
-            )
+            probe_logo = _Image.open(
+                get_logo_path(logo_layout, variant_key, on_black=False)
+            ).convert("RGBA")
             probe_resized = _resize_logo(source_rgba.size, probe_logo, width_ratio, height_ratio)
             use_on_black = _is_dark_region(
                 source_rgba,

@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=69", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,14 +8,17 @@ version = "0.1.0"
 description = "Utilities for research in the Design Research Collective"
 readme = "README.md"
 requires-python = ">=3.12"
-license = { file = "LICENSE" }
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "The Design Research Collective", email = "ask-drc@andrew.cmu.edu" },
+]
+maintainers = [
+  { name = "Christopher C. McComb", email = "ccm@cmu.edu" },
 ]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.12",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
 dependencies = [
@@ -39,6 +42,7 @@ drc-doe-analyze = "drcutils.cli.doe_analysis_cli:main"
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.2,<2",
   "mypy>=1.10",
   "pre-commit>=3.7",
   "pytest>=8.2",
@@ -48,6 +52,8 @@ dev = [
   "sphinx-rtd-theme>=2.0",
   "scipy>=1.11.0",
   "statsmodels>=0.14.0",
+  "twine>=5.1,<7",
+  "uv>=0.6,<1",
 ]
 doe = ["pyDOE2>=1.3.0"]
 stats = ["scipy>=1.11.0", "statsmodels>=0.14.0"]

@@ -24,7 +24,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: make install-dev
+        run: make dev
 
       - name: Run CI gate
         run: make ci
@@ -50,7 +50,7 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: make install-dev
+        run: make dev
 
       - name: Generate badges
         run: make coverage examples-static examples-metrics
@@ -67,5 +67,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .github/badges/coverage.svg .github/badges/examples-passing.svg .github/badges/examples-api-coverage.svg
-          git commit -m "chore: update badges [skip ci]"
+          git commit -m "chore: update coverage and examples badges [skip ci]"
           git push origin "HEAD:${BRANCH_NAME}"

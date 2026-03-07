@@ -14,9 +14,10 @@ def test_make_segment_data_shape() -> None:
         fractions=[0.0, 1.0],
     )
 
-    assert sorted(data.keys()) == ["blue", "green", "red"]
-    assert data["red"][0] == [0.0, 0.0, 0.0]
-    assert data["blue"][1] == [1.0, 0.5, 0.5]
+    assert sorted(data.keys()) == ["alpha", "blue", "green", "red"]
+    assert data["red"][0] == (0.0, 0.0, 0.0)
+    assert data["blue"][1] == (1.0, 0.5, 0.5)
+    assert data["alpha"][0] == (0.0, 1.0, 1.0)
 
 
 def test_named_colormaps_and_reversed_names() -> None:

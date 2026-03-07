@@ -40,7 +40,9 @@ def test_watermark_auto_on_black_selects_on_black_logo(monkeypatch, tmp_path: Pa
     calls: list[bool] = []
     original = brand.get_logo_path
 
-    def _tracked_get_logo_path(layout: str, variant: str, on_black: bool = False, fmt: str = "png") -> str:
+    def _tracked_get_logo_path(
+        layout: str, variant: str, on_black: bool = False, fmt: str = "png"
+    ) -> str:
         calls.append(on_black)
         return original(layout, variant, on_black=on_black, fmt=fmt)
 

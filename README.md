@@ -1,10 +1,9 @@
 # drcutils
 [![CI](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
-[![Coverage](.github/badges/coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
-[![Examples Passing](.github/badges/examples-passing.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
-[![Public API In Examples](.github/badges/examples-api-coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
-[![Unit Tests](https://github.com/cmudrc/drcutils/actions/workflows/tests.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/tests.yml)
-[![Docs](https://github.com/cmudrc/drcutils/actions/workflows/docs.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/docs.yml)
+[![Coverage](https://raw.githubusercontent.com/cmudrc/drcutils/main/.github/badges/coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Examples Passing](https://raw.githubusercontent.com/cmudrc/drcutils/main/.github/badges/examples-passing.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Public API In Examples](https://raw.githubusercontent.com/cmudrc/drcutils/main/.github/badges/examples-api-coverage.svg)](https://github.com/cmudrc/drcutils/actions/workflows/ci.yml)
+[![Docs](https://github.com/cmudrc/drcutils/actions/workflows/docs-pages.yml/badge.svg)](https://github.com/cmudrc/drcutils/actions/workflows/docs-pages.yml)
 
 Utility functions for design research workflows, including branding assets,
 file conversion helpers, colormaps, CAD visualization, neural-network
@@ -67,7 +66,7 @@ pip install drcutils[stats]
 ## Development Commands
 
 ```bash
-make install-dev
+make dev
 make ci
 make docs-build
 ```

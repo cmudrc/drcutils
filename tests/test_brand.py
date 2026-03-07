@@ -96,7 +96,14 @@ def test_pattern_gradient_circle_and_scribble_paths_resolve() -> None:
 
     gradients = brand.get_gradient_paths()
     assert len(gradients) == 6
-    assert [Path(path).name for path in gradients] == ["01.png", "02.png", "03.png", "04.png", "05.png", "06.png"]
+    assert [Path(path).name for path in gradients] == [
+        "01.png",
+        "02.png",
+        "03.png",
+        "04.png",
+        "05.png",
+        "06.png",
+    ]
     assert all(Path(path).exists() for path in gradients)
 
     for color in ["blue", "dark_teal", "orange", "red", "teal", "white"]:
