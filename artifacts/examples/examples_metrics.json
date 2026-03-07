@@ -6,7 +6,7 @@
     "total": 2
   },
   "public_api": {
-    "coverage_percent": 25.0,
+    "coverage_percent": 33.3,
     "covered_exports": 5,
     "covered_symbols": [
       "COLORS",
@@ -17,14 +17,9 @@
     ],
     "missing_symbols": [
       "__version__",
-      "analyze_doe_response",
-      "compute_main_effects",
       "data",
-      "doe",
       "export_figure",
-      "fit_screening_model",
       "flag",
-      "generate_doe",
       "get_figure_preset",
       "is_google_colab",
       "is_notebook",
@@ -32,6 +27,6 @@
       "viz",
       "watermark"
     ],
-    "total_exports": 20
+    "total_exports": 15
   }
 }
