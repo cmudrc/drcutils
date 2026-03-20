@@ -6,10 +6,11 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from importlib import import_module as _import_module
 from importlib.resources import files as _resource_files
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 import matplotlib as _mpl
 import matplotlib.colors as _mpc
+import matplotlib.style as _mpl_style
 from cycler import cycler as _cycler
 
 from drcutils.brand import BLACK, BRAND_COLORS, get_matplotlib_font_fallbacks
@@ -126,7 +127,7 @@ def _validate_context(context: str) -> PlotContext:
     if context not in _PLOT_CONTEXTS:
         valid = ", ".join(sorted(_PLOT_CONTEXTS))
         raise ValueError(f"Unknown plotting context '{context}'. Valid contexts: {valid}")
-    return context
+    return cast(PlotContext, context)
 
 
 def _get_font_rcparams() -> dict[str, Any]:
@@ -190,7 +191,7 @@ def use_plot_style(context: PlotContext = "paper", seaborn: bool = False) -> Non
     """Apply the DRC plotting theme to the current Matplotlib session."""
     context = _validate_context(context)
     _register_colormaps()
-    _mpl.style.use(get_plot_style_path())
+    _mpl_style.use(get_plot_style_path())
     _mpl.rcParams.update(_get_theme_rcparams(context))
 
     if seaborn:
