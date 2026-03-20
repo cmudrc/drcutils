@@ -38,9 +38,11 @@ import matplotlib.pyplot as plt
 
 from drcutils.data import convert
 from drcutils.runtime import is_notebook
-from drcutils.viz import export_figure
+from drcutils.visualization import export_figure, use_plot_style
 
 convert("inputs/data.csv", "artifacts/data.json")
+
+use_plot_style(context="paper")
 
 fig, ax = plt.subplots()
 ax.plot([0, 1, 2], [0, 1, 4])

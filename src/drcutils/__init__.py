@@ -1,6 +1,6 @@
 """Public package exports for drcutils."""
 
-from . import brand, data, runtime, viz
+from . import brand, data, runtime, visualization, viz
 from .brand import COLORS, flag, watermark
 from .data import convert
 from .runtime import is_google_colab, is_notebook
@@ -20,6 +20,7 @@ __all__ = [
     "is_google_colab",
     "is_notebook",
     "runtime",
+    "visualization",
     "viz",
     "visualize_network",
     "visualize_stl",

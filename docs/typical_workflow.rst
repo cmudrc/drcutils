@@ -11,7 +11,7 @@ conversion, or runtime environment handling.
 ------------------------
 
 Import only the modules needed for the task (for example ``drcutils.brand`` or
-``drcutils.viz``) to keep scripts explicit and readable.
+``drcutils.visualization``) to keep scripts explicit and readable.
 
 3. Execute utility steps
 ------------------------
