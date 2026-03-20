@@ -4,7 +4,7 @@ Paper Figure Exporter
 Overview
 --------
 
-Use ``drcutils.viz.export_figure`` to export Matplotlib figures with
+Use ``drcutils.visualization.export_figure`` to export Matplotlib figures with
 publication-friendly presets and consistent output naming.
 
 Quick Start
@@ -13,8 +13,9 @@ Quick Start
 .. code-block:: python
 
    import matplotlib.pyplot as plt
-   from drcutils.viz import export_figure
+   from drcutils.visualization import export_figure, use_plot_style
 
+   use_plot_style(context="paper")
    fig, ax = plt.subplots()
    ax.plot([0, 1, 2], [0, 1, 4], label="trend")
    ax.set_xlabel("Time")
@@ -32,8 +33,15 @@ Quick Start
    print(result["files"])
    print(result["warnings"])
 
+Style Note
+----------
+
+``export_figure()`` preserves the figure you pass in. Apply
+``use_plot_style(context="paper")`` before creating the figure when you want
+the shared DRC theme in addition to the export presets.
+
 API Reference
 -------------
 
-.. automodule:: drcutils.viz.paper_figures
+.. automodule:: drcutils.visualization.paper_figures
    :members:

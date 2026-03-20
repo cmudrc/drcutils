@@ -4,10 +4,10 @@ CAD Utilities
 Overview
 --------
 
-Helpers for visualizing STL assets through the ``drcutils.viz`` namespace.
+Helpers for visualizing STL assets through the ``drcutils.visualization`` namespace.
 
 API Reference
 -------------
 
-.. automodule:: drcutils.viz.cad
+.. automodule:: drcutils.visualization.cad
    :members:

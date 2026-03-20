@@ -28,9 +28,12 @@ Or install from source:
 
    import matplotlib.pyplot as plt
 
-   from drcutils import convert, export_figure, is_notebook
+   from drcutils import convert, is_notebook
+   from drcutils.visualization import export_figure, use_plot_style
 
    convert("inputs/study.csv", "artifacts/study.json")
+
+   use_plot_style(context="paper")
 
    fig, ax = plt.subplots()
    ax.plot([0, 1, 2], [0, 1, 4])
@@ -42,8 +45,9 @@ Or install from source:
 3. What Happened
 ----------------
 
-You converted a data artifact, exported a publication-style figure, and checked
-runtime context. This is the most common internal-lab usage pattern.
+You converted a data artifact, applied the shared DRC plotting theme, exported
+a publication-style figure, and checked runtime context. This is the most
+common internal-lab usage pattern.
 
 4. Where To Go Next
 -------------------

@@ -1,4 +1,4 @@
-"""Visualization utilities for publication-grade figures and plotting themes."""
+"""Preferred visualization namespace for plotting and figure helpers."""
 
 from .cad import visualize_stl
 from .ml import visualize_network

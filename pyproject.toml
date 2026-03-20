@@ -53,6 +53,8 @@ dev = [
 ]
 stats = ["scipy>=1.11.0", "statsmodels>=0.14.0"]
 plotly = ["plotly>=5.0"]
+seaborn = ["seaborn>=0.13"]
+visualization = ["plotly>=5.0", "seaborn>=0.13"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
