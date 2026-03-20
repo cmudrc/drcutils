@@ -159,10 +159,7 @@ def _build_plotly_font_family() -> str:
 def _sample_colormap_for_plotly(cmap: Any, n: int = 11) -> list[list[Any]]:
     if n < 2:
         raise ValueError("Plotly colorscales require at least two samples.")
-    return [
-        [idx / (n - 1), _mpc.to_hex(cmap(idx / (n - 1)))]
-        for idx in range(n)
-    ]
+    return [[idx / (n - 1), _mpc.to_hex(cmap(idx / (n - 1)))] for idx in range(n)]
 
 
 def _get_seaborn() -> Any:
